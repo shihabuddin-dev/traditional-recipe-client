@@ -15,8 +15,8 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
         {/* Brand Info */}
         <div>
-          <h2 className="text-2xl font-bold text-orange-500 mb-3">
-            Recipe Book
+          <h2 className="text-2xl font-bold text-orange-600 mb-3">
+            Traditional Recipe
           </h2>
           <p className="text-sm text-gray-600">
             Your daily dose of delicious. Discover, share, and enjoy

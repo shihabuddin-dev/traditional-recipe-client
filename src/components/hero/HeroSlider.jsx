@@ -71,7 +71,7 @@ const HeroSlider = () => {
               <img
                 src={image.src}
                 alt={`Slide ${idx + 1}`}
-                className="w-full h-full object-cover brightness-80 group-hover:brightness-100 transition-all duration-300"
+                className="w-full h-full object-cover brightness-87 group-hover:brightness-100 transition-all duration-300"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
