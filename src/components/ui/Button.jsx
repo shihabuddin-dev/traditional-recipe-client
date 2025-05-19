@@ -9,7 +9,7 @@ const Button = ({
   ...props
 }) => {
   let styles =
-    "px-4  rounded font-medium transition duration-200 focus:outline-none ";
+    "px-4 rounded font-medium transition duration-200 focus:outline-none ";
 
   if (variant === "primary") {
     styles +=

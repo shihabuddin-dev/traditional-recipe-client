@@ -37,7 +37,7 @@ const HeroSlider = () => {
         autoplay={{
           delay: 2000,
           disableOnInteraction: false,
-          pauseOnMouseEnter: true,
+          pauseOnMouseEnter: false,
         }}
         loop={true}
         speed={800}
