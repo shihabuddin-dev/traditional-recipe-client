@@ -10,12 +10,12 @@ const Navbar = () => {
 
   return (
     <nav className="bg-[#fdf6ee] shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div className="max-w-7xl mx-auto py-4 px-4 md:px-6 lg:px-8 flex justify-between items-center">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
           <img src="/logo-icon.png" alt="logo" className="w-6 h-6" />{" "}
           {/* Replace with real icon */}
-          <span className="text-xl font-bold text-[#1a1a1a]">Recipe Book</span>
+          <span className="text-xl font-bold text-[#1a1a1a]">T.R</span>
         </Link>
 
         {/* Desktop Nav */}

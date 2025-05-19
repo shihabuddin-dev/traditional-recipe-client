@@ -1,10 +1,10 @@
 import React from 'react';
+import HeroSlider from '../../components/hero/HeroSlider';
 
 const Home = () => {
     return (
         <div>
-            this is home
-            <p className='text-5xl'>aa</p>
+            <HeroSlider/>
         </div>
     );
 };
