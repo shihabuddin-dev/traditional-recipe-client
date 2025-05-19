@@ -2,7 +2,7 @@
 @plugin "daisyui";
 
 a.active {
-    color: green;
+    color: #ea580c;
   }
   a.pending {
     color: blue;
