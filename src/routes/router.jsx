@@ -3,11 +3,13 @@ import Root from "../layout/Root";
 import Home from "../pages/home/Home";
 import SignIn from "../pages/auth/SignIn";
 import SignUp from "../pages/auth/SignUp";
+import NotFound from "../pages/notFound/NotFound";
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: Root,
+    errorElement: <NotFound/>,
     children: [
       { index: true, Component: Home },
       { path: "/signin", Component: SignIn },

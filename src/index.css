@@ -2,9 +2,14 @@
 @plugin "daisyui";
 
 a.active {
-    color: #ea580c;
-  }
-  a.pending {
-    color: blue;
-  }
- 
+  color: #ea580c;
+}
+
+a.pending {
+  color: blue;
+}
+
+.bg-not-found {
+  background-image: url('/not-found.webp');
+  background-size: cover;
+}
