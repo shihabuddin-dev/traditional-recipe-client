@@ -29,7 +29,7 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/recipes" className="hover:text-orange-600">
+            <NavLink to="/all-recipes" className="hover:text-orange-600">
               All Recipes
             </NavLink>
           </li>
@@ -73,7 +73,7 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/recipes" onClick={toggleMenu}>
+              <NavLink to="/all-recipes" onClick={toggleMenu}>
                 All Recipes
               </NavLink>
             </li>

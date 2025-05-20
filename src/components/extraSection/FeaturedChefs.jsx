@@ -50,7 +50,7 @@ const FeaturedChefs = () => {
           {chefs.map((chef, idx) => (
             <div
               key={idx}
-              className="group bg-white rounded-xl shadow-lg overflow-hidden transition-ease-in-out duration-900 hover:shadow-xl hover:-translate-y-2"
+              className="group bg-white rounded-xl shadow-lg overflow-hidden transition-ease-in-out duration-1000 hover:shadow-xl hover:-translate-y-2"
             >
               <div className="relative">
                 <img
@@ -75,7 +75,7 @@ const FeaturedChefs = () => {
                 <p className="text-gray-600 mb-4">{chef.bio}</p>
 
                 <div className="flex justify-center flex-wrap gap-4">
-                  <Link to="/recipes">
+                  <Link to="/all-recipes">
                     <Button variant="secondary">View Recipes</Button>
                   </Link>
                   <Button variant="none">Book Session</Button>

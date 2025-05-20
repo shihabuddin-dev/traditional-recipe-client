@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Button from "../../components/ui/Button";
+import Swal from "sweetalert2";
 
 const cuisineOptions = [
   "Bangladeshi",
@@ -46,7 +47,11 @@ const AddRecipe = () => {
   const handleAddRecipe = (e) => {
     e.preventDefault();
     if (formData.categories.length === 0) {
-      alert("Please select at least one category.");
+      Swal.fire({
+        title: "Failed!",
+        text: "Please select at least one category!",
+        icon: "warning",
+      });
       return;
     }
     fetch("http://localhost:3000/recipes", {
@@ -58,7 +63,12 @@ const AddRecipe = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("after add", data);
+        console.log("After add New Recipe", data);
+        Swal.fire({
+          title: "Success!",
+          text: "New Recipe has been added",
+          icon: "success",
+        });
       });
   };
 

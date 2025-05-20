@@ -3,7 +3,7 @@ import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router";
 import Button from "../ui/Button";
 
-const Recipe = ({ recipe, onLikeUpdate }) => {
+const Recipe = ({ recipe, handleLikeUpdate }) => {
   const {
     _id,
     image,
@@ -29,8 +29,8 @@ const Recipe = ({ recipe, onLikeUpdate }) => {
 
       if (res.ok) {
         setLikes((prev) => prev + 1);
-        if (onLikeUpdate) {
-          onLikeUpdate(_id);
+        if (handleLikeUpdate) {
+          handleLikeUpdate(_id);
         }
       }
     } catch (error) {

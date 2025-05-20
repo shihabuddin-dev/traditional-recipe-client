@@ -24,7 +24,7 @@ const TopRecipes = () => {
     fetchTopRecipes();
   }, []);
 
-  // 🔄 Handle like update from child component
+  //  Handle like update from child component
   const handleLikeUpdate = (id) => {
     setRecipes((prevRecipes) => {
       const updated = prevRecipes.map((r) =>
@@ -55,14 +55,14 @@ const TopRecipes = () => {
             <Recipe
               key={recipe._id}
               recipe={recipe}
-              onLikeUpdate={handleLikeUpdate}
+              handleLikeUpdate={handleLikeUpdate}
             />
           ))}
         </div>
       )}
 
       <div className="flex justify-center mt-8">
-        <Link to="/recipes">
+        <Link to="/all-recipes">
           <Button variant="outline" className="py-2">
             See All Recipes
           </Button>

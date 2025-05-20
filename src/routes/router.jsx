@@ -6,6 +6,7 @@ import SignUp from "../pages/auth/SignUp";
 import NotFound from "../pages/notFound/NotFound";
 import AddRecipe from "../pages/addRecipe/AddRecipe";
 import Spinner from "../components/ui/Spinner";
+import AllRecipes from "../pages/allRecipes/AllRecipes";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,12 @@ const router = createBrowserRouter([
       { path: "/signin", Component: SignIn },
       { path: "/signup", Component: SignUp },
       { path: "/add-recipe", Component: AddRecipe },
+      {
+        path: "/all-recipes",
+        hydrateFallbackElement: <Spinner />,
+        loader: () => fetch("http://localhost:3000/recipes"),
+        Component: AllRecipes,
+      },
 
       // private routes
       // {
