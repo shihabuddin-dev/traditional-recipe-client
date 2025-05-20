@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { FirebaseAuthContext } from "../../provider/FirebaseAuthContext";
 import Button from "../../components/ui/Button";
 import Swal from "sweetalert2";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 const ResetPassword = () => {
   const { resetPassword } = useContext(FirebaseAuthContext);
@@ -53,8 +54,14 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="flex items-center justify-center">
-      <title>Reset Password || EasySub</title>
+    <div className="flex gap-4 flex-col md:flex-row justify-center items-center max-w-5xl">
+      <div>
+        <DotLottieReact
+          src="https://lottie.host/51f5308c-206b-417f-881d-aa04e13b5e0f/ed3vyy5La9.lottie"
+          loop
+          autoplay
+        />
+      </div>
       <div className="bg-white shadow-2xl rounded-2xl p-6 sm:p-8 md:p-10 w-full max-w-md">
         <h2 className="text-2xl md:text-3xl font-semibold text-center mb-6">
           Reset Your Password

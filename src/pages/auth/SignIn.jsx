@@ -6,6 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FirebaseAuthContext } from "../../provider/FirebaseAuthContext";
 import Swal from "sweetalert2";
 import Spinner from "../../components/ui/Spinner";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 const inputBase =
   "w-full border border-gray-400 px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200";
@@ -112,10 +113,17 @@ const SignIn = () => {
   };
 
   return (
-    <div className="bg-addCoffee">
-      <div className="max-w-md mx-auto p-6 bg-white rounded shadow">
+    <div className="flex gap-4 flex-col md:flex-row justify-center items-center max-w-5xl ">
+      <div className="flex-1">
+        <DotLottieReact
+          src="https://lottie.host/33baafdb-458c-4bde-ac78-8f6fc29efe18/wc1rzpJe2S.lottie"
+          loop
+          autoplay
+        />
+      </div>
+      <div className="flex-1 max-w-md p-6 bg-white rounded shadow">
         <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-center">
-          Sign in to your account
+          Sign in
         </h2>
 
         <form onSubmit={handleSignIn} className="space-y-2">
