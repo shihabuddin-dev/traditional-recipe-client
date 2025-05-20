@@ -36,11 +36,11 @@ const FeaturedChefs = () => {
     <section className="pt-16 pb-6 bg-gradient-to-b from-gray-50 to-white rounded-2xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-2">
             Meet Our Master Chefs
           </h2>
           <div className="w-20 h-1 bg-amber-500 mx-auto"></div>
-          <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
             Our award-winning culinary team brings world-class expertise to your
             dining experience.
           </p>

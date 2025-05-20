@@ -36,12 +36,19 @@ const KitchenEssentials = () => {
   return (
     <section className="bg-orange-50 py-12 rounded-2xl">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="flex justify-center mb-3">
+        <div className="flex justify-center mb-1">
           <FaUtensils className="text-orange-500 text-3xl" />
         </div>
-        <h2 className="text-3xl font-bold text-center mb-10">
-          Kitchen Essentials for Perfect Recipes
-        </h2>
+        <div className="text-center mb-10">
+          <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-2">
+            Kitchen Essentials
+          </h2>
+          <p className="mt-3 text-gray-600 max-w-2xl mx-auto">
+            These are the essential tools every chef relies on to create perfect
+            dishes.
+          </p>
+        </div>
+
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 text-center">
           {tools.map((tool, index) => (
             <div key={index} className="bg-white p-4 rounded-lg shadow">

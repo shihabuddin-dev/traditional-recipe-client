@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import step1 from "../../assets/steps/1.webp";
 import step2 from "../../assets/steps/2.jpg";
 import step3 from "../../assets/steps/3.webp";
@@ -61,11 +61,20 @@ const Steps = () => {
     { img: step28, title: "Step 28" },
   ];
 
-  const [selectedImage, setSelectedImage] = React.useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   return (
     <div className="container mx-auto px-4">
-      <h2 className="text-3xl font-bold text-center mb-10">Our Process Steps</h2>
+      <div className="text-center mb-10">
+        <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-2">
+          Our Process Steps
+        </h2>
+        <div className="w-20 h-1 bg-amber-500 mx-auto"></div>
+        <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+          From sourcing the freshest ingredients to plating your delicious
+          masterpiece
+        </p>
+      </div>
       {/* Image Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4">
         {steps.map((step, i) => (
@@ -77,7 +86,7 @@ const Steps = () => {
             <img
               src={step.img}
               alt={step.title}
-              className="w-full h-32 object-cover rounded-lg shadow-md"
+              className="w-full h-32 object-fit rounded-lg shadow-md"
               loading="lazy"
             />
             <div className="absolute inset-0 group-hover:bg-opacity-30 rounded-lg transition-all duration-300 flex items-center justify-center">
