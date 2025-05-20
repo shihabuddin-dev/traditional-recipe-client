@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaHeart } from "react-icons/fa";
-import { Link } from "react-router"; // Note: use react-router-dom for links
+import { Link } from "react-router";
 import Button from "../ui/Button";
 
-const Recipe = ({ recipe }) => {
+const Recipe = ({ recipe, onLikeUpdate }) => {
   const {
     _id,
     image,
@@ -12,8 +12,33 @@ const Recipe = ({ recipe }) => {
     cuisine,
     preparationTime,
     categories,
-    likes,
+    likes: initialLikes,
   } = recipe;
+
+  const [likes, setLikes] = useState(initialLikes);
+  const [isLiking, setIsLiking] = useState(false);
+
+  const handleLike = async () => {
+    if (isLiking) return;
+
+    setIsLiking(true);
+    try {
+      const res = await fetch(`http://localhost:3000/recipes/${_id}/like`, {
+        method: "PATCH",
+      });
+
+      if (res.ok) {
+        setLikes((prev) => prev + 1);
+        if (onLikeUpdate) {
+          onLikeUpdate(_id);
+        }
+      }
+    } catch (error) {
+      console.error("Error liking recipe:", error);
+    } finally {
+      setIsLiking(false);
+    }
+  };
 
   return (
     <div className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition duration-300">
@@ -50,11 +75,19 @@ const Recipe = ({ recipe }) => {
         </p>
 
         {/* Likes + Button */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center text-orange-500 gap-1">
+        <div className="flex items-center justify-between ">
+          {/* ❤️ Like Icon (clickable) */}
+          <button
+            onClick={handleLike}
+            className="flex items-center text-orange-500 gap-1 hover:text-orange-600 transition text-2xl cursor-pointer"
+            disabled={isLiking}
+            title="Like this recipe"
+          >
             <FaHeart />
-            <span className="text-sm">{likes}</span>
-          </div>
+            <span className="text-base">{likes}</span>
+          </button>
+
+          {/* View Details */}
           <Link to={`/recipes/${_id}`}>
             <Button>View Details</Button>
           </Link>
