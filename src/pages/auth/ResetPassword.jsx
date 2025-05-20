@@ -4,6 +4,7 @@ import { FirebaseAuthContext } from "../../provider/FirebaseAuthContext";
 import Button from "../../components/ui/Button";
 import Swal from "sweetalert2";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import { MdLockReset } from "react-icons/md";
 
 const ResetPassword = () => {
   const { resetPassword } = useContext(FirebaseAuthContext);
@@ -62,8 +63,9 @@ const ResetPassword = () => {
           autoplay
         />
       </div>
-      <div className="bg-white shadow-2xl rounded-2xl p-6 sm:p-8 md:p-10 w-full max-w-md">
-        <h2 className="text-2xl md:text-3xl font-semibold text-center mb-6">
+      <div className="bg-white shadow-2xl rounded-2xl p-6 sm:p-8 md:p-10 w-full max-w-md border-2 border-orange-400">
+        <h2 className="text-2xl md:text-3xl font-semibold mb-6 flex justify-center items-center gap-3">
+          <MdLockReset className="text-orange-600" />
           Reset Your Password
         </h2>
         <p className="text-center text-gray-600 text-sm mb-6">

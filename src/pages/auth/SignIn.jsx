@@ -7,6 +7,7 @@ import { FirebaseAuthContext } from "../../provider/FirebaseAuthContext";
 import Swal from "sweetalert2";
 import Spinner from "../../components/ui/Spinner";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import { MdLogin } from "react-icons/md";
 
 const inputBase =
   "w-full border border-gray-400 px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200";
@@ -121,8 +122,9 @@ const SignIn = () => {
           autoplay
         />
       </div>
-      <div className="flex-1 max-w-md p-6 bg-white rounded shadow">
-        <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-center">
+      <div className="flex-1 max-w-md p-6 bg-white rounded shadow border-2 border-orange-400">
+        <h2 className="text-2xl md:text-3xl font-semibold mb-4 flex justify-center items-center gap-3">
+          <MdLogin className="text-orange-600" />
           Sign in
         </h2>
 

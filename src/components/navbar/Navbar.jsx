@@ -1,10 +1,18 @@
 import { NavLink, Link } from "react-router";
 import { use, useState } from "react";
-import { FaBars, FaSignOutAlt, FaTimes, FaUserCircle } from "react-icons/fa";
+import {
+  FaBars,
+  FaClipboardList,
+  FaHome,
+  FaSignOutAlt,
+  FaTimes,
+} from "react-icons/fa";
 import Button from "../ui/Button";
 import logo from "../../assets/logo.png";
 import { FirebaseAuthContext } from "../../provider/FirebaseAuthContext";
 import Swal from "sweetalert2";
+import { SiIfood } from "react-icons/si";
+import { MdLibraryAdd } from "react-icons/md";
 
 const Navbar = () => {
   const { user, logOutUser } = use(FirebaseAuthContext);
@@ -27,11 +35,12 @@ const Navbar = () => {
       });
   };
 
+  const linksClass = "hover:text-orange-600 flex items-center gap-1";
+
   return (
     <nav className="bg-[#fdf6ee] shadow-sm">
       <div className="max-w-7xl mx-auto py-2 px-4 md:px-6 lg:px-8 flex justify-between items-center">
         {/* Logo */}
-
         <Link to="/" className="flex items-center">
           <img src={logo} alt="logo" className="w-12 h-12 object-cover" />
           <span className="text-2xl -ml-1 font-bold text-orange-600">
@@ -42,22 +51,26 @@ const Navbar = () => {
         {/* Desktop Nav */}
         <ul className="hidden md:flex gap-6 font-semibold text-[#1a1a1a]">
           <li>
-            <NavLink to="/" className="hover:text-orange-600">
+            <NavLink to="/" className={linksClass}>
+              <FaHome />
               Home
             </NavLink>
           </li>
           <li>
-            <NavLink to="/all-recipes" className="hover:text-orange-600">
+            <NavLink to="/all-recipes" className={linksClass}>
+              <SiIfood />
               All Recipes
             </NavLink>
           </li>
           <li>
-            <NavLink to="/add-recipe" className="hover:text-orange-600">
+            <NavLink to="/add-recipe" className={linksClass}>
+              <MdLibraryAdd />
               Add Recipe
             </NavLink>
           </li>
           <li>
-            <NavLink to="/my-recipes" className="hover:text-orange-600">
+            <NavLink to="/my-recipes" className={linksClass}>
+              <FaClipboardList />
               My Recipes
             </NavLink>
           </li>
@@ -110,22 +123,38 @@ const Navbar = () => {
         <div className="md:hidden px-4 pb-4">
           <ul className="flex flex-col gap-4 font-semibold text-[#1a1a1a]">
             <li>
-              <NavLink to="/" onClick={toggleMenu}>
+              <NavLink to="/" onClick={toggleMenu} className={linksClass}>
+                <FaHome />
                 Home
               </NavLink>
             </li>
             <li>
-              <NavLink to="/all-recipes" onClick={toggleMenu}>
+              <NavLink
+                to="/all-recipes"
+                onClick={toggleMenu}
+                className={linksClass}
+              >
+                <SiIfood />
                 All Recipes
               </NavLink>
             </li>
             <li>
-              <NavLink to="/add-recipe" onClick={toggleMenu}>
+              <NavLink
+                to="/add-recipe"
+                onClick={toggleMenu}
+                className={linksClass}
+              >
+                <MdLibraryAdd />
                 Add Recipe
               </NavLink>
             </li>
             <li>
-              <NavLink to="/my-recipes" onClick={toggleMenu}>
+              <NavLink
+                to="/my-recipes"
+                onClick={toggleMenu}
+                className={linksClass}
+              >
+                <FaClipboardList />
                 My Recipes
               </NavLink>
             </li>
