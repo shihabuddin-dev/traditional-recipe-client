@@ -16,10 +16,6 @@ a.pending {
   color: blue;
 }
 
-.bg-not-found {
-  background-image: url('/not-found.webp');
-  background-size: cover;
-}
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

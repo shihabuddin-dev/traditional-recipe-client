@@ -1,15 +1,18 @@
 import React, { use, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Button from "../../components/ui/Button";
-import { Link, useLocation, useNavigate } from "react-router";
+import { Link, Navigate, useLocation, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
 import { FirebaseAuthContext } from "../../provider/FirebaseAuthContext";
 import Swal from "sweetalert2";
+import Spinner from "../../components/ui/Spinner";
+
 const inputBase =
   "w-full border border-gray-400 px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200";
 
 const SignIn = () => {
-  const { loginUser, createUserWithGoogle, setUser } = use(FirebaseAuthContext);
+  const { loginUser, createUserWithGoogle, user, setUser } =
+    use(FirebaseAuthContext);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -17,7 +20,14 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const togglePassword = () => setShowPassword(!showPassword);
-
+  if (user) {
+    return (
+      <>
+        <Spinner />
+        <Navigate to="/" />
+      </>
+    );
+  }
   const handleSignIn = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -28,19 +38,23 @@ const SignIn = () => {
     loginUser(email, password)
       .then((userCredential) => {
         const currentUser = userCredential.user;
-        console.log(currentUser);
+        setUser(currentUser);
         Swal.fire({
           icon: "success",
           title: "Sign In Success",
           showConfirmButton: false,
           timer: 1500,
         });
-        // when user come from another pages that time after complete login redirect this pages
         navigate(`${location?.state ? location.state : "/"}`);
       })
       .catch((error) => {
         const errorCode = error.code;
         console.log(errorCode);
+        Swal.fire({
+          icon: "error",
+          title: "Login Failed",
+          text: errorCode,
+        });
       });
   };
 
@@ -48,42 +62,53 @@ const SignIn = () => {
     createUserWithGoogle()
       .then((result) => {
         const currentUser = result.user;
-        console.log(currentUser);
         setUser(currentUser);
 
-        // sent user info to db
         const userProfile = {
           name: currentUser?.displayName,
           email: currentUser?.email,
           photo: currentUser?.photoURL,
         };
-        // user profile info sent to db
-        fetch("http://localhost:3000/users", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(userProfile),
-        })
+
+        // Check if user already exists before saving
+        fetch(`http://localhost:3000/users?email=${currentUser.email}`)
           .then((res) => res.json())
           .then((data) => {
-            if (data.insertedId) {
-              navigate(`${location?.state ? location.state : "/"}`);
-              Swal.fire({
-                title: "Success!",
-                text: "Your Account Sign In Successfully",
-                icon: "success",
-                showConfirmButton: false,
-                timer: 1600,
-              });
+            if (!data.exists) {
+              // Save to DB if not exists
+              fetch("http://localhost:3000/users", {
+                method: "POST",
+                headers: {
+                  "content-type": "application/json",
+                },
+                body: JSON.stringify(userProfile),
+              })
+                .then((res) => res.json())
+                .then((saveResult) => {
+                  if (saveResult.insertedId) {
+                    showLoginSuccess();
+                  }
+                });
+            } else {
+              // Just log in if already exists
+              showLoginSuccess();
             }
           });
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
+        console.error("Google Sign-In Error:", error.code, error.message);
       });
+  };
+
+  const showLoginSuccess = () => {
+    navigate(`${location?.state ? location.state : "/"}`);
+    Swal.fire({
+      title: "Success!",
+      text: "Your Account Sign In Successfully",
+      icon: "success",
+      showConfirmButton: false,
+      timer: 1600,
+    });
   };
 
   return (
@@ -136,8 +161,9 @@ const SignIn = () => {
             Sign In
           </Button>
         </form>
-        <p className="text-center text-gray-500"> ----- or ----- </p>
-        {/* Google */}
+
+        <p className="text-center text-gray-500">----- or -----</p>
+
         <Button
           onClick={handleSingInWithGoogle}
           variant="outline"
@@ -146,6 +172,7 @@ const SignIn = () => {
           <FcGoogle className="text-xl" />
           Login with Google
         </Button>
+
         <p className="text-sm mt-4">
           Don't have an account?{" "}
           <Link to="/signUp" className="text-amber-600 underline">

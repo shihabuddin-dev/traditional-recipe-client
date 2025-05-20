@@ -1,17 +1,31 @@
 import { NavLink, Link } from "react-router";
 import { use, useState } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaSignOutAlt, FaTimes, FaUserCircle } from "react-icons/fa";
 import Button from "../ui/Button";
 import logo from "../../assets/logo.png";
 import { FirebaseAuthContext } from "../../provider/FirebaseAuthContext";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
-  const { user } = use(FirebaseAuthContext);
+  const { user, logOutUser } = use(FirebaseAuthContext);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  // const rightStatus = <>a</>;
+  // logout user
+  const handleLogOut = () => {
+    Swal.fire({
+      icon: "success",
+      title: "Log Out Seccess",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    logOutUser()
+      .then(() => {})
+      .then((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <nav className="bg-[#fdf6ee] shadow-sm">
@@ -52,7 +66,25 @@ const Navbar = () => {
         {/* Login / Avatar */}
         <div className="hidden md:block space-x-2">
           {user ? (
-            <p>aa</p>
+            <div className="relative group cursor-pointer z-10">
+              <img
+                src={user?.photoURL ? user?.photoURL : ""}
+                alt="profile"
+                className="w-9 h-9 rounded-full border border-secondary"
+              />
+              <div className="absolute right-0 mt-2 w-40 bg-base-100 border border-orange-600 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+                <p className="px-4 py-2 text-sm font-medium text-orange-600">
+                  {user?.displayName}
+                </p>
+                <hr className="text-orange-600" />
+                <button
+                  onClick={handleLogOut}
+                  className="flex items-center gap-2 px-4 py-2 text-sm text-orange-600 w-full text-left cursor-pointer"
+                >
+                  <FaSignOutAlt /> Logout
+                </button>
+              </div>
+            </div>
           ) : (
             <>
               <Link to="/signin">
@@ -98,12 +130,35 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li className="space-x-2">
-              <Link to="/signin" onClick={toggleMenu}>
-                <Button variant="outline">Sign In</Button>
-              </Link>
-              <Link to="/signup" onClick={toggleMenu}>
-                <Button>Sign Up</Button>
-              </Link>
+              {user ? (
+                <div className="flex gap-4 items-center">
+                  <img
+                    src={user?.photoURL ? user?.photoURL : ""}
+                    alt="profile"
+                    className="w-9 h-9 rounded-full border border-secondary"
+                  />
+                  <div>
+                    <p className="text-sm text-orange-600 font-medium">
+                      {user?.displayName}
+                    </p>
+                    <button
+                      onClick={handleLogOut}
+                      className="flex items-center gap-2 text-sm text-orange-600 w-full"
+                    >
+                      <FaSignOutAlt /> Logout
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <Link to="/signin" onClick={toggleMenu}>
+                    <Button variant="outline">Sign In</Button>
+                  </Link>
+                  <Link to="/signup" onClick={toggleMenu}>
+                    <Button>Sign Up</Button>
+                  </Link>
+                </>
+              )}
             </li>
           </ul>
         </div>

@@ -1,16 +1,17 @@
 import React, { use, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Button from "../../components/ui/Button";
-import { Link, useLocation, useNavigate } from "react-router";
+import { Link, Navigate, useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { FirebaseAuthContext } from "../../provider/FirebaseAuthContext";
 import { FcGoogle } from "react-icons/fc";
+import Spinner from "../../components/ui/Spinner";
 
 const inputBase =
   "w-full border border-gray-400 px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200";
 
 const SignUp = () => {
-  const { createUser, setUser, createUserWithGoogle } =
+  const { createUser, setUser, createUserWithGoogle, user, updateUser } =
     use(FirebaseAuthContext);
   const location = useLocation();
   const navigate = useNavigate();
@@ -20,6 +21,14 @@ const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePassword = () => setShowPassword(!showPassword);
+  if (user) {
+    return (
+      <>
+        <Spinner />
+        <Navigate to="/" />
+      </>
+    );
+  }
 
   const validations = [
     {
@@ -40,16 +49,13 @@ const SignUp = () => {
     },
   ];
 
-  // account create with email and password
-  const handleSignUp = (e) => {
+  // Sign up with email/password
+  const handleSignUp = async (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
-    const { name, email, password, photo } = Object.fromEntries(
-      formData.entries()
-    );
+    const { name, email, password, photo } = Object.fromEntries(formData.entries());
 
-    // Check if all validations pass
     const allValid = validations.every((rule) => rule.isValid);
     if (!allValid) {
       Swal.fire({
@@ -60,34 +66,47 @@ const SignUp = () => {
       });
       return;
     }
-    // create account
-    createUser(email, password)
-      .then((result) => {
-        setUser(result);
 
-        // sent user info to db
+    // Check if email already exists
+    const res = await fetch(`http://localhost:3000/users?email=${email}`);
+    const data = await res.json();
+    if (data.exists) {
+      Swal.fire({
+        icon: "error",
+        title: "Email already registered",
+        text: "Try logging in instead.",
+        showConfirmButton: false,
+        timer: 2000,
+      });
+      return;
+    }
+
+    // Create Firebase user
+    createUser(email, password)
+      .then((userCredential) => {
+        const currentUser = userCredential.user;
+        updateUser({ displayName: name, photoURL: photo });
+
         const userProfile = { name, email, photo };
-        // user profile info sent to db
+
         fetch("http://localhost:3000/users", {
           method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
+          headers: { "content-type": "application/json" },
           body: JSON.stringify(userProfile),
         })
           .then((res) => res.json())
           .then((data) => {
-            if (data.insertedId) {
-              navigate(`${location?.state ? location.state : "/"}`);
-              Swal.fire({
-                title: "Success!",
-                text: "Your Account created Successfully",
-                icon: "success",
-                showConfirmButton: false,
-                timer: 1600,
-              });
-              form.reset();
-            }
+            console.log(data)
+            setUser({ ...currentUser, displayName: name, photoURL: photo });
+            navigate(location?.state || "/");
+            Swal.fire({
+              title: "Success!",
+              text: "Your Account created Successfully",
+              icon: "success",
+              showConfirmButton: false,
+              timer: 1600,
+            });
+            form.reset();
           });
       })
       .catch((error) => {
@@ -95,12 +114,11 @@ const SignUp = () => {
       });
   };
 
-  // google singIn
-  const handleSingInWithGoogle = () => {
+  // Google Sign In
+  const handleSingInWithGoogle = async () => {
     createUserWithGoogle()
-      .then((result) => {
+      .then(async (result) => {
         const currentUser = result.user;
-        console.log(currentUser);
         setUser(currentUser);
 
         const userProfile = {
@@ -109,27 +127,26 @@ const SignUp = () => {
           photo: currentUser?.photoURL,
         };
 
-        // user profile info sent to db
-        fetch("http://localhost:3000/users", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(userProfile),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.insertedId) {
-              navigate(`${location?.state ? location.state : "/"}`);
-              Swal.fire({
-                title: "Success!",
-                text: "Your Account Sign Up Successfully",
-                icon: "success",
-                showConfirmButton: false,
-                timer: 1600,
-              });
-            }
+        // Check if already exists
+        const res = await fetch(`http://localhost:3000/users?email=${currentUser.email}`);
+        const data = await res.json();
+
+        if (!data.exists) {
+          await fetch("http://localhost:3000/users", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(userProfile),
           });
+        }
+
+        navigate(location?.state || "/");
+        Swal.fire({
+          title: "Success!",
+          text: "You are signed in successfully",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1600,
+        });
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -216,8 +233,7 @@ const SignUp = () => {
         <Button type="submit" className="mt-6 w-full">
           Sign Up
         </Button>
-
-        {/* Google */}
+        <p className="text-center text-gray-500">----- or -----</p>
         <Button
           onClick={handleSingInWithGoogle}
           variant="outline"
