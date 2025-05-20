@@ -1,10 +1,20 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Button from "../../components/ui/Button";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
+import Swal from "sweetalert2";
+import { FirebaseAuthContext } from "../../provider/FirebaseAuthContext";
+import { FcGoogle } from "react-icons/fc";
+
 const inputBase =
   "w-full border border-gray-400 px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200";
+
 const SignUp = () => {
+  const { createUser, setUser, createUserWithGoogle } =
+    use(FirebaseAuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -30,29 +40,113 @@ const SignUp = () => {
     },
   ];
 
+  // account create with email and password
   const handleSignUp = (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
-    const { email, password, ...restFormData } = Object.fromEntries(
+    const { name, email, password, photo } = Object.fromEntries(
       formData.entries()
     );
-    console.log(email, password, restFormData);
 
     // Check if all validations pass
     const allValid = validations.every((rule) => rule.isValid);
-    if (allValid) {
-      console.log("all valid");
+    if (!allValid) {
+      Swal.fire({
+        icon: "error",
+        title: "Password doesn't meet all requirements Below",
+        showConfirmButton: false,
+        timer: 1600,
+      });
+      return;
     }
+    // create account
+    createUser(email, password)
+      .then((result) => {
+        setUser(result);
+
+        // sent user info to db
+        const userProfile = { name, email, photo };
+        // user profile info sent to db
+        fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userProfile),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              navigate(`${location?.state ? location.state : "/"}`);
+              Swal.fire({
+                title: "Success!",
+                text: "Your Account created Successfully",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 1600,
+              });
+              form.reset();
+            }
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  // google singIn
+  const handleSingInWithGoogle = () => {
+    createUserWithGoogle()
+      .then((result) => {
+        const currentUser = result.user;
+        console.log(currentUser);
+        setUser(currentUser);
+
+        const userProfile = {
+          name: currentUser?.displayName,
+          email: currentUser?.email,
+          photo: currentUser?.photoURL,
+        };
+
+        // user profile info sent to db
+        fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userProfile),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              navigate(`${location?.state ? location.state : "/"}`);
+              Swal.fire({
+                title: "Success!",
+                text: "Your Account Sign Up Successfully",
+                icon: "success",
+                showConfirmButton: false,
+                timer: 1600,
+              });
+            }
+          });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
   };
 
   return (
     <div className="bg-addCoffee">
       <form
         onSubmit={handleSignUp}
-        className="max-w-md mx-auto p-6 bg-white rounded shadow"
+        className="max-w-md mx-auto p-6 bg-white rounded shadow space-y-2"
       >
-        <h2 className="text-xl font-semibold mb-4 text-center">Sign Up</h2>
+        <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-center">
+          Sign Up
+        </h2>
         <label className="block mb-2 text-sm font-medium">Name</label>
         <input
           type="text"
@@ -61,22 +155,7 @@ const SignUp = () => {
           placeholder="Enter your Name"
           required
         />
-        <label className="block mb-2 text-sm font-medium">Address</label>
-        <input
-          type="text"
-          name="address"
-          className={inputBase}
-          placeholder="Enter your Address"
-          required
-        />
-        <label className="block mb-2 text-sm font-medium">Phone</label>
-        <input
-          type="text"
-          name="phone"
-          className={inputBase}
-          placeholder="Enter your Phone"
-          required
-        />
+
         <label className="block mb-2 text-sm font-medium">Photo URL</label>
         <input
           type="text"
@@ -122,10 +201,12 @@ const SignUp = () => {
               <li key={idx} className="flex items-start gap-2">
                 <span
                   className={`w-4 h-4 flex items-center justify-center border rounded-sm ${
-                    rule.isValid ? "bg-green-500 text-white" : "border-gray-400"
+                    rule.isValid
+                      ? "bg-green-500 text-white"
+                      : "border-gray-400 text-red-500"
                   }`}
                 >
-                  {rule.isValid ? "✓" : ""}
+                  {rule.isValid ? "✓" : "X"}
                 </span>
                 <span>{rule.label}</span>
               </li>
@@ -135,9 +216,19 @@ const SignUp = () => {
         <Button type="submit" className="mt-6 w-full">
           Sign Up
         </Button>
+
+        {/* Google */}
+        <Button
+          onClick={handleSingInWithGoogle}
+          variant="outline"
+          className="w-full mt-3 flex justify-center items-center gap-2"
+        >
+          <FcGoogle className="text-xl" />
+          Login with Google
+        </Button>
         <p className="text-sm mt-4">
           Already have an account?{" "}
-          <Link to="/signIn" className="text-blue-600 underline">
+          <Link to="/signIn" className="text-amber-600 underline">
             Sign In
           </Link>
         </p>

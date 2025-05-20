@@ -8,6 +8,7 @@ import AddRecipe from "../pages/addRecipe/AddRecipe";
 import Spinner from "../components/ui/Spinner";
 import AllRecipes from "../pages/allRecipes/AllRecipes";
 import RecipeDetails from "../pages/recipeDetails/RecipeDetails";
+import ResetPassword from "../pages/auth/ResetPassword";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
       },
       { path: "/signin", Component: SignIn },
       { path: "/signup", Component: SignUp },
+      { path: "/reset-password", Component: ResetPassword },
       { path: "/add-recipe", Component: AddRecipe },
       {
         path: "/all-recipes",

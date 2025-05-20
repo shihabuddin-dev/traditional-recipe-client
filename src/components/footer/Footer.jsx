@@ -8,6 +8,7 @@ import {
   FaMapMarkerAlt,
 } from "react-icons/fa";
 import Button from "../ui/Button";
+import { Link } from "react-router";
 
 const Footer = () => {
   return (
@@ -29,29 +30,29 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-3">Quick Links</h3>
           <ul className="space-y-2 text-sm text-gray-700">
             <li>
-              <a href="/" className="hover:text-orange-500">
+              <Link to="/" className="hover:text-orange-500">
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/recipes" className="hover:text-orange-500">
+              <Link to="/all-recipes" className="hover:text-orange-500">
                 All Recipes
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/add-recipe" className="hover:text-orange-500">
+              <Link to="/add-recipe" className="hover:text-orange-500">
                 Add Recipe
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/my-recipes" className="hover:text-orange-500">
+              <Link to="/my-recipes" className="hover:text-orange-500">
                 My Recipes
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/contact" className="hover:text-orange-500">
+              <Link to="/contact" className="hover:text-orange-500">
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

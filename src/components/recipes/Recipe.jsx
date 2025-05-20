@@ -43,7 +43,7 @@ const Recipe = ({ recipe, handleLikeUpdate }) => {
   return (
     <div className="flex flex-col h-full bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition duration-300">
       {/* Image */}
-      <div className="h-48 overflow-hidden">
+      <div className="h-42 overflow-hidden">
         <img src={image} alt={title} className="w-full h-full object-cover" />
       </div>
 

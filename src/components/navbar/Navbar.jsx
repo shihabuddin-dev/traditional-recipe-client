@@ -1,13 +1,17 @@
 import { NavLink, Link } from "react-router";
-import { useState } from "react";
+import { use, useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Button from "../ui/Button";
 import logo from "../../assets/logo.png";
+import { FirebaseAuthContext } from "../../provider/FirebaseAuthContext";
 
 const Navbar = () => {
+  const { user } = use(FirebaseAuthContext);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  // const rightStatus = <>a</>;
 
   return (
     <nav className="bg-[#fdf6ee] shadow-sm">
@@ -47,12 +51,18 @@ const Navbar = () => {
 
         {/* Login / Avatar */}
         <div className="hidden md:block space-x-2">
-          <Link to="/signin">
-            <Button variant="outline">Sign In</Button>
-          </Link>
-          <Link to="/signup">
-            <Button>Sign Up</Button>
-          </Link>
+          {user ? (
+            <p>aa</p>
+          ) : (
+            <>
+              <Link to="/signin">
+                <Button variant="outline">Sign In</Button>
+              </Link>
+              <Link to="/signup">
+                <Button>Sign Up</Button>
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Mobile menu button */}
