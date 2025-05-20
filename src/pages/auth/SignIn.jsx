@@ -3,6 +3,8 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Button from "../../components/ui/Button";
 import { Link } from "react-router";
 import { FcGoogle } from "react-icons/fc";
+const inputBase =
+  "w-full border border-gray-400 px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -36,7 +38,7 @@ const SignIn = () => {
           <input
             type="email"
             name="email"
-            className="w-full border rounded px-3 py-2 mb-4 focus:outline-none"
+            className={inputBase}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@example.com"
@@ -48,7 +50,7 @@ const SignIn = () => {
             <input
               type={showPassword ? "text" : "password"}
               name="password"
-              className="w-full border rounded px-3 py-2 focus:outline-none pr-10"
+              className={inputBase}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"

@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Button from "../../components/ui/Button";
 import { Link } from "react-router";
-
+const inputBase =
+  "w-full border border-gray-400 px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200";
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -56,7 +57,7 @@ const SignUp = () => {
         <input
           type="text"
           name="name"
-          className="w-full border rounded px-3 py-2 mb-4 focus:outline-none"
+          className={inputBase}
           placeholder="Enter your Name"
           required
         />
@@ -64,7 +65,7 @@ const SignUp = () => {
         <input
           type="text"
           name="address"
-          className="w-full border rounded px-3 py-2 mb-4 focus:outline-none"
+          className={inputBase}
           placeholder="Enter your Address"
           required
         />
@@ -72,7 +73,7 @@ const SignUp = () => {
         <input
           type="text"
           name="phone"
-          className="w-full border rounded px-3 py-2 mb-4 focus:outline-none"
+          className={inputBase}
           placeholder="Enter your Phone"
           required
         />
@@ -80,7 +81,7 @@ const SignUp = () => {
         <input
           type="text"
           name="photo"
-          className="w-full border rounded px-3 py-2 mb-4 focus:outline-none"
+          className={inputBase}
           placeholder="Enter your Photo URL"
           required
         />
@@ -88,7 +89,7 @@ const SignUp = () => {
         <input
           type="email"
           name="email"
-          className="w-full border rounded px-3 py-2 mb-4 focus:outline-none"
+          className={inputBase}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter your Email"
@@ -100,7 +101,7 @@ const SignUp = () => {
           <input
             type={showPassword ? "text" : "password"}
             name="password"
-            className="w-full border rounded px-3 py-2 focus:outline-none pr-10"
+            className={inputBase}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter your password"

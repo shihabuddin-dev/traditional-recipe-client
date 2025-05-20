@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Recipe from "./Recipe";
 import Button from "../ui/Button";
-import { Link } from "react-router"; // use react-router-dom if possible
+import { Link } from "react-router";
 import Spinner from "../ui/Spinner";
 
 const TopRecipes = () => {
@@ -50,7 +50,7 @@ const TopRecipes = () => {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {recipes.map((recipe) => (
             <Recipe
               key={recipe._id}
