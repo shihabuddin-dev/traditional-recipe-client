@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+.funnel-sans-font {
+  font-family: "Funnel Sans", sans-serif;
+
+}
+
 @import "tailwindcss";
 @plugin "daisyui";
 
@@ -12,4 +19,16 @@ a.pending {
 .bg-not-found {
   background-image: url('/not-found.webp');
   background-size: cover;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

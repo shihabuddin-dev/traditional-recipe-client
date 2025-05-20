@@ -9,7 +9,7 @@ const Spinner = () => {
       >
         <svg
           width="40px"
-          fill="#0EA106"
+          fill="#f97316"
           className="mr-2 inline animate-spin"
           viewBox="0 0 26.349 26.35"
         >

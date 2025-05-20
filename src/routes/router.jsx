@@ -4,17 +4,24 @@ import Home from "../pages/home/Home";
 import SignIn from "../pages/auth/SignIn";
 import SignUp from "../pages/auth/SignUp";
 import NotFound from "../pages/notFound/NotFound";
+import AddRecipe from "../pages/addRecipe/AddRecipe";
+import Spinner from "../components/ui/Spinner";
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: Root,
-    errorElement: <NotFound/>,
+    errorElement: <NotFound />,
     children: [
-      { index: true, Component: Home },
+      {
+        index: true,
+        hydrateFallbackElement: <Spinner />,
+        loader: () => fetch("http://localhost:3000/recipes"),
+        Component: Home,
+      },
       { path: "/signin", Component: SignIn },
       { path: "/signup", Component: SignUp },
-      // { path: '/blogs', Component: Blogs },
+      { path: "/add-recipe", Component: AddRecipe },
 
       // private routes
       // {

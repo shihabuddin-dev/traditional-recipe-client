@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/pagination";
 import "swiper/css/parallax";
+import "../../App.css";
 
 // Import your images
 import hero1 from "../../assets/hero/hero-1.jpg";
@@ -86,24 +87,6 @@ const HeroSlider = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-
-      <style jsx global>{`
-        .hero-swiper .swiper-pagination-bullet {
-          background: white;
-          opacity: 0.6;
-          width: 10px;
-          height: 10px;
-          transition: all 0.3s;
-        }
-        .hero-swiper .swiper-pagination-bullet-active {
-          opacity: 1;
-          width: 30px;
-          border-radius: 5px;
-        }
-        .hero-swiper .swiper-slide {
-          transition: transform 0.3s ease, opacity 0.3s ease;
-        }
-      `}</style>
     </div>
   );
 };
