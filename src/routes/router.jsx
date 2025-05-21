@@ -9,6 +9,8 @@ import Spinner from "../components/ui/Spinner";
 import AllRecipes from "../pages/allRecipes/AllRecipes";
 import RecipeDetails from "../pages/recipeDetails/RecipeDetails";
 import ResetPassword from "../pages/auth/ResetPassword";
+import MyRecipes from "../pages/myRecipes/MyRecipes";
+import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
   {
@@ -25,22 +27,43 @@ const router = createBrowserRouter([
       { path: "/signin", Component: SignIn },
       { path: "/signup", Component: SignUp },
       { path: "/reset-password", Component: ResetPassword },
-      { path: "/add-recipe", Component: AddRecipe },
       {
         path: "/all-recipes",
         hydrateFallbackElement: <Spinner />,
         loader: () => fetch("http://localhost:3000/recipes"),
         Component: AllRecipes,
       },
+
+      // private routes
+      {
+        path: "/add-recipe",
+        element: (
+          <PrivateRoutes>
+            <AddRecipe />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/my-recipes",
+        hydrateFallbackElement: <Spinner />,
+        loader: () => fetch("http://localhost:3000/recipes"),
+        element: (
+          <PrivateRoutes>
+            <MyRecipes />
+          </PrivateRoutes>
+        ),
+      },
       {
         path: "/recipes/:id",
         hydrateFallbackElement: <Spinner />,
         loader: ({ params }) =>
           fetch(`http://localhost:3000/recipes/${params.id}`),
-        Component: RecipeDetails,
+        element: (
+          <PrivateRoutes>
+            <RecipeDetails />
+          </PrivateRoutes>
+        ),
       },
-
-      // private routes
       // {
       //     path: '/profile',
       //     element:

@@ -1,11 +1,10 @@
 import React, { use, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Button from "../../components/ui/Button";
-import { Link, Navigate, useLocation, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
 import { FirebaseAuthContext } from "../../provider/FirebaseAuthContext";
 import Swal from "sweetalert2";
-import Spinner from "../../components/ui/Spinner";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { MdLogin } from "react-icons/md";
 
@@ -13,7 +12,7 @@ const inputBase =
   "w-full border border-gray-400 px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200";
 
 const SignIn = () => {
-  const { loginUser, createUserWithGoogle, user, setUser } =
+  const { loginUser, createUserWithGoogle, setUser } =
     use(FirebaseAuthContext);
   const location = useLocation();
   const navigate = useNavigate();
@@ -22,14 +21,15 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const togglePassword = () => setShowPassword(!showPassword);
-  if (user) {
-    return (
-      <>
-        <Spinner />
-        <Navigate to="/" />
-      </>
-    );
-  }
+    // when user logged in that time do not show login page
+  // if (user) {
+  //   return (
+  //     <>
+  //       <Spinner />
+  //       <Navigate to="/" />
+  //     </>
+  //   );
+  // }
   const handleSignIn = (e) => {
     e.preventDefault();
     const form = e.target;

@@ -4,7 +4,7 @@ import { useLoaderData } from "react-router";
 const RecipeDetails = () => {
   const recipe = useLoaderData();
 
-  if (!recipe) return <p>Recipe not found.</p>;
+  if (!recipe) return <p className="text-center text-2xl">Recipe not found!</p>;
 
   const {
     image,

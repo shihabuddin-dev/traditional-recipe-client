@@ -1,11 +1,10 @@
 import React, { use, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Button from "../../components/ui/Button";
-import { Link, Navigate, useLocation, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { FirebaseAuthContext } from "../../provider/FirebaseAuthContext";
 import { FcGoogle } from "react-icons/fc";
-import Spinner from "../../components/ui/Spinner";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { GiArchiveRegister } from "react-icons/gi";
 
@@ -13,7 +12,7 @@ const inputBase =
   "w-full border border-gray-400 px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200";
 
 const SignUp = () => {
-  const { createUser, setUser, createUserWithGoogle, user, updateUser } =
+  const { createUser, setUser, createUserWithGoogle, updateUser } =
     use(FirebaseAuthContext);
   const location = useLocation();
   const navigate = useNavigate();
@@ -23,14 +22,16 @@ const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePassword = () => setShowPassword(!showPassword);
-  if (user) {
-    return (
-      <>
-        <Spinner />
-        <Navigate to="/" />
-      </>
-    );
-  }
+
+  // when user logged in that time do not show login page
+  // if (user) {
+  //   return (
+  //     <>
+  //       <Spinner />
+  //       <Navigate to="/" />
+  //     </>
+  //   );
+  // }
 
   const validations = [
     {
@@ -102,7 +103,7 @@ const SignUp = () => {
           .then((data) => {
             console.log(data);
             setUser({ ...currentUser, displayName: name, photoURL: photo });
-            navigate(location?.state || "/");
+            navigate(`${location?.state ? location.state : "/"}`);
             Swal.fire({
               title: "Success!",
               text: "Your Account created Successfully",
@@ -145,7 +146,7 @@ const SignUp = () => {
           });
         }
 
-        navigate(location?.state || "/");
+         navigate(`${location?.state ? location.state : "/"}`);
         Swal.fire({
           title: "Success!",
           text: "You are signed in successfully",
@@ -165,7 +166,7 @@ const SignUp = () => {
     <div className="flex gap-4 flex-col md:flex-row justify-center items-center max-w-5xl">
       <div className="flex-1">
         <DotLottieReact
-          src="https://lottie.host/6ebae047-96f1-40f7-8f6b-34212ffaadb0/zvEgM0uMax.lottie"
+          src="https://lottie.host/33baafdb-458c-4bde-ac78-8f6fc29efe18/wc1rzpJe2S.lottie"
           loop
           autoplay
         />

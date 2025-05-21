@@ -1,5 +1,5 @@
 import { NavLink, Link } from "react-router";
-import { use, useState } from "react";
+import { use, useEffect, useRef, useState } from "react";
 import {
   FaBars,
   FaClipboardList,
@@ -13,11 +13,11 @@ import { FirebaseAuthContext } from "../../provider/FirebaseAuthContext";
 import Swal from "sweetalert2";
 import { SiIfood } from "react-icons/si";
 import { MdLibraryAdd } from "react-icons/md";
-
 const Navbar = () => {
   const { user, logOutUser } = use(FirebaseAuthContext);
   const [isOpen, setIsOpen] = useState(false);
-
+  const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef(null);
   const toggleMenu = () => setIsOpen(!isOpen);
 
   // logout user
@@ -36,6 +36,19 @@ const Navbar = () => {
   };
 
   const linksClass = "hover:text-orange-600 flex items-center gap-1";
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <nav className="bg-[#fdf6ee] shadow-sm">
@@ -79,13 +92,21 @@ const Navbar = () => {
         {/* Login / Avatar */}
         <div className="hidden md:block space-x-2">
           {user ? (
-            <div className="relative group cursor-pointer z-10">
+            <div
+              className="relative cursor-pointer z-10"
+              onClick={() => setShowDropdown(!showDropdown)}
+              ref={dropdownRef}
+            >
               <img
                 src={user?.photoURL ? user?.photoURL : ""}
                 alt="profile"
                 className="w-9 h-9 rounded-full border border-secondary"
               />
-              <div className="absolute right-0 mt-2 w-40 bg-base-100 border border-orange-600 rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+              <div
+                className={`absolute right-0 mt-2 w-40 bg-base-100 border border-orange-600 rounded-md shadow-lg transition-opacity duration-200 ${
+                  showDropdown ? "opacity-100" : "opacity-0 pointer-events-none"
+                }`}
+              >
                 <p className="px-4 py-2 text-sm font-medium text-orange-600">
                   {user?.displayName}
                 </p>
