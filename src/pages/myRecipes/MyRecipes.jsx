@@ -15,6 +15,17 @@ const MyRecipes = () => {
     );
     setMyRecipes(recipesData);
   }, [initialRecipes, user]);
+
+  // Handle like update
+  const handleLikeUpdate = (id) => {
+    setMyRecipes((prev) => {
+      const updated = prev.map((r) =>
+        r._id === id ? { ...r, likes: r.likes + 1 } : r
+      );
+      return [...updated].sort((a, b) => b.likes - a.likes);
+    });
+  };
+
   if (myRecipes.length === 0) {
     return (
       <div className="flex gap-4 items-center justify-center flex-col">
@@ -32,9 +43,13 @@ const MyRecipes = () => {
     );
   }
   return (
-    <div>
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
       {myRecipes.map((recipe) => (
-        <MyRecipesCard key={recipe._id} recipe={recipe} />
+        <MyRecipesCard
+          key={recipe._id}
+          recipe={recipe}
+          handleLikeUpdate={handleLikeUpdate}
+        />
       ))}
     </div>
   );

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router";
 import Button from "../ui/Button";
 import { HiMiniHandThumbUp, HiOutlineHandThumbUp } from "react-icons/hi2";
@@ -105,7 +104,7 @@ const Recipe = ({ recipe, handleLikeUpdate }) => {
               <HiOutlineHandThumbUp className="text-xl" />
             )}
             <span className="text-black">{likes}</span>
-            <span className="text-sm">Likes</span>
+            <span className="text-sm">people interested</span>
           </button>
 
           <Link to={`/recipes/${_id}`}>
