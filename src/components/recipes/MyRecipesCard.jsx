@@ -1,7 +1,10 @@
-import React, { useState } from "react";
-import { FaTrash, FaEdit } from "react-icons/fa";
+import React, { useState, useEffect, useContext } from "react";
+import { FaTrash, FaEdit, FaRegEye, FaHeart, FaRegHeart } from "react-icons/fa";
 import { HiMiniHandThumbUp, HiOutlineHandThumbUp } from "react-icons/hi2";
 import EditMyRecipe from "./EditMyRecipe";
+import Swal from "sweetalert2";
+import { Link } from "react-router";
+import { FirebaseAuthContext } from "../../provider/FirebaseAuthContext";
 
 const MyRecipesCard = ({
   recipe,
@@ -21,9 +24,13 @@ const MyRecipesCard = ({
     likes: initialLikes,
   } = recipe || {};
 
+  const { user } = useContext(FirebaseAuthContext);
+  const isOwner = user && recipe.userEmail === user.email;
+
   const [likes, setLikes] = useState(initialLikes);
   const [isLiking, setIsLiking] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [isWishListed, setIsWishListed] = useState(false);
 
   const handleLike = async () => {
     if (isLiking) return;
@@ -47,13 +54,49 @@ const MyRecipesCard = ({
     }
   };
 
+  // Wishlist logic
+  const toggleWishlist = () => {
+    setIsWishListed((prev) => {
+      const newState = !prev;
+      if (newState) {
+        // Add to wishlist
+        const stored = localStorage.getItem("wishlist");
+        let wishlist = stored ? JSON.parse(stored) : [];
+        if (!wishlist.some((r) => r._id === recipe._id)) {
+          wishlist.push(recipe);
+          localStorage.setItem("wishlist", JSON.stringify(wishlist));
+          Swal.fire({
+            icon: "success",
+            title: "Added to Wishlist!",
+            text: "Recipe has been added to your wishlist.",
+            timer: 1500,
+            showConfirmButton: false,
+          });
+        }
+      } else {
+        // Remove from wishlist
+        const stored = localStorage.getItem("wishlist");
+        let wishlist = stored ? JSON.parse(stored) : [];
+        wishlist = wishlist.filter((r) => r._id !== recipe._id);
+        localStorage.setItem("wishlist", JSON.stringify(wishlist));
+      }
+      return newState;
+    });
+  };
+
+  useEffect(() => {
+    const stored = localStorage.getItem("wishlist");
+    let wishlist = stored ? JSON.parse(stored) : [];
+    setIsWishListed(wishlist.some((r) => r._id === recipe._id));
+  }, [recipe._id]);
+
   return (
     <div className="flex flex-col md:flex-row bg-white shadow-md rounded-2xl overflow-hidden border border-orange-100">
       <div className="md:w-1/3 h-48 md:h-auto overflow-hidden">
         <img
           src={image}
           alt={title}
-          className="w-full h-full object-cover hover:scale-105 transition duration-300"
+          className="w-full h-full object-cover hover:scale-102 transition duration-800"
         />
       </div>
 
@@ -88,58 +131,87 @@ const MyRecipesCard = ({
 
         <div className="flex items-center justify-between pt-3 border-t border-dashed border-orange-200">
           <div
-            onClick={handleLike}
-            className="flex items-center gap-1 text-orange-500 text-lg font-medium"
+            onClick={() => {
+              if (!isOwner) handleLike();
+            }}
+            className={`flex items-center gap-1 text-orange-500 text-lg font-medium ${
+              isOwner
+                ? "opacity-100 cursor-not-allowed"
+                : "cursor-pointer hover:text-orange-600"
+            }`}
+            title={
+              isOwner ? "You can't like your own recipe" : "Like this recipe"
+            }
           >
             {likes > 0 ? (
               <HiMiniHandThumbUp className="text-xl" />
             ) : (
               <HiOutlineHandThumbUp className="text-xl" />
             )}
-            <span className="text-gray-800">{likes}</span>
+            <span className="text-gray-800 font-bold">{likes}</span>
           </div>
-
-          <div className="flex gap-3">
+          <div className="flex gap-2 sm:gap-3 items-center">
             <button
-              className="flex items-center gap-1 bg-blue-100 text-blue-600 hover:bg-blue-200 px-3 py-1 rounded-md text-sm font-medium transition"
+              onClick={toggleWishlist}
+              className={`flex items-center justify-center w-7 h-5 sm:w-8 sm:h-6 rounded-md text-lg font-medium transition shadow-sm ${
+                isWishListed
+                  ? "bg-yellow-100 text-yellow-700 shadow"
+                  : "bg-white text-yellow-500 hover:bg-yellow-50"
+              } duration-200`}
+              title={isWishListed ? "Remove from wishlist" : "Add to wishlist"}
+            >
+              {isWishListed ? (
+                <FaHeart className="text-lg text-yellow-500" />
+              ) : (
+                <FaRegHeart className="text-lg text-yellow-500" />
+              )}
+            </button>
+            <Link
+              to={`/recipes/${_id}`}
+              className="flex items-center justify-center w-7 h-5 sm:w-8 sm:h-6 bg-amber-100 text-amber-700 hover:bg-amber-200 rounded-md text-lg font-medium transition shadow-sm"
+              title="View Details"
+            >
+              <FaRegEye />
+            </Link>
+            <button
+              className="flex items-center justify-center w-7 h-5 sm:w-8 sm:h-6 bg-blue-100 text-blue-600 hover:bg-blue-200 rounded-md text-lg font-medium transition shadow-sm"
               onClick={() => setShowModal(true)}
+              title="Update Recipe"
             >
               <FaEdit />
-              Update
             </button>
-
-            {/* Modal */}
-            {showModal && (
-              <dialog id="recipe_edit_modal" className="modal modal-open">
-                <div className="modal-box w-11/12 max-w-5xl">
-                  <EditMyRecipe
-                    recipe={recipe}
-                    onClose={() => setShowModal(false)}
-                    handleUpdateRecipe={handleUpdateRecipe}
-                  />
-                  <div className="modal-action">
-                    <form method="dialog">
-                      <button
-                        className="btn bg-red-500 text-white"
-                        onClick={() => setShowModal(false)}
-                      >
-                        Close
-                      </button>
-                    </form>
-                  </div>
-                </div>
-              </dialog>
-            )}
-
             <button
               onClick={() => handleDeleteRecipe(_id)}
-              className="flex items-center gap-1 bg-red-100 text-red-600 hover:bg-red-200 px-3 py-1 rounded-md text-sm font-medium transition"
+              className="flex items-center justify-center w-7 h-5 sm:w-8 sm:h-6 bg-red-100 text-red-600 hover:bg-red-200 rounded-md text-lg font-medium transition shadow-sm"
+              title="Delete Recipe"
             >
               <FaTrash />
-              Delete
             </button>
           </div>
         </div>
+
+        {/* Modal */}
+        {showModal && (
+          <dialog id="recipe_edit_modal" className="modal modal-open">
+            <div className="modal-box w-11/12 max-w-5xl">
+              <EditMyRecipe
+                recipe={recipe}
+                onClose={() => setShowModal(false)}
+                handleUpdateRecipe={handleUpdateRecipe}
+              />
+              <div className="modal-action">
+                <form method="dialog">
+                  <button
+                    className="btn bg-red-500 text-white"
+                    onClick={() => setShowModal(false)}
+                  >
+                    Close
+                  </button>
+                </form>
+              </div>
+            </div>
+          </dialog>
+        )}
       </div>
     </div>
   );

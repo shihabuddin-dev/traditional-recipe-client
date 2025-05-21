@@ -77,16 +77,21 @@ const MyRecipes = () => {
   }
 
   return (
-    <div className="grid md:grid-cols-2 gap-5 max-w-5xl mx-auto">
-      {myRecipes.map((recipe) => (
-        <MyRecipesCard
-          key={recipe._id}
-          recipe={recipe}
-          handleLikeUpdate={handleLikeUpdate}
-          handleDeleteRecipe={handleDeleteRecipe}
-          handleUpdateRecipe={handleUpdateRecipe}
-        />
-      ))}
+    <div className="max-w-5xl mx-auto">
+      <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
+        My Recipes
+      </h2>
+      <div className="grid md:grid-cols-2 gap-5">
+        {myRecipes.map((recipe) => (
+          <MyRecipesCard
+            key={recipe._id}
+            recipe={recipe}
+            handleLikeUpdate={handleLikeUpdate}
+            handleDeleteRecipe={handleDeleteRecipe}
+            handleUpdateRecipe={handleUpdateRecipe}
+          />
+        ))}
+      </div>
     </div>
   );
 };

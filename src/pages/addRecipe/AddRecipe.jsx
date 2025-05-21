@@ -1,7 +1,8 @@
-import React, { use, useState } from "react";
+import React, { useContext, useState } from "react";
 import Button from "../../components/ui/Button";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router";
+import { FaArrowLeft, FaListUl } from "react-icons/fa";
 import { FirebaseAuthContext } from "../../provider/FirebaseAuthContext";
 
 const cuisineOptions = [
@@ -19,7 +20,7 @@ const inputBase =
   "w-full border border-gray-400 px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200";
 
 const AddRecipe = () => {
-  const { user } = use(FirebaseAuthContext);
+  const { user } = useContext(FirebaseAuthContext);
   // user info from firebase
   const userInfo = {
     userName: user?.displayName,
@@ -103,11 +104,17 @@ const AddRecipe = () => {
   return (
     <div>
       <div className="max-w-5xl mx-auto px-2 flex justify-between">
-        <Button onClick={() => navigate(-1)} variant="outline">
-          Back
+        <Button
+          onClick={() => navigate(-1)}
+          variant="outline"
+          className="flex items-center gap-2"
+        >
+          <FaArrowLeft /> Back
         </Button>
         <Link to="/all-recipes">
-          <Button variant="outline">All Recipes</Button>
+          <Button variant="outline" className="flex items-center gap-2">
+            <FaListUl /> All Recipes
+          </Button>
         </Link>
       </div>
 
