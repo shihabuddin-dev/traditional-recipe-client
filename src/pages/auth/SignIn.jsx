@@ -12,8 +12,7 @@ const inputBase =
   "w-full border border-gray-400 px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200";
 
 const SignIn = () => {
-  const { loginUser, createUserWithGoogle, setUser } =
-    use(FirebaseAuthContext);
+  const { loginUser, createUserWithGoogle, setUser } = use(FirebaseAuthContext);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -21,100 +20,59 @@ const SignIn = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const togglePassword = () => setShowPassword(!showPassword);
-    // when user logged in that time do not show login page
-  // if (user) {
-  //   return (
-  //     <>
-  //       <Spinner />
-  //       <Navigate to="/" />
-  //     </>
-  //   );
-  // }
+
   const handleSignIn = (e) => {
     e.preventDefault();
-    const form = e.target;
-    const formData = new FormData(form);
-    const email = formData.get("email");
-    const password = formData.get("password");
-
     loginUser(email, password)
       .then((userCredential) => {
-        const currentUser = userCredential.user;
-        setUser(currentUser);
+        setUser(userCredential.user);
         Swal.fire({
           icon: "success",
           title: "Sign In Success",
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate(`${location?.state ? location.state : "/"}`);
+        navigate(location?.state || "/");
       })
       .catch((error) => {
-        const errorCode = error.code;
-        console.log(errorCode);
         Swal.fire({
           icon: "error",
           title: "Login Failed",
-          text: errorCode,
+          text: error.code,
         });
       });
   };
 
-  const handleSingInWithGoogle = () => {
+  // google sing in
+  const handleSignInWithGoogle = async () => {
     createUserWithGoogle()
       .then((result) => {
         const currentUser = result.user;
-        setUser(currentUser);
-
-        const userProfile = {
-          name: currentUser?.displayName,
-          email: currentUser?.email,
-          photo: currentUser?.photoURL,
+        // Manually extract user data and set explicitly
+        const userInfo = {
+          uid: currentUser.uid,
+          email: currentUser.email,
+          displayName: currentUser.displayName,
+          photoURL: currentUser.photoURL,
         };
+        setUser(userInfo); // Save to context
 
-        // Check if user already exists before saving
-        fetch(`http://localhost:3000/users?email=${currentUser.email}`)
-          .then((res) => res.json())
-          .then((data) => {
-            if (!data.exists) {
-              // Save to DB if not exists
-              fetch("http://localhost:3000/users", {
-                method: "POST",
-                headers: {
-                  "content-type": "application/json",
-                },
-                body: JSON.stringify(userProfile),
-              })
-                .then((res) => res.json())
-                .then((saveResult) => {
-                  if (saveResult.insertedId) {
-                    showLoginSuccess();
-                  }
-                });
-            } else {
-              // Just log in if already exists
-              showLoginSuccess();
-            }
-          });
+        navigate(location?.state ? location.state : "/");
+        Swal.fire({
+          title: "Success!",
+          text: "You are signed in successfully",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1600,
+        });
       })
       .catch((error) => {
-        console.error("Google Sign-In Error:", error.code, error.message);
+        console.log(error.code, error.message);
       });
   };
 
-  const showLoginSuccess = () => {
-    navigate(`${location?.state ? location.state : "/"}`);
-    Swal.fire({
-      title: "Success!",
-      text: "Your Account Sign In Successfully",
-      icon: "success",
-      showConfirmButton: false,
-      timer: 1600,
-    });
-  };
-
   return (
-    <div className="flex gap-4 flex-col md:flex-row justify-center items-center max-w-5xl ">
+    <div className="flex gap-4 flex-col md:flex-row justify-center items-center max-w-5xl">
       <div className="flex-1">
         <DotLottieReact
           src="https://lottie.host/33baafdb-458c-4bde-ac78-8f6fc29efe18/wc1rzpJe2S.lottie"
@@ -122,6 +80,7 @@ const SignIn = () => {
           autoplay
         />
       </div>
+
       <div className="flex-1 max-w-md p-6 bg-white rounded shadow border-2 border-orange-400">
         <h2 className="text-2xl md:text-3xl font-semibold mb-4 flex justify-center items-center gap-3">
           <MdLogin className="text-orange-600" />
@@ -172,10 +131,10 @@ const SignIn = () => {
           </Button>
         </form>
 
-        <p className="text-center text-gray-500">----- or -----</p>
+        <p className="divider divider-warning">OR</p>
 
         <Button
-          onClick={handleSingInWithGoogle}
+          onClick={handleSignInWithGoogle}
           variant="outline"
           className="w-full mt-3 flex justify-center items-center gap-2"
         >
@@ -184,7 +143,7 @@ const SignIn = () => {
         </Button>
 
         <p className="text-sm mt-4">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link to="/signUp" className="text-amber-600 underline">
             Sign up
           </Link>

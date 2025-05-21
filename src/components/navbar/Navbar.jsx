@@ -13,6 +13,9 @@ import { FirebaseAuthContext } from "../../provider/FirebaseAuthContext";
 import Swal from "sweetalert2";
 import { SiIfood } from "react-icons/si";
 import { MdLibraryAdd } from "react-icons/md";
+import userLogo from '../../assets/user-logo.png'
+
+
 const Navbar = () => {
   const { user, logOutUser } = use(FirebaseAuthContext);
   const [isOpen, setIsOpen] = useState(false);
@@ -98,7 +101,7 @@ const Navbar = () => {
               ref={dropdownRef}
             >
               <img
-                src={user?.photoURL ? user?.photoURL : ""}
+                src={user?.photoURL ? user?.photoURL : userLogo}
                 alt="profile"
                 className="w-9 h-9 rounded-full border border-secondary"
               />

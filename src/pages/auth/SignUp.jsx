@@ -23,16 +23,6 @@ const SignUp = () => {
 
   const togglePassword = () => setShowPassword(!showPassword);
 
-  // when user logged in that time do not show login page
-  // if (user) {
-  //   return (
-  //     <>
-  //       <Spinner />
-  //       <Navigate to="/" />
-  //     </>
-  //   );
-  // }
-
   const validations = [
     {
       label: "contains at least 6 characters",
@@ -65,23 +55,9 @@ const SignUp = () => {
     if (!allValid) {
       Swal.fire({
         icon: "error",
-        title: "Password doesn't meet all requirements Below",
+        title: "Password doesn't meet all requirements",
         showConfirmButton: false,
         timer: 1600,
-      });
-      return;
-    }
-
-    // Check if email already exists
-    const res = await fetch(`http://localhost:3000/users?email=${email}`);
-    const data = await res.json();
-    if (data.exists) {
-      Swal.fire({
-        icon: "error",
-        title: "Email already registered",
-        text: "Try logging in instead.",
-        showConfirmButton: false,
-        timer: 2000,
       });
       return;
     }
@@ -92,27 +68,17 @@ const SignUp = () => {
         const currentUser = userCredential.user;
         updateUser({ displayName: name, photoURL: photo });
 
-        const userProfile = { name, email, photo };
+        setUser({ ...currentUser, displayName: name, photoURL: photo });
 
-        fetch("http://localhost:3000/users", {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify(userProfile),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            setUser({ ...currentUser, displayName: name, photoURL: photo });
-            navigate(`${location?.state ? location.state : "/"}`);
-            Swal.fire({
-              title: "Success!",
-              text: "Your Account created Successfully",
-              icon: "success",
-              showConfirmButton: false,
-              timer: 1600,
-            });
-            form.reset();
-          });
+        navigate(location?.state ? location.state : "/");
+        Swal.fire({
+          title: "Success!",
+          text: "Your Account created Successfully",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1600,
+        });
+        form.reset();
       })
       .catch((error) => {
         console.log(error);
@@ -122,31 +88,21 @@ const SignUp = () => {
   // Google Sign In
   const handleSingInWithGoogle = async () => {
     createUserWithGoogle()
-      .then(async (result) => {
+      .then((result) => {
         const currentUser = result.user;
-        setUser(currentUser);
-
-        const userProfile = {
-          name: currentUser?.displayName,
-          email: currentUser?.email,
-          photo: currentUser?.photoURL,
+        // Manually extract user data and set explicitly
+        const userInfo = {
+          uid: currentUser.uid,
+          email: currentUser.email,
+          displayName: currentUser.displayName,
+          photoURL: currentUser.photoURL,
         };
 
-        // Check if already exists
-        const res = await fetch(
-          `http://localhost:3000/users?email=${currentUser.email}`
-        );
-        const data = await res.json();
+        setUser(userInfo); // Save to context
 
-        if (!data.exists) {
-          await fetch("http://localhost:3000/users", {
-            method: "POST",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify(userProfile),
-          });
-        }
+        console.log("Google user info:", userInfo);
 
-         navigate(`${location?.state ? location.state : "/"}`);
+        navigate(location?.state ? location.state : "/");
         Swal.fire({
           title: "Success!",
           text: "You are signed in successfully",
@@ -156,9 +112,7 @@ const SignUp = () => {
         });
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode, errorMessage);
+        console.log(error.code, error.message);
       });
   };
 
@@ -179,6 +133,7 @@ const SignUp = () => {
         <h2 className="text-2xl md:text-3xl font-semibold mb-4 flex justify-center items-center gap-3">
           <GiArchiveRegister className="text-orange-600" /> Sign Up
         </h2>
+
         <label className="block mb-2 text-sm font-medium">Name</label>
         <input
           type="text"
@@ -196,6 +151,7 @@ const SignUp = () => {
           placeholder="Enter your Photo URL"
           required
         />
+
         <label className="block mb-2 text-sm font-medium">Email address</label>
         <input
           type="email"
@@ -226,6 +182,7 @@ const SignUp = () => {
           </span>
         </div>
 
+        {/* Password Validation List */}
         <div className="text-sm mt-4">
           <p className="font-medium mb-2">Create a password that:</p>
           <ul className="space-y-1">
@@ -245,10 +202,11 @@ const SignUp = () => {
             ))}
           </ul>
         </div>
+
         <Button type="submit" className="mt-6 w-full">
           Sign Up
         </Button>
-        <p className="text-center text-gray-500">----- or -----</p>
+        <p className="divider divider-warning">OR</p>
         <Button
           onClick={handleSingInWithGoogle}
           variant="outline"
