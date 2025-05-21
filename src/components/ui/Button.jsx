@@ -16,7 +16,7 @@ const Button = ({
       "bg-[#f97316] text-white px-4 py-2 rounded-md text-sm hover:bg-[#ea580c]";
   } else if (variant === "secondary") {
     styles +=
-      "px-4 py-2 bg-amber-100 text-amber-700 rounded-full text-sm font-medium hover:bg-amber-200 transition-colors";
+      "px-4 py-2 bg-orange-100 text-amber-700 rounded-full text-sm font-medium hover:bg-orange-200 transition-colors";
   } else if (variant === "outline") {
     styles += "border border-[#f97316] py-1 text-[#f97316] hover:bg-orange-100";
   } else if (variant === "danger") {
