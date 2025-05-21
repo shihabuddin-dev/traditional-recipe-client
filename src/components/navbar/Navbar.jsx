@@ -4,6 +4,7 @@ import {
   FaBars,
   FaClipboardList,
   FaHome,
+  FaRegSave,
   FaSignOutAlt,
   FaTimes,
 } from "react-icons/fa";
@@ -13,8 +14,7 @@ import { FirebaseAuthContext } from "../../provider/FirebaseAuthContext";
 import Swal from "sweetalert2";
 import { SiIfood } from "react-icons/si";
 import { MdLibraryAdd } from "react-icons/md";
-import userLogo from '../../assets/user-logo.png'
-
+import userLogo from "../../assets/user-logo.png";
 
 const Navbar = () => {
   const { user, logOutUser } = use(FirebaseAuthContext);
@@ -60,12 +60,12 @@ const Navbar = () => {
         <Link to="/" className="flex items-center">
           <img src={logo} alt="logo" className="w-12 h-12 object-cover" />
           <span className="text-2xl -ml-1 font-bold text-orange-600">
-            Recipe
+            T.Recipe
           </span>
         </Link>
 
         {/* Desktop Nav */}
-        <ul className="hidden md:flex gap-6 font-semibold text-[#1a1a1a]">
+        <ul className="hidden md:flex gap-5 font-semibold text-[#1a1a1a]">
           <li>
             <NavLink to="/" className={linksClass}>
               <FaHome />
@@ -90,6 +90,14 @@ const Navbar = () => {
               My Recipes
             </NavLink>
           </li>
+          {user && (
+            <li>
+              <NavLink to="/wishlist" className={linksClass}>
+                <FaRegSave />
+                Wishlist
+              </NavLink>
+            </li>
+          )}
         </ul>
 
         {/* Login / Avatar */}
@@ -103,6 +111,7 @@ const Navbar = () => {
               <img
                 src={user?.photoURL ? user?.photoURL : userLogo}
                 alt="profile"
+                title={user?.displayName}
                 className="w-9 h-9 rounded-full border border-secondary"
               />
               <div
@@ -180,6 +189,16 @@ const Navbar = () => {
               >
                 <FaClipboardList />
                 My Recipes
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/wishlist"
+                onClick={toggleMenu}
+                className={linksClass}
+              >
+                <FaRegSave />
+                Wishlist
               </NavLink>
             </li>
             <li className="space-x-2">

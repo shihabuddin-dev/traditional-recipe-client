@@ -66,7 +66,7 @@ const ResetPassword = () => {
       <div className="bg-white shadow-2xl rounded-2xl p-6 sm:p-8 md:p-10 w-full max-w-md border-2 border-orange-400">
         <h2 className="text-2xl md:text-3xl font-semibold mb-6 flex justify-center items-center gap-3">
           <MdLockReset className="text-orange-600" />
-          Reset Your Password
+          Reset Password
         </h2>
         <p className="text-center text-gray-600 text-sm mb-6">
           Enter your email address below and we'll send you a link to reset your

@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import React, { use, useState, useEffect } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Button from "../../components/ui/Button";
 import { Link, useLocation, useNavigate } from "react-router";
@@ -7,14 +7,27 @@ import { FirebaseAuthContext } from "../../provider/FirebaseAuthContext";
 import Swal from "sweetalert2";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { MdLogin } from "react-icons/md";
+import Spinner from "../../components/ui/Spinner";
 
 const inputBase =
   "w-full border border-gray-400 px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200";
 
 const SignIn = () => {
-  const { loginUser, createUserWithGoogle, setUser } = use(FirebaseAuthContext);
+  const { loginUser, createUserWithGoogle, setUser, user } =
+    use(FirebaseAuthContext);
   const location = useLocation();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (user) {
+      setTimeout(() => {
+        navigate(location?.state || "/");
+      }, 100);
+    } else {
+      setLoading(false);
+    }
+  }, [user, location, navigate]);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -70,6 +83,10 @@ const SignIn = () => {
         console.log(error.code, error.message);
       });
   };
+
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <div className="flex gap-4 flex-col md:flex-row justify-center items-center max-w-5xl">

@@ -10,6 +10,7 @@ const cuisineOptions = [
   "Chinese",
   "Others",
 ];
+
 const categoryOptions = ["Breakfast", "Lunch", "Dinner", "Dessert", "Vegan"];
 
 const inputBase =
@@ -35,7 +36,10 @@ const EditMyRecipe = ({ recipe, onClose, handleUpdateRecipe }) => {
           : prev.categories.filter((cat) => cat !== value),
       }));
     } else {
-      setFormData((prev) => ({ ...prev, [name]: value }));
+      setFormData((prev) => ({
+        ...prev,
+        [name]: type === "number" ? Number(value) : value,
+      }));
     }
   };
 
@@ -176,6 +180,21 @@ const EditMyRecipe = ({ recipe, onClose, handleUpdateRecipe }) => {
               </label>
             ))}
           </div>
+        </div>
+
+        {/* Likes (editable) */}
+        <div className="md:col-span-2">
+          <label className="block text-gray-700 font-medium mb-1">
+            Like Count
+          </label>
+          <input
+            type="number"
+            name="likes"
+            value={formData.likes === 0 ? '' : formData.likes}
+            onChange={handleChange}
+            className={inputBase}
+            min="0"
+          />
         </div>
 
         <div className="md:col-span-2 mt-4">

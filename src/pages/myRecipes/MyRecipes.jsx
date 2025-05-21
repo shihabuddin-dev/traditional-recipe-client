@@ -30,10 +30,10 @@ const MyRecipes = () => {
   // Handle recipe update
   const handleUpdateRecipe = (updatedRecipe) => {
     setMyRecipes((prevRecipes) =>
-      prevRecipes.map((r) =>
-        r._id === updatedRecipe._id ? updatedRecipe : r
-      )
+      prevRecipes.map((r) => (r._id === updatedRecipe._id ? updatedRecipe : r))
     );
+    // For now, force a reload to update everywhere
+    window.location.reload();
   };
 
   // Handle delete
@@ -66,11 +66,11 @@ const MyRecipes = () => {
 
   if (myRecipes.length === 0) {
     return (
-      <div className="flex gap-4 items-center justify-center flex-col">
+      <div className="flex justify-center items-center flex-col gap-4">
+        <h2 className="text-2xl font-semibold">You Didn't Add Recipe</h2>
         <Link to="/add-recipe">
-          <Button variant="outline">Add Recipe</Button>
+          <Button variant="outline">Browse Recipes</Button>
         </Link>
-        <p className="md:text-lg font-semibold">You Didn't Add Recipe</p>
         <iframe src="https://lottie.host/embed/3ab83073-20e0-49a2-a5f2-bb2eaebe4ffb/wqhfyqiu3R.lottie"></iframe>
       </div>
     );

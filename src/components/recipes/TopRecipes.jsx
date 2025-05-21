@@ -13,7 +13,9 @@ const TopRecipes = () => {
       try {
         const res = await fetch("http://localhost:3000/recipes/top");
         const data = await res.json();
-        setRecipes(data);
+        // Sort recipes by likes (descending) and keep top 6
+        const sorted = [...data].sort((a, b) => b.likes - a.likes).slice(0, 6);
+        setRecipes(sorted);
       } catch (error) {
         console.error("Error fetching top recipes:", error);
       } finally {

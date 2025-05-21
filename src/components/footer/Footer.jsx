@@ -12,7 +12,7 @@ import { Link } from "react-router";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#fff7ed] text-gray-800 py-12 border-t border-orange-200">
+    <footer className="bg-[#fff7ed] text-gray-800 pt-12 pb-8 border-t border-orange-200">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
         {/* Brand Info */}
         <div>
@@ -49,11 +49,6 @@ const Footer = () => {
                 My Recipes
               </Link>
             </li>
-            <li>
-              <Link to="/contact" className="hover:text-orange-500">
-                Contact
-              </Link>
-            </li>
           </ul>
         </div>
         {/* Contact Info */}
@@ -61,13 +56,13 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-3">Contact</h3>
           <ul className="space-y-3 text-sm text-gray-700">
             <li className="flex items-center gap-2">
-              <FaEnvelope /> info@recipebook.com
+              <FaEnvelope /> info@traditionalrecipe.com
             </li>
             <li className="flex items-center gap-2">
               <FaPhoneAlt /> +880 1234-567890
             </li>
             <li className="flex items-center gap-2">
-              <FaMapMarkerAlt /> Dhaka, Bangladesh
+              <FaMapMarkerAlt /> Bogura, Bangladesh
             </li>
           </ul>
         </div>

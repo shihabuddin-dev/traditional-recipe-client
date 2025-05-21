@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import React, { use, useState, useEffect } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Button from "../../components/ui/Button";
 import { Link, useLocation, useNavigate } from "react-router";
@@ -7,15 +7,27 @@ import { FirebaseAuthContext } from "../../provider/FirebaseAuthContext";
 import { FcGoogle } from "react-icons/fc";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { GiArchiveRegister } from "react-icons/gi";
+import Spinner from "../../components/ui/Spinner";
 
 const inputBase =
   "w-full border border-gray-400 px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200";
 
 const SignUp = () => {
-  const { createUser, setUser, createUserWithGoogle, updateUser } =
+  const { createUser, setUser, createUserWithGoogle, updateUser, user } =
     use(FirebaseAuthContext);
   const location = useLocation();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (user) {
+      setTimeout(() => {
+        navigate(location?.state || "/");
+      }, 100);
+    } else {
+      setLoading(false);
+    }
+  }, [user, location, navigate]);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -81,7 +93,15 @@ const SignUp = () => {
         form.reset();
       })
       .catch((error) => {
-        console.log(error);
+        let errorMsg = error.message;
+        if (error.code === "auth/email-already-in-use") {
+          errorMsg = "This email is already registered. Please use a different email or sign in.";
+        }
+        Swal.fire({
+          icon: "error",
+          title: "Registration Failed",
+          text: errorMsg,
+        });
       });
   };
 
@@ -115,6 +135,10 @@ const SignUp = () => {
         console.log(error.code, error.message);
       });
   };
+
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <div className="flex gap-4 flex-col md:flex-row justify-center items-center max-w-5xl">

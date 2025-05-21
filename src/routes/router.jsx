@@ -12,6 +12,7 @@ import ResetPassword from "../pages/auth/ResetPassword";
 import MyRecipes from "../pages/myRecipes/MyRecipes";
 import PrivateRoutes from "./PrivateRoutes";
 import EditMyRecipe from "../components/recipes/EditMyRecipe";
+import Wishlist from "../components/recipes/Wishlist";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <RecipeDetails />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/wishlist",
+        element: (
+          <PrivateRoutes>
+            <Wishlist />
           </PrivateRoutes>
         ),
       },
