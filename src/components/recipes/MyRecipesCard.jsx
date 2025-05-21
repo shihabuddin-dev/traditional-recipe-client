@@ -1,9 +1,14 @@
 import React, { useState } from "react";
-import { FaTrash, FaEdit, FaHeart } from "react-icons/fa";
+import { FaTrash, FaEdit } from "react-icons/fa";
 import { HiMiniHandThumbUp, HiOutlineHandThumbUp } from "react-icons/hi2";
 import EditMyRecipe from "./EditMyRecipe";
 
-const MyRecipesCard = ({ recipe, handleLikeUpdate, handleDeleteRecipe,handleUpdateRecipe }) => {
+const MyRecipesCard = ({
+  recipe,
+  handleLikeUpdate,
+  handleDeleteRecipe,
+  handleUpdateRecipe,
+}) => {
   const {
     _id,
     image,
@@ -15,8 +20,10 @@ const MyRecipesCard = ({ recipe, handleLikeUpdate, handleDeleteRecipe,handleUpda
     categories,
     likes: initialLikes,
   } = recipe || {};
+
   const [likes, setLikes] = useState(initialLikes);
   const [isLiking, setIsLiking] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const handleLike = async () => {
     if (isLiking) return;
@@ -42,7 +49,6 @@ const MyRecipesCard = ({ recipe, handleLikeUpdate, handleDeleteRecipe,handleUpda
 
   return (
     <div className="flex flex-col md:flex-row bg-white shadow-md rounded-2xl overflow-hidden border border-orange-100">
-      {/* Image */}
       <div className="md:w-1/3 h-48 md:h-auto overflow-hidden">
         <img
           src={image}
@@ -51,15 +57,12 @@ const MyRecipesCard = ({ recipe, handleLikeUpdate, handleDeleteRecipe,handleUpda
         />
       </div>
 
-      {/* Content */}
       <div className="p-5 flex flex-col justify-between flex-grow">
-        {/* Title & Cuisine */}
         <div>
           <h2 className="text-2xl font-bold text-gray-800 mb-1">{title}</h2>
           <p className="text-sm text-gray-500 italic mb-3">{cuisine} Cuisine</p>
         </div>
 
-        {/* Ingredients & Instructions */}
         <div className="mb-2 text-gray-700">
           <p>
             <strong>Ingredients:</strong> {ingredients}
@@ -69,7 +72,6 @@ const MyRecipesCard = ({ recipe, handleLikeUpdate, handleDeleteRecipe,handleUpda
           </p>
         </div>
 
-        {/* Extra Info */}
         <div className="flex flex-wrap gap-2 mb-3">
           <span className="text-xs bg-orange-100 text-orange-600 px-3 py-1 rounded-full">
             ⏱ {preparationTime} min
@@ -84,9 +86,7 @@ const MyRecipesCard = ({ recipe, handleLikeUpdate, handleDeleteRecipe,handleUpda
           ))}
         </div>
 
-        {/* Footer: Like & Buttons */}
         <div className="flex items-center justify-between pt-3 border-t border-dashed border-orange-200">
-          {/* Likes */}
           <div
             onClick={handleLike}
             className="flex items-center gap-1 text-orange-500 text-lg font-medium"
@@ -99,37 +99,38 @@ const MyRecipesCard = ({ recipe, handleLikeUpdate, handleDeleteRecipe,handleUpda
             <span className="text-gray-800">{likes}</span>
           </div>
 
-          {/* Buttons */}
           <div className="flex gap-3">
-            {/* You can open the modal using document.getElementById('ID').showModal() method */}
             <button
               className="flex items-center gap-1 bg-blue-100 text-blue-600 hover:bg-blue-200 px-3 py-1 rounded-md text-sm font-medium transition"
-              onClick={() =>
-                document.getElementById("recipe_edit_modal").showModal()
-              }
+              onClick={() => setShowModal(true)}
             >
               <FaEdit />
               Update
             </button>
-            <dialog id="recipe_edit_modal" className="modal">
-              <div className="modal-box w-11/12 max-w-5xl">
-                <EditMyRecipe handleUpdateRecipe={handleUpdateRecipe}/>
-                <div className="modal-action">
-                  <form method="dialog">
-                    {/* if there is a button, it will close the modal */}
-                    <button className="btn bg-red-500 text-white">Close</button>
-                  </form>
-                </div>
-              </div>
-            </dialog>
 
-            {/* <button
-              // onClick={() => onUpdate(recipe)}
-              className="flex items-center gap-1 bg-blue-100 text-blue-600 hover:bg-blue-200 px-3 py-1 rounded-md text-sm font-medium transition"
-            >
-              <FaEdit />
-              Update
-            </button> */}
+            {/* Modal */}
+            {showModal && (
+              <dialog id="recipe_edit_modal" className="modal modal-open">
+                <div className="modal-box w-11/12 max-w-5xl">
+                  <EditMyRecipe
+                    recipe={recipe}
+                    onClose={() => setShowModal(false)}
+                    handleUpdateRecipe={handleUpdateRecipe}
+                  />
+                  <div className="modal-action">
+                    <form method="dialog">
+                      <button
+                        className="btn bg-red-500 text-white"
+                        onClick={() => setShowModal(false)}
+                      >
+                        Close
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </dialog>
+            )}
+
             <button
               onClick={() => handleDeleteRecipe(_id)}
               className="flex items-center gap-1 bg-red-100 text-red-600 hover:bg-red-200 px-3 py-1 rounded-md text-sm font-medium transition"

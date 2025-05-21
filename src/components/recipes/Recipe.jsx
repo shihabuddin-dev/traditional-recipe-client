@@ -43,7 +43,6 @@ const Recipe = ({ recipe, handleLikeUpdate }) => {
     }
   };
 
-  // Format the createdAt date
   const formattedDate = new Date(createdAt).toLocaleDateString("en-GB", {
     day: "2-digit",
     month: "short",
@@ -51,9 +50,9 @@ const Recipe = ({ recipe, handleLikeUpdate }) => {
   });
 
   return (
-    <div className="flex flex-col h-full bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 border border-orange-100">
+    <div className="flex flex-col h-full bg-white rounded-2xl overflow-hidden shadow-lg border border-orange-100 hover:shadow-xl transition-all duration-300">
       {/* Image */}
-      <div className="h-48 overflow-hidden">
+      <div className="h-48 md:h-52 lg:h-44 overflow-hidden">
         <img
           src={image}
           alt={title}
@@ -62,20 +61,20 @@ const Recipe = ({ recipe, handleLikeUpdate }) => {
       </div>
 
       {/* Content */}
-      <div className="p-5 flex flex-col flex-grow">
+      <div className="p-4 md:p-5 flex flex-col flex-grow gap-2">
         {/* Title & Cuisine */}
-        <h3 className="text-2xl font-bold text-gray-800 mb-1">{title}</h3>
-        <p className="text-sm text-gray-500 mb-3 italic">{cuisine} Cuisine</p>
+        <h3 className="text-xl font-bold text-gray-800">{title}</h3>
+        <p className="text-sm text-gray-500 italic">{cuisine} Cuisine</p>
 
         {/* Tags */}
-        <div className="flex flex-wrap gap-2 mb-2">
-          <span className="text-xs bg-orange-100 text-orange-600 px-3 py-1 rounded-full">
+        <div className="flex flex-wrap gap-2 text-xs">
+          <span className="bg-orange-100 text-orange-600 px-3 py-1 rounded-full">
             ⏱ {preparationTime} min
           </span>
           {categories.map((cat, idx) => (
             <span
               key={idx}
-              className="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full"
+              className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full"
             >
               {cat}
             </span>
@@ -83,43 +82,49 @@ const Recipe = ({ recipe, handleLikeUpdate }) => {
         </div>
 
         {/* Ingredients */}
-        <p className="text-gray-700 text-sm mb-2 line-clamp-2">
+        <p className="text-gray-700 text-sm line-clamp-2">
           <strong className="text-gray-800">Ingredients:</strong>{" "}
           {ingredients.length > 50
             ? ingredients.slice(0, 50) + "..."
             : ingredients}
         </p>
 
-        {/* Footer */}
-        <div className="mt-auto flex items-center justify-between pt-2 border-t border-dashed border-orange-200">
+        {/* Footer: Like + View */}
+        <div className="mt-auto flex items-center justify-between p-2 border-t border-dashed border-orange-200">
           <button
             onClick={handleLike}
-            className="flex items-center text-orange-500 gap-1 hover:text-orange-600 transition text-lg font-medium"
+            className="flex items-center text-orange-500 gap-1 hover:text-orange-600 transition text-sm font-medium"
             disabled={isLiking}
             title="Like this recipe"
           >
             {likes > 0 ? (
-              <HiMiniHandThumbUp className="text-xl" />
+              <HiMiniHandThumbUp className="text-xl cursor-pointer" />
             ) : (
-              <HiOutlineHandThumbUp className="text-xl" />
+              <HiOutlineHandThumbUp className="text-xl cursor-pointer" />
             )}
             <span className="text-black">{likes}</span>
-            <span className="text-sm">people interested</span>
+            <span className="text-sm">interested</span>
           </button>
 
           <Link to={`/recipes/${_id}`}>
-            <Button variant="secondary">View Details</Button>
+            <Button
+              variant="secondary"
+              className="text-xs md:text-sm px-4 py-2"
+            >
+              View Details
+            </Button>
           </Link>
         </div>
-        {/* User Info */}
-        <div className="flex items-center gap-3 pt-2">
+
+        {/* Author Info */}
+        <div className="flex items-center gap-3 border-t border-dashed border-orange-200 pt-2">
           <img
             src={userPhoto}
             alt={userName}
-            className="w-9 h-9 rounded-full border border-orange-200 object-cover"
+            className="w-10 h-10 rounded-full border border-orange-200 object-cover"
           />
-          <div className="text-sm">
-            <p className="font-semibold text-gray-800">Author: {userName}</p>
+          <div className="text-sm leading-tight">
+            <p className="font-semibold text-gray-800">By: {userName}</p>
             <p className="text-gray-500 text-xs">Published: {formattedDate}</p>
           </div>
         </div>

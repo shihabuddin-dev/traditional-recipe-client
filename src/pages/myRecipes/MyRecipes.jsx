@@ -9,6 +9,7 @@ const MyRecipes = () => {
   const { user } = use(FirebaseAuthContext);
   const initialRecipes = useLoaderData();
   const [myRecipes, setMyRecipes] = useState([]);
+
   useEffect(() => {
     const recipesData = initialRecipes.filter(
       (recipe) => recipe.userEmail === user?.email
@@ -26,20 +27,16 @@ const MyRecipes = () => {
     });
   };
 
-  if (myRecipes.length === 0) {
-    return (
-      <div className="flex gap-4 items-center justify-center flex-col">
-        <Link to="/add-recipe">
-          <Button variant="outline">Add Recipe</Button>
-        </Link>
-        <p className="md:text-lg font-semibold">You Didn't Add Recipe</p>
-
-        <iframe src="https://lottie.host/embed/3ab83073-20e0-49a2-a5f2-bb2eaebe4ffb/wqhfyqiu3R.lottie"></iframe>
-      </div>
+  // Handle recipe update
+  const handleUpdateRecipe = (updatedRecipe) => {
+    setMyRecipes((prevRecipes) =>
+      prevRecipes.map((r) =>
+        r._id === updatedRecipe._id ? updatedRecipe : r
+      )
     );
-  }
+  };
 
-  // delete recipe functionality
+  // Handle delete
   const handleDeleteRecipe = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -59,22 +56,24 @@ const MyRecipes = () => {
                 (recipe) => recipe._id !== id
               );
               setMyRecipes(remainingRecipes);
+
+              Swal.fire("Deleted!", "Recipe has been deleted.", "success");
             }
           });
-
-        Swal.fire({
-          title: "Deleted!",
-          text: "Recipe has been deleted.",
-          icon: "success",
-        });
       }
     });
   };
 
-
-  // update recipe
-  const handleUpdateRecipe=()=>{
-    console.log('aa')
+  if (myRecipes.length === 0) {
+    return (
+      <div className="flex gap-4 items-center justify-center flex-col">
+        <Link to="/add-recipe">
+          <Button variant="outline">Add Recipe</Button>
+        </Link>
+        <p className="md:text-lg font-semibold">You Didn't Add Recipe</p>
+        <iframe src="https://lottie.host/embed/3ab83073-20e0-49a2-a5f2-bb2eaebe4ffb/wqhfyqiu3R.lottie"></iframe>
+      </div>
+    );
   }
 
   return (
