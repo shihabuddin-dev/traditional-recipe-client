@@ -11,6 +11,7 @@ import RecipeDetails from "../pages/recipeDetails/RecipeDetails";
 import ResetPassword from "../pages/auth/ResetPassword";
 import MyRecipes from "../pages/myRecipes/MyRecipes";
 import PrivateRoutes from "./PrivateRoutes";
+import EditMyRecipe from "../components/recipes/EditMyRecipe";
 
 const router = createBrowserRouter([
   {

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { FaTrash, FaEdit, FaHeart } from "react-icons/fa";
 import { HiMiniHandThumbUp, HiOutlineHandThumbUp } from "react-icons/hi2";
+import EditMyRecipe from "./EditMyRecipe";
 
-const MyRecipesCard = ({ recipe, handleLikeUpdate }) => {
+const MyRecipesCard = ({ recipe, handleLikeUpdate, handleDeleteRecipe,handleUpdateRecipe }) => {
   const {
     _id,
     image,
@@ -100,15 +101,37 @@ const MyRecipesCard = ({ recipe, handleLikeUpdate }) => {
 
           {/* Buttons */}
           <div className="flex gap-3">
+            {/* You can open the modal using document.getElementById('ID').showModal() method */}
             <button
+              className="flex items-center gap-1 bg-blue-100 text-blue-600 hover:bg-blue-200 px-3 py-1 rounded-md text-sm font-medium transition"
+              onClick={() =>
+                document.getElementById("recipe_edit_modal").showModal()
+              }
+            >
+              <FaEdit />
+              Update
+            </button>
+            <dialog id="recipe_edit_modal" className="modal">
+              <div className="modal-box w-11/12 max-w-5xl">
+                <EditMyRecipe handleUpdateRecipe={handleUpdateRecipe}/>
+                <div className="modal-action">
+                  <form method="dialog">
+                    {/* if there is a button, it will close the modal */}
+                    <button className="btn bg-red-500 text-white">Close</button>
+                  </form>
+                </div>
+              </div>
+            </dialog>
+
+            {/* <button
               // onClick={() => onUpdate(recipe)}
               className="flex items-center gap-1 bg-blue-100 text-blue-600 hover:bg-blue-200 px-3 py-1 rounded-md text-sm font-medium transition"
             >
               <FaEdit />
               Update
-            </button>
+            </button> */}
             <button
-              // onClick={() => onDelete(_id)}
+              onClick={() => handleDeleteRecipe(_id)}
               className="flex items-center gap-1 bg-red-100 text-red-600 hover:bg-red-200 px-3 py-1 rounded-md text-sm font-medium transition"
             >
               <FaTrash />

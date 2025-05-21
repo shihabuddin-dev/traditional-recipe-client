@@ -120,6 +120,11 @@ const SignUp = () => {
     <div className="flex gap-4 flex-col md:flex-row justify-center items-center max-w-5xl">
       <div className="flex-1">
         <DotLottieReact
+          src="https://lottie.host/a90ff9b8-cd22-4529-a711-c0b7d3f147c4/WduH1EXw54.lottie"
+          loop
+          autoplay
+        />
+        <DotLottieReact
           src="https://lottie.host/33baafdb-458c-4bde-ac78-8f6fc29efe18/wc1rzpJe2S.lottie"
           loop
           autoplay
