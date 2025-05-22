@@ -3,6 +3,8 @@ import Recipe from "./Recipe";
 import Button from "../ui/Button";
 import { Link } from "react-router";
 import Spinner from "../ui/Spinner";
+import { Fade } from 'react-awesome-reveal';
+import { Typewriter } from 'react-simple-typewriter';
 
 const TopRecipes = () => {
   const [recipes, setRecipes] = useState([]);
@@ -40,13 +42,27 @@ const TopRecipes = () => {
   return (
     <div className="max-w-7xl mx-auto px-4">
       <div className="text-center mb-10">
-        <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-2">
-          Our Top Recipes
-        </h2>
-        <div className="w-20 h-1 bg-amber-500 mx-auto"></div>
-        <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-          Discover the most loved recipes, ranked by our food-loving community.
-        </p>
+        <Fade direction="left">
+          <h2 className="text-3xl md:text-4xl font-semibold mb-2">
+            <span className="text-orange-600">
+              <Typewriter
+                words={["Our Top Recipes", "Most Liked", "Trending Now"]}
+                loop={0}
+                cursor
+                cursorStyle="_"
+                typeSpeed={90}
+                deleteSpeed={50}
+                delaySpeed={2000}
+              />
+            </span>
+          </h2>
+        </Fade>
+        <Fade direction="right">
+          <div className="w-20 h-1 bg-orange-500 mx-auto"></div>
+          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+            Discover the most loved recipes, ranked by our food-loving community.
+          </p>
+        </Fade>
       </div>
 
       {loading ? (

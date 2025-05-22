@@ -4,6 +4,7 @@ import FeaturedChefs from "../../components/extraSection/FeaturedChefs";
 import KitchenEssentials from "../../components/extraSection/KitchenEssentials";
 import Steps from "../../components/extraSection/Steps";
 import TopRecipes from "../../components/recipes/TopRecipes";
+import WhyChooseUs from "../../components/extraSection/WhyChooseUs";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <Steps />
       <KitchenEssentials />
       <FeaturedChefs />
+      <WhyChooseUs/>
     </div>
   );
 };

@@ -42,7 +42,7 @@ const AllRecipes = () => {
         <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-2">
           Our All Recipes
         </h2>
-        <div className="w-20 h-1 bg-amber-500 mx-auto"></div>
+        <div className="w-20 h-1 bg-orange-500 mx-auto"></div>
         <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
           Discover our all recipes, filtered by cuisine type and ranked by
           likes.

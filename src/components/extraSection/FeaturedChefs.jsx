@@ -5,6 +5,8 @@ import chefYuki from "../../assets/chefs/chef-yuki.jpg";
 import { FaUtensils, FaPepperHot, FaFish } from "react-icons/fa";
 import Button from "../ui/Button";
 import { Link } from "react-router";
+import { Typewriter } from "react-simple-typewriter";
+import { Fade } from "react-awesome-reveal";
 
 const FeaturedChefs = () => {
   const chefs = [
@@ -33,34 +35,51 @@ const FeaturedChefs = () => {
   ];
 
   return (
-    <section className="pt-16 pb-6 bg-gradient-to-b from-gray-50 to-white rounded-2xl">
+    <section className="pt-16 pb-2 bg-gradient-to-b from-gray-50 to-white rounded-2xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-2">
-            Meet Our Master Chefs
-          </h2>
-          <div className="w-20 h-1 bg-amber-500 mx-auto"></div>
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
-            Our award-winning culinary team brings world-class expertise to your
-            dining experience.
-          </p>
+          <Fade direction="left">
+            <h2 className="text-3xl md:text-4xl font-semibold mb-2">
+              Meet Our{" "}
+              <span className="text-orange-600">
+                <Typewriter
+                  words={["Master Chefs", "Popular Chefs", "Expert Chefs"]}
+                  loop={0}
+                  cursor
+                  cursorStyle="_"
+                  typeSpeed={90}
+                  deleteSpeed={50}
+                  delaySpeed={2000}
+                />
+              </span>
+            </h2>
+          </Fade>
+          <Fade direction="right">
+            <div className="w-20 h-1 bg-orange-500 mx-auto"></div>
+            <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+              Our award-winning culinary team brings world-class expertise to
+              your dining experience.
+            </p>
+          </Fade>
         </div>
 
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {chefs.map((chef, idx) => (
             <div
               key={idx}
-              className="group bg-white rounded-xl shadow-lg overflow-hidden transition-ease-in-out duration-1000 hover:shadow-xl hover:-translate-y-2"
+              className="group bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-500 hover:shadow-xl hover:-translate-y-1"
             >
               <div className="relative">
                 <img
                   src={chef.img}
                   alt={chef.name}
-                  className="w-full h-64 object-cover"
+                  className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2">
                   <div className="bg-white h-16 w-16 rounded-full flex items-center justify-center shadow-lg border-4 border-white">
-                    <span className="text-2xl">{chef.icon}</span>
+                    <span className="text-2xl transition-transform duration-500 group-hover:-translate-y-1">
+                      {chef.icon}
+                    </span>
                   </div>
                 </div>
               </div>

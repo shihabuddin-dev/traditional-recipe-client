@@ -78,12 +78,13 @@ const MyRecipes = () => {
 
   return (
     <div className="max-w-5xl mx-auto">
-      <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
+      <h2 className="text-3xl font-bold text-center text-gray-800 mb-1">
         My Recipes
       </h2>
+      <div className="w-20 h-1 bg-orange-500 mx-auto mb-8"></div>
       <div className="grid md:grid-cols-2 gap-5">
         {myRecipes.map((recipe) => (
-          <MyRecipesCard
+        <MyRecipesCard
             key={recipe._id}
             recipe={recipe}
             handleLikeUpdate={handleLikeUpdate}
