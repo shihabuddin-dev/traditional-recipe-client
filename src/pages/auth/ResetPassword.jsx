@@ -56,13 +56,15 @@ const ResetPassword = () => {
 
   return (
     <div className="flex gap-4 flex-col md:flex-row justify-center items-center max-w-5xl">
+      <title>Reset Password || Traditional Recipe</title>
       <div>
         <DotLottieReact
           src="https://lottie.host/51f5308c-206b-417f-881d-aa04e13b5e0f/ed3vyy5La9.lottie"
           loop
           autoplay
         />
-      </div>      <div className="bg-base-100 shadow-2xl rounded-2xl p-6 sm:p-8 md:p-10 w-full max-w-md border-2 border-orange-400">
+      </div>{" "}
+      <div className="bg-base-100 shadow-2xl rounded-2xl p-6 sm:p-8 md:p-10 w-full max-w-md border-2 border-orange-400">
         <h2 className="text-2xl md:text-3xl font-semibold mb-6 flex justify-center items-center gap-3 text-base-content">
           <MdLockReset className="text-orange-600" />
           Reset Password
@@ -73,7 +75,9 @@ const ResetPassword = () => {
         </p>
         <form onSubmit={handleResetPassword} className="space-y-4">
           {/* Email */}
-          <div>            <label
+          <div>
+            {" "}
+            <label
               htmlFor="email"
               className="block text-sm font-medium text-base-content mb-1"
             >
@@ -88,13 +92,12 @@ const ResetPassword = () => {
               className="w-full border-2 border-base-content/20 px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200 bg-base-100 text-base-content"
             />
           </div>
-
           {/* Submit Button */}
           <Button type="submit" className="w-full mt-2 py-2">
             Send Reset Link
           </Button>
-
-          {/* Redirect to Login */}          <div className="mt-2 text-center text-sm text-base-content">
+          {/* Redirect to Login */}{" "}
+          <div className="mt-2 text-center text-sm text-base-content">
             Remember your password?{" "}
             <Link
               to="/signin"

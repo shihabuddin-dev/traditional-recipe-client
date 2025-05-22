@@ -78,7 +78,8 @@ const MyRecipes = () => {
 
   return (
     <div className="max-w-5xl mx-auto">
-      <h2 className="text-3xl font-bold text-center mb-1">
+      <title>My Recipes || Traditional Recipe</title>
+      <h2 className="text-3xl font-bold text-center mb-2">
         My Recipes
       </h2>
       <div className="w-20 h-1 bg-orange-500 mx-auto mb-8"></div>

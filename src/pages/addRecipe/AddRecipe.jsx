@@ -68,10 +68,18 @@ const AddRecipe = () => {
       return;
     }
 
+    const now = new Date();
+    const pad = (n) => n.toString().padStart(2, "0");
+    const dateStr = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(
+      now.getDate()
+    )}`;
+    const timeStr = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(
+      now.getSeconds()
+    )}`;
     const recipeData = {
       ...formData,
       ...userInfo, // Attach user info here
-      createdAt: new Date().toISOString().split("T")[0], // optional
+      createdAt: `${dateStr} ${timeStr}`,
     };
 
     fetch("http://localhost:3000/recipes", {
@@ -88,6 +96,8 @@ const AddRecipe = () => {
           title: "Success!",
           text: "New Recipe has been added",
           icon: "success",
+          showConfirmButton: false,
+          timer: 1500,
         });
         navigate("/my-recipes");
       })
@@ -104,6 +114,7 @@ const AddRecipe = () => {
   return (
     <div>
       <div className="max-w-5xl mx-auto px-2 flex justify-between">
+        <title>Add Recipe || Traditional Recipe</title>
         <Button
           onClick={() => navigate(-1)}
           variant="outline"
@@ -133,9 +144,7 @@ const AddRecipe = () => {
         >
           {/* Image */}
           <div className="col-span-1 md:col-span-2">
-            <label className="block font-medium mb-1">
-              Image URL
-            </label>
+            <label className="block font-medium mb-1">Image URL</label>
             <input
               type="text"
               name="image"
@@ -149,9 +158,7 @@ const AddRecipe = () => {
 
           {/* Title */}
           <div>
-            <label className="block font-medium mb-1">
-              Title
-            </label>
+            <label className="block font-medium mb-1">Title</label>
             <input
               type="text"
               name="title"
@@ -165,9 +172,7 @@ const AddRecipe = () => {
 
           {/* Cuisine */}
           <div>
-            <label className="block font-medium mb-1">
-              Cuisine Type
-            </label>
+            <label className="block font-medium mb-1">Cuisine Type</label>
             <select
               name="cuisine"
               value={formData.cuisine}
@@ -203,9 +208,7 @@ const AddRecipe = () => {
 
           {/* Ingredients */}
           <div className="md:col-span-2">
-            <label className="block font-medium mb-1">
-              Ingredients
-            </label>
+            <label className="block font-medium mb-1">Ingredients</label>
             <textarea
               name="ingredients"
               rows="3"
@@ -219,9 +222,7 @@ const AddRecipe = () => {
 
           {/* Instructions */}
           <div className="md:col-span-2">
-            <label className="block font-medium mb-1">
-              Instructions
-            </label>
+            <label className="block font-medium mb-1">Instructions</label>
             <textarea
               name="instructions"
               rows="4"
@@ -235,9 +236,7 @@ const AddRecipe = () => {
 
           {/* Categories */}
           <div className="md:col-span-2">
-            <label className="block font-medium mb-2">
-              Categories
-            </label>
+            <label className="block font-medium mb-2">Categories</label>
             <div className="flex flex-wrap gap-4">
               {categoryOptions.map((cat) => (
                 <label key={cat} className="flex items-center space-x-2">
@@ -264,9 +263,7 @@ const AddRecipe = () => {
               name="likes"
               value={formData.likes}
               readOnly
-              className={
-                inputBase + " bg-gray-100 cursor-not-allowed"
-              }
+              className={inputBase + " bg-gray-100 cursor-not-allowed"}
             />
           </div>
 

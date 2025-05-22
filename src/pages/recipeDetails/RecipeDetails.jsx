@@ -113,6 +113,7 @@ const RecipeDetails = () => {
 
   return (
     <div className="max-w-5xl mx-auto px-4">
+      <title>Recipe Details || Traditional Recipe</title>
       {/* Top Action Buttons */}
       <div className="max-w-5xl mx-auto px-2 flex justify-between mb-8">
         <Button
@@ -166,7 +167,7 @@ const RecipeDetails = () => {
         )}
       </div>
 
-      <div className="mb-8 bg-base-200 rounded-xl shadow p-6 border border-base-400 border-dashed">
+      <div className="mb-8 bg-base-100 rounded-xl shadow p-6 border border-orange-400 border-dashed">
         {/* Metadata: Time, Categories, Likes */}
         <div className="flex flex-wrap gap-4 mb-4 items-center">
           <span className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm">
@@ -216,7 +217,7 @@ const RecipeDetails = () => {
       </div>
 
       {/* Random Recipe Description */}
-      <div className="mb-8 bg-base-200 rounded-xl shadow p-6 border border-base-400 border-dashed">
+      <div className="mb-8 bg-base-100 rounded-xl shadow p-6 border border-orange-400 border-dashed">
         <h2 className="text-2xl font-bold mb-3">About This Recipe</h2>
         <p className="mb-4">{description}</p>
         <ul className="list-disc pl-6 space-y-2">

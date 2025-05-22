@@ -11,7 +11,12 @@ import { FirebaseAuthContext } from "../../provider/FirebaseAuthContext";
 import Swal from "sweetalert2";
 import { Fade } from "react-awesome-reveal";
 
-const Recipe = ({ recipe, handleLikeUpdate, hideWishlistButton }) => {
+const Recipe = ({
+  recipe,
+  handleLikeUpdate,
+  hideWishlistButton,
+  disableLikeButton,
+}) => {
   const {
     _id,
     image,
@@ -188,9 +193,17 @@ const Recipe = ({ recipe, handleLikeUpdate, hideWishlistButton }) => {
           <div className="mt-auto flex items-center justify-between py-2 border-t border-b border-dashed border-orange-200">
             <button
               onClick={handleLike}
-              className="flex items-center text-orange-500 gap-1 hover:text-orange-600 transition text-sm font-medium"
-              disabled={isLiking}
-              title="Like this recipe"
+              className={`flex items-center text-orange-500 gap-1 hover:text-orange-600 transition text-sm font-medium ${
+                disableLikeButton
+                  ? "cursor-not-allowed pointer-events-none opacity-60"
+                  : ""
+              }`}
+              disabled={isLiking || disableLikeButton}
+              title={
+                disableLikeButton
+                  ? "Like disabled on wishlist"
+                  : "Like this recipe"
+              }
             >
               {likes > 0 ? (
                 <HiMiniHandThumbUp className="text-xl cursor-pointer" />

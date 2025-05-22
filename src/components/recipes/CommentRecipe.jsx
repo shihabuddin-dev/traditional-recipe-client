@@ -38,7 +38,7 @@ const CommentRecipe = ({
   };
 
   return (
-    <div className="mb-10 bg-base-200 rounded-2xl shadow-sm p-8 mt-12 border border-base-400 border-dashed">
+    <div className="mb-10 bg-base-100 rounded-2xl shadow-sm p-8 mt-12 border border-orange-400 border-dashed">
       <h2 className="text-3xl font-bold text-center mb-2">Recipe Reviews</h2>
       <div className="text-center mb-8">
         {comments.length === 0 ? (
@@ -92,7 +92,7 @@ const CommentRecipe = ({
             return (
               <div
                 key={comment.id}
-                className="flex flex-col bg-base-100 rounded-xl p-4 shadow  h-full border"
+                className="flex flex-col bg-base-100 rounded-xl p-4 shadow  h-full border border-orange-300 border-dashed"
               >
                 <div className="flex items-center gap-3 mb-2">
                   <img

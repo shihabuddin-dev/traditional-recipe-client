@@ -29,47 +29,74 @@ import step27 from "../../assets/steps/27.jpg";
 import step28 from "../../assets/steps/28.webp";
 import { FiZoomIn } from "react-icons/fi";
 import { Fade } from "react-awesome-reveal";
+import { Typewriter } from "react-simple-typewriter";
 
 const Steps = () => {
   const steps = [
-    { img: step1, title: "Step 1" },
-    { img: step2, title: "Step 2" },
-    { img: step3, title: "Step 3" },
-    { img: step4, title: "Step 4" },
-    { img: step5, title: "Step 5" },
-    { img: step6, title: "Step 6" },
-    { img: step7, title: "Step 7" },
-    { img: step8, title: "Step 8" },
-    { img: step9, title: "Step 9" },
-    { img: step10, title: "Step 10" },
-    { img: step11, title: "Step 11" },
-    { img: step12, title: "Step 12" },
-    { img: step13, title: "Step 13" },
-    { img: step14, title: "Step 14" },
-    { img: step15, title: "Step 15" },
-    { img: step16, title: "Step 16" },
-    { img: step17, title: "Step 17" },
-    { img: step18, title: "Step 18" },
-    { img: step19, title: "Step 19" },
-    { img: step20, title: "Step 20" },
-    { img: step21, title: "Step 21" },
-    { img: step22, title: "Step 22" },
-    { img: step23, title: "Step 23" },
-    { img: step24, title: "Step 24" },
-    { img: step25, title: "Step 25" },
-    { img: step26, title: "Step 26" },
-    { img: step27, title: "Step 27" },
-    { img: step28, title: "Step 28" },
+    { img: step1, title: "Step 1", desc: "Gather fresh" },
+    { img: step2, title: "Step 2", desc: "Wash and prep" },
+    { img: step3, title: "Step 3", desc: "Chop and slice" },
+    { img: step4, title: "Step 4", desc: "Marinate and season" },
+    { img: step5, title: "Step 5", desc: "Preheat cooking tools" },
+    { img: step6, title: "Step 6", desc: "Start with base" },
+    { img: step7, title: "Step 7", desc: "Add spices aromatics" },
+    { img: step8, title: "Step 8", desc: "Simmer or sauté" },
+    { img: step9, title: "Step 9", desc: "Monitor adjust heat" },
+    { img: step10, title: "Step 10", desc: "Taste adjust seasoning" },
+    { img: step11, title: "Step 11", desc: "Prepare final garnishes" },
+    { img: step12, title: "Step 12", desc: "Plate with care" },
+    { img: step13, title: "Step 13", desc: "Add final touches" },
+    { img: step14, title: "Step 14", desc: "Serve hot fresh" },
+    { img: step15, title: "Step 15", desc: "Enjoy with family" },
+    { img: step16, title: "Step 16", desc: "Store leftovers properly" },
+    { img: step17, title: "Step 17", desc: "Clean your workspace" },
+    { img: step18, title: "Step 18", desc: "Share creation online" },
+    { img: step19, title: "Step 19", desc: "Teach cooking skills " },
+    { img: step20, title: "Step 20", desc: "Plan next recipe" },
+    { img: step21, title: "Step 21", desc: "Try new variations" },
+    { img: step22, title: "Step 22", desc: "Experiment with flavors" },
+    { img: step23, title: "Step 23", desc: "Document process" },
+    { img: step24, title: "Step 24", desc: "Build recipe book" },
+    { img: step25, title: "Step 25", desc: "Share with community" },
+    { img: step26, title: "Step 26", desc: "Celebrate progress" },
+    { img: step27, title: "Step 27", desc: "Collect feedback" },
+    { img: step28, title: "Step 28", desc: "Repeat and master" },
   ];
 
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(null);
+
+  // Keyboard navigation for modal
+  React.useEffect(() => {
+    if (selectedIndex === null) return;
+    const handleKey = (e) => {
+      if (e.key === "Escape") setSelectedIndex(null);
+      if (e.key === "ArrowLeft") setSelectedIndex((i) => (i > 0 ? i - 1 : i));
+      if (e.key === "ArrowRight")
+        setSelectedIndex((i) => (i < steps.length - 1 ? i + 1 : i));
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [selectedIndex, steps.length]);
 
   return (
     <div className="container mx-auto px-4">
-      <Fade direction={'up'}>
+      <Fade direction={"up"}>
         <div className="text-center mb-10">
           <h2 className="text-3xl md:text-4xl font-semibold mb-2">
-            Our Process Steps
+            <Typewriter
+              words={[
+                "Our Processing",
+                "Steps From",
+                "Sourcing",
+                "To Masterpiece",
+              ]}
+              loop={0}
+              cursor
+              cursorStyle="_"
+              typeSpeed={90}
+              deleteSpeed={50}
+              delaySpeed={2000}
+            />
           </h2>
           <div className="w-20 h-1 bg-orange-500 mx-auto"></div>
           <p className="mt-4 max-w-2xl mx-auto">
@@ -87,20 +114,28 @@ const Steps = () => {
             return (
               <Fade key={i} direction={dir}>
                 <div
-                  className="relative group cursor-pointer transition-all duration-300 hover:scale-105"
-                  onClick={() => setSelectedImage(step.img)}
-              >
+                  className="relative group cursor-pointer transition-all duration-300 hover:scale-105 bg-base-500 rounded-xl shadow-lg border border-orange-400 border-dashed overflow-hidden"
+                  onClick={() => setSelectedIndex(i)}
+                  tabIndex={0}
+                  aria-label={`View ${step.title}`}
+                  onKeyDown={(e) =>
+                    (e.key === "Enter" || e.key === " ") && setSelectedIndex(i)
+                  }
+                >
                   <img
                     src={step.img}
                     alt={step.title}
-                    className="w-full h-32 object-fit rounded-lg shadow-md"
+                    className="w-full h-32 object-cover rounded-t-xl border-b-1 border-orange-600 border-dashed"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 group-hover:bg-opacity-30 rounded-lg transition-all duration-300 flex items-center justify-center">
+                  <div className="absolute inset-0 group-hover:bg-black group-hover:bg-opacity-20 rounded-xl transition-all duration-300 flex items-center justify-center">
                     <FiZoomIn className="text-white opacity-0 group-hover:opacity-100 text-2xl transition-all duration-300" />
                   </div>
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent px-2 py-1 rounded-b-lg">
-                    <p className="text-white text-xs font-medium">{step.title}</p>
+                  <div className="p-3">
+                    <div className="font-semibold text-orange-600 text-sm mb-1">
+                      {step.title}
+                    </div>
+                    <div className="text-xs">{step.desc}</div>
                   </div>
                 </div>
               </Fade>
@@ -110,23 +145,57 @@ const Steps = () => {
       </Fade>
 
       {/* Image Modal */}
-      {selectedImage && (
+      {selectedIndex !== null && (
         <div
           className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
-          onClick={() => setSelectedImage(null)}
+          onClick={() => setSelectedIndex(null)}
         >
-          <div className="relative max-w-4xl w-full">
+          <div className="relative max-w-4xl w-full bg-white dark:bg-gray-900 rounded-xl shadow-lg p-4">
             <button
-              className="absolute top-0 md:-top-0 right-5 sm:right-52 text-red-600 text-4xl font-semibold"
-              onClick={() => setSelectedImage(null)}
+              className="absolute top-2 right-2 text-red-600 text-4xl font-semibold z-10"
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedIndex(null);
+              }}
+              aria-label="Close"
             >
               &times;
             </button>
+            <button
+              className="absolute left-2 top-1/2 -translate-y-1/2 text-3xl text-gray-400 hover:text-orange-500 z-10 bg-white/80 dark:bg-gray-800/80 rounded-full p-2"
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedIndex((i) => (i > 0 ? i - 1 : i));
+              }}
+              aria-label="Previous step"
+              disabled={selectedIndex === 0}
+            >
+              &#8592;
+            </button>
+            <button
+              className="absolute right-2 top-1/2 -translate-y-1/2 text-3xl text-gray-400 hover:text-orange-500 z-10 bg-white/80 dark:bg-gray-800/80 rounded-full p-2"
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedIndex((i) => (i < steps.length - 1 ? i + 1 : i));
+              }}
+              aria-label="Next step"
+              disabled={selectedIndex === steps.length - 1}
+            >
+              &#8594;
+            </button>
             <img
-              src={selectedImage}
-              alt="Enlarged view"
-              className="max-h-[90vh] w-full object-contain"
+              src={steps[selectedIndex].img}
+              alt={steps[selectedIndex].title}
+              className="max-h-[70vh] w-full object-contain rounded-lg mb-4"
             />
+            <div className="text-center">
+              <div className="text-lg font-semibold text-orange-600 mb-1">
+                {steps[selectedIndex].title}
+              </div>
+              <div className="text-gray-700 dark:text-gray-300 text-sm mb-2">
+                {steps[selectedIndex].desc}
+              </div>
+            </div>
           </div>
         </div>
       )}

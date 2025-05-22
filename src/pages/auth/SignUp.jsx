@@ -95,7 +95,8 @@ const SignUp = () => {
       .catch((error) => {
         let errorMsg = error.message;
         if (error.code === "auth/email-already-in-use") {
-          errorMsg = "This email is already registered. Please use a different email or sign in.";
+          errorMsg =
+            "This email is already registered. Please use a different email or sign in.";
         }
         Swal.fire({
           icon: "error",
@@ -142,6 +143,7 @@ const SignUp = () => {
 
   return (
     <div className="flex gap-4 flex-col md:flex-row justify-center items-center max-w-5xl">
+      <title>Sign Up || Traditional Recipe</title>
       <div className="flex-1">
         <DotLottieReact
           src="https://lottie.host/a90ff9b8-cd22-4529-a711-c0b7d3f147c4/WduH1EXw54.lottie"
@@ -153,15 +155,17 @@ const SignUp = () => {
           loop
           autoplay
         />
-      </div>      <form
+      </div>{" "}
+      <form
         onSubmit={handleSignUp}
         className="flex-1 max-w-md p-6 bg-base-100 rounded shadow space-y-2 border-2 border-orange-400"
       >
         <h2 className="text-2xl md:text-3xl font-semibold mb-4 flex justify-center items-center gap-3 text-base-content">
           <GiArchiveRegister className="text-orange-600" /> Sign Up
         </h2>
-
-        <label className="block mb-2 text-sm font-medium text-base-content">Name</label>
+        <label className="block mb-2 text-sm font-medium text-base-content">
+          Name
+        </label>
         <input
           type="text"
           name="name"
@@ -169,8 +173,9 @@ const SignUp = () => {
           placeholder="Enter your Name"
           required
         />
-
-        <label className="block mb-2 text-sm font-medium text-base-content">Photo URL</label>
+        <label className="block mb-2 text-sm font-medium text-base-content">
+          Photo URL
+        </label>
         <input
           type="text"
           name="photo"
@@ -178,8 +183,9 @@ const SignUp = () => {
           placeholder="Enter your Photo URL"
           required
         />
-
-        <label className="block mb-2 text-sm font-medium text-base-content">Email address</label>
+        <label className="block mb-2 text-sm font-medium text-base-content">
+          Email address
+        </label>
         <input
           type="email"
           name="email"
@@ -189,8 +195,9 @@ const SignUp = () => {
           placeholder="Enter your Email"
           required
         />
-
-        <label className="block mb-2 text-sm font-medium text-base-content">Password</label>
+        <label className="block mb-2 text-sm font-medium text-base-content">
+          Password
+        </label>
         <div className="relative mb-2">
           <input
             type={showPassword ? "text" : "password"}
@@ -208,8 +215,8 @@ const SignUp = () => {
             {showPassword ? <FaEyeSlash /> : <FaEye />}
           </span>
         </div>
-
-        {/* Password Validation List */}        <div className="text-sm mt-4 text-base-content">
+        {/* Password Validation List */}{" "}
+        <div className="text-sm mt-4 text-base-content">
           <p className="font-medium mb-2">Create a password that:</p>
           <ul className="space-y-1">
             {validations.map((rule, idx) => (
@@ -228,7 +235,6 @@ const SignUp = () => {
             ))}
           </ul>
         </div>
-
         <Button type="submit" className="mt-6 w-full">
           Sign Up
         </Button>
@@ -240,7 +246,8 @@ const SignUp = () => {
         >
           <FcGoogle className="text-xl" />
           Login with Google
-        </Button>        <p className="text-sm mt-4 text-base-content">
+        </Button>{" "}
+        <p className="text-sm mt-4 text-base-content">
           Already have an account?{" "}
           <Link to="/signIn" className="text-amber-600 underline">
             Sign In

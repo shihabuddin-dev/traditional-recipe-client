@@ -15,7 +15,7 @@ import Swal from "sweetalert2";
 import { SiIfood } from "react-icons/si";
 import { MdLibraryAdd } from "react-icons/md";
 import userLogo from "../../assets/user-logo.png";
-import ThemeToggle from "../extraSection/ThemeToggle";
+import ThemeToggle from "../ui/ThemeToggle";
 
 const Navbar = () => {
   const { user, logOutUser } = use(FirebaseAuthContext);
@@ -102,7 +102,7 @@ const Navbar = () => {
         </ul>
 
         {/* Login / Avatar */}
-        <div className="hidden space-x-2 md:flex">
+        <div className="hidden space-x-2 md:flex items-center">
           {user ? (
             <div
               className="relative cursor-pointer z-10"
@@ -113,7 +113,7 @@ const Navbar = () => {
                 src={user?.photoURL ? user?.photoURL : userLogo}
                 alt="profile"
                 title={user?.displayName}
-                className="w-9 h-9 rounded-full border border-secondary"
+                className="w-9 h-9 rounded-full border border-orange-400"
               />
               <div
                 className={`absolute right-0 mt-2 w-40 bg-base-100 border border-orange-600 rounded-md shadow-lg transition-opacity duration-200 ${
@@ -146,16 +146,25 @@ const Navbar = () => {
         </div>
 
         {/* Mobile menu button */}
-        <div className="md:hidden">
-          <button onClick={toggleMenu}>
+        <div className="md:hidden flex items-center gap-2">
+          <button onClick={toggleMenu} aria-label={isOpen ? 'Close menu' : 'Open menu'}>
             {isOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
           </button>
+          <ThemeToggle />
         </div>
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden px-4 pb-4">
+      <div
+        className={`md:hidden fixed left-0 right-0 top-[72px] z-40 transition-all duration-300 ${
+          isOpen
+            ? 'opacity-100 translate-y-0 pointer-events-auto'
+            : 'opacity-0 -translate-y-8 pointer-events-none'
+        }`}
+        style={{ minHeight: isOpen ? 'calc(100vh - 72px)' : 0 }}
+        aria-hidden={!isOpen}
+      >
+        <div className="px-4 pb-4 bg-base-100 border-b border-base-300 shadow-lg rounded-b-xl">
           <ul className="flex flex-col gap-4 font-semibold text-[#1a1a1a]">
             <li>
               <NavLink to="/" onClick={toggleMenu} className={linksClass}>
@@ -209,7 +218,7 @@ const Navbar = () => {
                   <img
                     src={user?.photoURL ? user?.photoURL : ""}
                     alt="profile"
-                    className="w-9 h-9 rounded-full border border-secondary"
+                    className="w-9 h-9 rounded-full border border-orange-400"
                   />
                   <div>
                     <p className="text-sm text-orange-600 font-medium">
@@ -236,7 +245,7 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-      )}
+      </div>
     </nav>
   );
 };

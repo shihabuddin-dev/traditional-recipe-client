@@ -6,6 +6,7 @@ import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 const NotFound = () => {
   return (
     <div className="relative flex flex-col items-center justify-center">
+      <title>Error || Traditional Recipe</title>
       <Link to="/" className="mt-4 absolute -bottom-10 md:top-5">
         <Button> Go Back Home</Button>
       </Link>
