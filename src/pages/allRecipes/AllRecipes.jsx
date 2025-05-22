@@ -39,11 +39,11 @@ const AllRecipes = () => {
     <div className="max-w-7xl mx-auto px-4">
       {/* Header */}
       <div className="text-center mb-4">
-        <h2 className="text-3xl md:text-4xl font-semibold text-orange-600 mb-2">
+        <h2 className="text-3xl md:text-4xl font-semibold mb-2">
           Our All Recipes
         </h2>
         <div className="w-20 h-1 bg-orange-500 mx-auto"></div>
-        <p className="mt-4 text-orange-600 max-w-2xl mx-auto">
+        <p className="mt-4 max-w-2xl mx-auto">
           Discover our all recipes, filtered by cuisine type and ranked by
           likes.
         </p>

@@ -44,7 +44,7 @@ const TopRecipes = () => {
       <div className="text-center mb-10">
         <Fade direction="left">
           <h2 className="text-3xl md:text-4xl font-semibold mb-2">
-            <span className="text-orange-600">
+            <span>
               <Typewriter
                 words={["Our Top Recipes", "Most Liked", "Trending Now"]}
                 loop={0}
@@ -59,7 +59,7 @@ const TopRecipes = () => {
         </Fade>
         <Fade direction="right">
           <div className="w-20 h-1 bg-orange-500 mx-auto"></div>
-          <p className="mt-4 text-orange-600 max-w-2xl mx-auto">
+          <p className="mt-4 max-w-2xl mx-auto">
             Discover the most loved recipes, ranked by our food-loving community.
           </p>
         </Fade>

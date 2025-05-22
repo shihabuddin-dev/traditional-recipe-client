@@ -131,7 +131,6 @@ const Navbar = () => {
                   <FaSignOutAlt /> Logout
                 </button>
               </div>
-            
             </div>
           ) : (
             <>
@@ -143,7 +142,7 @@ const Navbar = () => {
               </Link>
             </>
           )}
-             <ThemeToggle/>
+          <ThemeToggle />
         </div>
 
         {/* Mobile menu button */}

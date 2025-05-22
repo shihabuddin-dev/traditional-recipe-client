@@ -43,7 +43,7 @@ const KitchenEssentials = () => {
         </div>
         <div className="text-center mb-10">
           <Fade direction="left">
-            <h2 className="text-3xl md:text-4xl font-semibold text-orange-600 mb-2">
+            <h2 className="text-3xl md:text-4xl font-semibold mb-2">
               <Typewriter
                 words={["Kitchen Essentials", "Kitchen Need"]}
                 loop={0}
@@ -56,7 +56,7 @@ const KitchenEssentials = () => {
             </h2>
           </Fade>
           <Fade direction="right">
-            <p className="mt-3 text-orange-600 max-w-2xl mx-auto">
+            <p className="mt-3 max-w-2xl mx-auto">
               These are the essential tools every chef relies on to create
               perfect dishes.
             </p>
@@ -79,7 +79,7 @@ const KitchenEssentials = () => {
                 <span className="text-xs uppercase tracking-wider text-orange-500 font-bold mb-1 z-10">
                   {tool.category}
                 </span>
-                <h4 className="font-bold text-lg text-gray-800 mb-1 group-hover:text-orange-600 transition z-10">
+                <h4 className="font-bold text-lg mb-1 transition z-10">
                   {tool.name}
                 </h4>
                 <p className="text-sm text-gray-500 mb-2 flex-1 z-10">

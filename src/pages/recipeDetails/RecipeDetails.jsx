@@ -141,10 +141,8 @@ const RecipeDetails = () => {
       {/* Title & Cuisine + User Info */}
       <div className="mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-            {title}
-          </h1>
-          <p className="text-gray-600 text-lg">{cuisine} Cuisine</p>
+          <h1 className="text-3xl md:text-4xl font-bold mb-2">{title}</h1>
+          <p className="text-lg">{cuisine} Cuisine</p>
         </div>
         {/* User Info */}
         {recipe.userName && (
@@ -218,18 +216,14 @@ const RecipeDetails = () => {
 
       {/* Ingredients */}
       <div className="mb-6">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-2">
-          Ingredients
-        </h2>
-        <p className="text-gray-700 leading-relaxed">{ingredients}</p>
+        <h2 className="text-2xl font-semibold mb-2">Ingredients</h2>
+        <p className="leading-relaxed">{ingredients}</p>
       </div>
 
       {/* Instructions */}
       <div className="mb-6">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-2">
-          Instructions
-        </h2>
-        <p className="text-gray-700 leading-relaxed">{instructions}</p>
+        <h2 className="text-2xl font-semibold mb-2">Instructions</h2>
+        <p className="leading-relaxed">{instructions}</p>
       </div>
 
       {/* Comments Section */}

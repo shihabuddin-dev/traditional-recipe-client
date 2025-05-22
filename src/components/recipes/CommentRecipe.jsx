@@ -75,7 +75,7 @@ const CommentRecipe = ({
             <span className="ml-2 text-gray-600 text-sm">Rate this</span>
           </div>
           <textarea
-            className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-1 focus:ring-orange-400"
+            className="w-full border-2 border-base-content/20 px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200 bg-base-100 text-base-content"
             placeholder="What did you like or dislike? Share your thoughts..."
             value={commentText}
             onChange={(e) => setCommentText(e.target.value)}
