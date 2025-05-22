@@ -59,7 +59,7 @@ const TopRecipes = () => {
         </Fade>
         <Fade direction="right">
           <div className="w-20 h-1 bg-orange-500 mx-auto"></div>
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+          <p className="mt-4 text-orange-600 max-w-2xl mx-auto">
             Discover the most loved recipes, ranked by our food-loving community.
           </p>
         </Fade>

@@ -15,6 +15,7 @@ import Swal from "sweetalert2";
 import { SiIfood } from "react-icons/si";
 import { MdLibraryAdd } from "react-icons/md";
 import userLogo from "../../assets/user-logo.png";
+import ThemeToggle from "../extraSection/ThemeToggle";
 
 const Navbar = () => {
   const { user, logOutUser } = use(FirebaseAuthContext);
@@ -101,7 +102,7 @@ const Navbar = () => {
         </ul>
 
         {/* Login / Avatar */}
-        <div className="hidden md:block space-x-2">
+        <div className="hidden space-x-2 md:flex">
           {user ? (
             <div
               className="relative cursor-pointer z-10"
@@ -130,6 +131,7 @@ const Navbar = () => {
                   <FaSignOutAlt /> Logout
                 </button>
               </div>
+            
             </div>
           ) : (
             <>
@@ -141,6 +143,7 @@ const Navbar = () => {
               </Link>
             </>
           )}
+             <ThemeToggle/>
         </div>
 
         {/* Mobile menu button */}

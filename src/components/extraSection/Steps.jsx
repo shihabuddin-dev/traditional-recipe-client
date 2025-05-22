@@ -68,11 +68,11 @@ const Steps = () => {
     <div className="container mx-auto px-4">
       <Fade direction={'up'}>
         <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-2">
+          <h2 className="text-3xl md:text-4xl font-semibold text-orange-600 mb-2">
             Our Process Steps
           </h2>
           <div className="w-20 h-1 bg-orange-500 mx-auto"></div>
-          <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+          <p className="mt-4 text-gray-600 max-w-2xl mx-auto dark:text-orange-600">
             From sourcing the freshest ingredients to plating your delicious
             masterpiece
           </p>

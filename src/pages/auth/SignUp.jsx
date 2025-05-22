@@ -10,7 +10,7 @@ import { GiArchiveRegister } from "react-icons/gi";
 import Spinner from "../../components/ui/Spinner";
 
 const inputBase =
-  "w-full border border-gray-400 px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200";
+  "w-full border-2 border-base-content/20 px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200 bg-base-100 text-base-content";
 
 const SignUp = () => {
   const { createUser, setUser, createUserWithGoogle, updateUser, user } =
@@ -153,17 +153,15 @@ const SignUp = () => {
           loop
           autoplay
         />
-      </div>
-
-      <form
+      </div>      <form
         onSubmit={handleSignUp}
-        className="flex-1 max-w-md p-6 bg-white rounded shadow space-y-2 border-2 border-orange-400"
+        className="flex-1 max-w-md p-6 bg-base-100 rounded shadow space-y-2 border-2 border-orange-400"
       >
-        <h2 className="text-2xl md:text-3xl font-semibold mb-4 flex justify-center items-center gap-3">
+        <h2 className="text-2xl md:text-3xl font-semibold mb-4 flex justify-center items-center gap-3 text-base-content">
           <GiArchiveRegister className="text-orange-600" /> Sign Up
         </h2>
 
-        <label className="block mb-2 text-sm font-medium">Name</label>
+        <label className="block mb-2 text-sm font-medium text-base-content">Name</label>
         <input
           type="text"
           name="name"
@@ -172,7 +170,7 @@ const SignUp = () => {
           required
         />
 
-        <label className="block mb-2 text-sm font-medium">Photo URL</label>
+        <label className="block mb-2 text-sm font-medium text-base-content">Photo URL</label>
         <input
           type="text"
           name="photo"
@@ -181,7 +179,7 @@ const SignUp = () => {
           required
         />
 
-        <label className="block mb-2 text-sm font-medium">Email address</label>
+        <label className="block mb-2 text-sm font-medium text-base-content">Email address</label>
         <input
           type="email"
           name="email"
@@ -192,7 +190,7 @@ const SignUp = () => {
           required
         />
 
-        <label className="block mb-2 text-sm font-medium">Password</label>
+        <label className="block mb-2 text-sm font-medium text-base-content">Password</label>
         <div className="relative mb-2">
           <input
             type={showPassword ? "text" : "password"}
@@ -204,15 +202,14 @@ const SignUp = () => {
             required
           />
           <span
-            className="absolute right-3 top-3 cursor-pointer text-gray-600"
+            className="absolute right-3 top-3 cursor-pointer text-base-content/70"
             onClick={togglePassword}
           >
             {showPassword ? <FaEyeSlash /> : <FaEye />}
           </span>
         </div>
 
-        {/* Password Validation List */}
-        <div className="text-sm mt-4">
+        {/* Password Validation List */}        <div className="text-sm mt-4 text-base-content">
           <p className="font-medium mb-2">Create a password that:</p>
           <ul className="space-y-1">
             {validations.map((rule, idx) => (
@@ -221,12 +218,12 @@ const SignUp = () => {
                   className={`w-4 h-4 flex items-center justify-center border rounded-sm ${
                     rule.isValid
                       ? "bg-green-500 text-white"
-                      : "border-gray-400 text-red-500"
+                      : "border-base-300 text-red-500"
                   }`}
                 >
                   {rule.isValid ? "✓" : "X"}
                 </span>
-                <span>{rule.label}</span>
+                <span className="text-base-content">{rule.label}</span>
               </li>
             ))}
           </ul>
@@ -243,8 +240,7 @@ const SignUp = () => {
         >
           <FcGoogle className="text-xl" />
           Login with Google
-        </Button>
-        <p className="text-sm mt-4">
+        </Button>        <p className="text-sm mt-4 text-base-content">
           Already have an account?{" "}
           <Link to="/signIn" className="text-amber-600 underline">
             Sign In

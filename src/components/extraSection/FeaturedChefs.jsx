@@ -39,8 +39,8 @@ const FeaturedChefs = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <Fade direction="left">
-            <h2 className="text-3xl md:text-4xl font-semibold mb-2">
-              Meet Our{" "}
+            <h2 className="text-3xl md:text-4xl font-semibold mb-2 text-orange-600">
+              Meet Our:-{" "}
               <span className="text-orange-600">
                 <Typewriter
                   words={["Master Chefs", "Popular Chefs", "Expert Chefs"]}

@@ -5,7 +5,7 @@ import knife from "../../assets/tools/knife.jpg";
 import cups from "../../assets/tools/cups.jpg";
 import { FaUtensils } from "react-icons/fa";
 import { Fade } from "react-awesome-reveal";
-import { Typewriter } from 'react-simple-typewriter';
+import { Typewriter } from "react-simple-typewriter";
 
 const KitchenEssentials = () => {
   const tools = [
@@ -36,7 +36,7 @@ const KitchenEssentials = () => {
   ];
 
   return (
-    <section className="bg-orange-50 py-12 rounded-2xl">
+    <section className="bg-base-200 py-12 rounded-2xl">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-center mb-1">
           <FaUtensils className="text-orange-500 text-3xl" />
@@ -45,7 +45,7 @@ const KitchenEssentials = () => {
           <Fade direction="left">
             <h2 className="text-3xl md:text-4xl font-semibold text-orange-600 mb-2">
               <Typewriter
-                words={['Kitchen Essentials', 'Kitchen Need']}
+                words={["Kitchen Essentials", "Kitchen Need"]}
                 loop={0}
                 cursor
                 cursorStyle="_"
@@ -56,16 +56,17 @@ const KitchenEssentials = () => {
             </h2>
           </Fade>
           <Fade direction="right">
-            <p className="mt-3 text-gray-600 max-w-2xl mx-auto">
-              These are the essential tools every chef relies on to create perfect dishes.
+            <p className="mt-3 text-orange-600 max-w-2xl mx-auto">
+              These are the essential tools every chef relies on to create
+              perfect dishes.
             </p>
           </Fade>
         </div>
 
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 text-center">
           {tools.map((tool, index) => (
-            <Fade key={index} direction={index % 2 === 0 ? 'up' : 'down'}>
-              <div className="relative bg-white p-7 rounded-3xl shadow-xl border border-orange-200 hover:shadow-2xl transition group h-full flex flex-col items-center overflow-hidden">
+            <Fade key={index} direction={index % 2 === 0 ? "up" : "down"}>
+              <div className="relative bg-base-100 p-7 rounded-3xl shadow-xl border border-orange-200 hover:shadow-2xl transition group h-full flex flex-col items-center overflow-hidden">
                 {/* Watermark Icon */}
                 <FaUtensils className="absolute opacity-10 text-orange-300 text-[7rem] -right-4 -bottom-4 pointer-events-none select-none z-0" />
                 <div className="w-28 h-28 mb-4 overflow-hidden rounded-full border-4 border-orange-400 shadow group-hover:scale-110 transition z-10 bg-white">

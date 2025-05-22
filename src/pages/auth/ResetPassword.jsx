@@ -62,22 +62,20 @@ const ResetPassword = () => {
           loop
           autoplay
         />
-      </div>
-      <div className="bg-white shadow-2xl rounded-2xl p-6 sm:p-8 md:p-10 w-full max-w-md border-2 border-orange-400">
-        <h2 className="text-2xl md:text-3xl font-semibold mb-6 flex justify-center items-center gap-3">
+      </div>      <div className="bg-base-100 shadow-2xl rounded-2xl p-6 sm:p-8 md:p-10 w-full max-w-md border-2 border-orange-400">
+        <h2 className="text-2xl md:text-3xl font-semibold mb-6 flex justify-center items-center gap-3 text-base-content">
           <MdLockReset className="text-orange-600" />
           Reset Password
         </h2>
-        <p className="text-center text-gray-600 text-sm mb-6">
+        <p className="text-center text-base-content/70 text-sm mb-6">
           Enter your email address below and we'll send you a link to reset your
           password.
         </p>
         <form onSubmit={handleResetPassword} className="space-y-4">
           {/* Email */}
-          <div>
-            <label
+          <div>            <label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700 mb-1"
+              className="block text-sm font-medium text-base-content mb-1"
             >
               Email Address
             </label>
@@ -87,7 +85,7 @@ const ResetPassword = () => {
               name="email"
               placeholder="Enter Your Email"
               required
-              className="w-full border border-gray-400 px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200"
+              className="w-full border-2 border-base-content/20 px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200 bg-base-100 text-base-content"
             />
           </div>
 
@@ -96,8 +94,7 @@ const ResetPassword = () => {
             Send Reset Link
           </Button>
 
-          {/* Redirect to Login */}
-          <div className="mt-2 text-center text-sm text-gray-600">
+          {/* Redirect to Login */}          <div className="mt-2 text-center text-sm text-base-content">
             Remember your password?{" "}
             <Link
               to="/signin"

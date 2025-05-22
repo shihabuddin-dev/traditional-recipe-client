@@ -10,7 +10,7 @@ import { MdLogin } from "react-icons/md";
 import Spinner from "../../components/ui/Spinner";
 
 const inputBase =
-  "w-full border border-gray-400 px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200";
+  "w-full border-2 border-base-content/20 px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200 bg-base-100 text-base-content";
 
 const SignIn = () => {
   const { loginUser, createUserWithGoogle, setUser, user } =
@@ -96,16 +96,14 @@ const SignIn = () => {
           loop
           autoplay
         />
-      </div>
-
-      <div className="flex-1 max-w-md p-6 bg-white rounded shadow border-2 border-orange-400">
-        <h2 className="text-2xl md:text-3xl font-semibold mb-4 flex justify-center items-center gap-3">
+      </div>{" "}
+      <div className="flex-1 max-w-md p-6 bg-base-100 rounded shadow border-2 border-orange-400">
+        <h2 className="text-2xl md:text-3xl font-semibold mb-4 flex justify-center items-center gap-3 text-base-content">
           <MdLogin className="text-orange-600" />
           Sign in
         </h2>
-
         <form onSubmit={handleSignIn} className="space-y-2">
-          <label className="block mb-2 text-sm font-medium">
+          <label className="block mb-2 text-sm font-medium text-base-content">
             Email address
           </label>
           <input
@@ -116,9 +114,10 @@ const SignIn = () => {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@example.com"
             required
-          />
-
-          <label className="block mb-2 text-sm font-medium">Password</label>
+          />{" "}
+          <label className="block mb-2 text-sm font-medium text-base-content">
+            Password
+          </label>
           <div className="relative mb-4">
             <input
               type={showPassword ? "text" : "password"}
@@ -136,20 +135,17 @@ const SignIn = () => {
               Forget Password
             </Link>
             <span
-              className="absolute right-3 top-3 cursor-pointer text-gray-600"
+              className="absolute right-3 top-3 cursor-pointer text-base-content/70"
               onClick={togglePassword}
             >
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
           </div>
-
           <Button type="submit" className="w-full">
             Sign In
           </Button>
         </form>
-
         <p className="divider divider-warning">OR</p>
-
         <Button
           onClick={handleSignInWithGoogle}
           variant="outline"
@@ -157,9 +153,8 @@ const SignIn = () => {
         >
           <FcGoogle className="text-xl" />
           Login with Google
-        </Button>
-
-        <p className="text-sm mt-4">
+        </Button>{" "}
+        <p className="text-sm mt-4 text-base-content">
           Don&apos;t have an account?{" "}
           <Link to="/signUp" className="text-amber-600 underline">
             Sign up

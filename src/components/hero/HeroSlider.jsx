@@ -31,8 +31,7 @@ const HeroSlider = () => {
     { src: hero9, title: "Spring Blossoms", subtitle: "New beginnings" },
   ];
 
-  return (
-    <div className="max-w-7xl mx-auto px-4">
+  return (    <div className="max-w-7xl mx-auto px-4 bg-base-100">
       <Swiper
         modules={[Autoplay, Pagination, Parallax]}
         autoplay={{
@@ -66,20 +65,19 @@ const HeroSlider = () => {
         }}
         className="hero-swiper rounded-2xl shadow-xl"
       >
-        {images.map((image, idx) => (
-          <SwiperSlide key={idx}>
-            <div className="group relative rounded-2xl overflow-hidden h-[240px] md:h-[300px] lg:h-[400px]">
+        {images.map((image, idx) => (          <SwiperSlide key={idx}>
+            <div className="group relative rounded-2xl overflow-hidden h-[240px] md:h-[300px] lg:h-[400px] bg-base-200">
               <img
                 src={image.src}
                 alt={`Slide ${idx + 1}`}
-                className="w-full h-full object-cover brightness-87 group-hover:brightness-100 transition-all duration-300"
+                className="w-full h-full object-cover brightness-75 group-hover:brightness-90 transition-all duration-300"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 drop-shadow-lg">
                   {image.title}
                 </h2>
-                <p className="text-lg md:text-xl opacity-90">
+                <p className="text-lg md:text-xl text-white/90 drop-shadow-lg">
                   {image.subtitle}
                 </p>
               </div>
