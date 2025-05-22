@@ -51,11 +51,14 @@ const EditMyRecipe = ({ recipe, onClose, handleUpdateRecipe }) => {
     }
 
     try {
-      const res = await fetch(`http://localhost:3000/recipes/${formData._id}`, {
-        method: "PUT",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      const res = await fetch(
+        `https://traditional-recipe-server.vercel.app/recipes/${formData._id}`,
+        {
+          method: "PUT",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (res.ok) {
         const updated = await res.json();

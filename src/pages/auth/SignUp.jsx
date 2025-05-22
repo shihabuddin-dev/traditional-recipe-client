@@ -121,7 +121,7 @@ const SignUp = () => {
 
         setUser(userInfo); // Save to context
 
-        console.log("Google user info:", userInfo);
+        // console.log("Google user info:", userInfo);
 
         navigate(location?.state ? location.state : "/");
         Swal.fire({

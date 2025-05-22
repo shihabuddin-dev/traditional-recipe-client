@@ -3,8 +3,8 @@ import Recipe from "./Recipe";
 import Button from "../ui/Button";
 import { Link } from "react-router";
 import Spinner from "../ui/Spinner";
-import { Fade } from 'react-awesome-reveal';
-import { Typewriter } from 'react-simple-typewriter';
+import { Fade } from "react-awesome-reveal";
+import { Typewriter } from "react-simple-typewriter";
 
 const TopRecipes = () => {
   const [recipes, setRecipes] = useState([]);
@@ -13,7 +13,9 @@ const TopRecipes = () => {
   useEffect(() => {
     const fetchTopRecipes = async () => {
       try {
-        const res = await fetch("http://localhost:3000/recipes/top");
+        const res = await fetch(
+          "https://traditional-recipe-server.vercel.app/recipes/top"
+        );
         const data = await res.json();
         // Sort recipes by likes (descending) and keep top 6
         const sorted = [...data].sort((a, b) => b.likes - a.likes).slice(0, 6);
@@ -60,7 +62,8 @@ const TopRecipes = () => {
         <Fade direction="right">
           <div className="w-20 h-1 bg-orange-500 mx-auto"></div>
           <p className="mt-4 max-w-2xl mx-auto">
-            Discover the most loved recipes, ranked by our food-loving community.
+            Discover the most loved recipes, ranked by our food-loving
+            community.
           </p>
         </Fade>
       </div>
