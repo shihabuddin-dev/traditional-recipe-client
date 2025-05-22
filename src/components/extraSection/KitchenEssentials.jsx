@@ -66,7 +66,7 @@ const KitchenEssentials = () => {
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 text-center">
           {tools.map((tool, index) => (
             <Fade key={index} direction={index % 2 === 0 ? "up" : "down"}>
-              <div className="relative bg-base-100 p-7 rounded-3xl shadow-xl border border-orange-200 hover:shadow-2xl transition group h-full flex flex-col items-center overflow-hidden">
+              <div className="relative bg-base-100 p-7 rounded-3xl shadow-xl border border-orange-200 border-dashed hover:shadow-2xl transition group h-full flex flex-col items-center overflow-hidden">
                 {/* Watermark Icon */}
                 <FaUtensils className="absolute opacity-10 text-orange-300 text-[7rem] -right-4 -bottom-4 pointer-events-none select-none z-0" />
                 <div className="w-28 h-28 mb-4 overflow-hidden rounded-full border-4 border-orange-400 shadow group-hover:scale-110 transition z-10 bg-white">
@@ -86,7 +86,7 @@ const KitchenEssentials = () => {
                   {tool.description}
                 </p>
                 {/* Subtle hover effect */}
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-orange-100/60 to-transparent opacity-0 group-hover:opacity-100 transition z-0" />
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-t from-orange-100/60 to-transparent opacity-0 z-0" />
               </div>
             </Fade>
           ))}

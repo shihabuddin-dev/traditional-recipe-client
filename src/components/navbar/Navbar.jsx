@@ -39,7 +39,8 @@ const Navbar = () => {
       });
   };
 
-  const linksClass = "hover:text-orange-600 flex items-center gap-1";
+  const linksClass =
+    "hover:text-orange-600 text-base-content flex items-center gap-1";
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -53,9 +54,8 @@ const Navbar = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-
   return (
-    <nav className="bg-[#fdf6ee] shadow-sm">
+    <nav className="bg-base-200 shadow-sm border-b-1 border-base-300">
       <div className="max-w-7xl mx-auto py-2 px-4 md:px-6 lg:px-8 flex justify-between items-center">
         {/* Logo */}
         <Link to="/" className="flex items-center">

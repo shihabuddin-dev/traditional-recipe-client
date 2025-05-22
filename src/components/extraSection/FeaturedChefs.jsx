@@ -35,13 +35,13 @@ const FeaturedChefs = () => {
   ];
 
   return (
-    <section className="pt-16 pb-2 bg-gradient-to-b from-gray-50 to-white rounded-2xl">
+    <section className="pt-16 pb-2 bg-base-100 rounded-2xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
           <Fade direction="left">
-            <h2 className="text-3xl md:text-4xl font-semibold mb-2 text-orange-600">
+            <h2 className="text-3xl md:text-4xl font-semibold mb-2">
               Meet Our:-{" "}
-              <span className="text-orange-600">
+              <span>
                 <Typewriter
                   words={["Master Chefs", "Popular Chefs", "Expert Chefs"]}
                   loop={0}
@@ -56,7 +56,7 @@ const FeaturedChefs = () => {
           </Fade>
           <Fade direction="right">
             <div className="w-20 h-1 bg-orange-500 mx-auto"></div>
-            <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+            <p className="mt-4 max-w-2xl mx-auto">
               Our award-winning culinary team brings world-class expertise to
               your dining experience.
             </p>
@@ -67,7 +67,7 @@ const FeaturedChefs = () => {
           {chefs.map((chef, idx) => (
             <div
               key={idx}
-              className="group bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-500 hover:shadow-xl hover:-translate-y-1"
+              className="group border border-orange-200 border-dashed bg-base-500 rounded-xl shadow-lg overflow-hidden transition-transform duration-500 hover:shadow-xl hover:-translate-y-1"
             >
               <div className="relative">
                 <img
@@ -85,13 +85,11 @@ const FeaturedChefs = () => {
               </div>
 
               <div className="pt-10 pb-8 px-6 text-center">
-                <h3 className="text-2xl font-bold text-gray-900 mb-1">
-                  {chef.name}
-                </h3>
+                <h3 className="text-2xl font-bold mb-1">{chef.name}</h3>
                 <p className="text-amber-600 font-medium mb-3">
                   {chef.specialty}
                 </p>
-                <p className="text-gray-600 mb-4">{chef.bio}</p>
+                <p className="mb-4">{chef.bio}</p>
 
                 <div className="flex justify-center flex-wrap gap-4">
                   <Link to="/all-recipes">

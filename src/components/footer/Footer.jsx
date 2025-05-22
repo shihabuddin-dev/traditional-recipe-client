@@ -12,14 +12,14 @@ import { Link } from "react-router";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#fff7ed] text-gray-800 pt-12 pb-8 border-t border-orange-200">
+    <footer className="bg-base-200 text-base-content pt-12 pb-8 border-t border-base-300">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
         {/* Brand Info */}
         <div>
           <h2 className="text-2xl font-bold text-orange-600 mb-3">
             Traditional Recipe
           </h2>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm">
             Your daily dose of delicious. Discover, share, and enjoy
             mouth-watering recipes anytime.
           </p>
@@ -28,7 +28,7 @@ const Footer = () => {
         {/* Quick Links */}
         <div>
           <h3 className="text-lg font-semibold mb-3">Quick Links</h3>
-          <ul className="space-y-2 text-sm text-gray-700">
+          <ul className="space-y-2 text-sm text-base-content">
             <li>
               <Link to="/" className="hover:text-orange-500">
                 Home
@@ -54,7 +54,7 @@ const Footer = () => {
         {/* Contact Info */}
         <div>
           <h3 className="text-lg font-semibold mb-3">Contact</h3>
-          <ul className="space-y-3 text-sm text-gray-700">
+          <ul className="space-y-3 text-sm text-base-content">
             <li className="flex items-center gap-2">
               <FaEnvelope /> info@traditionalrecipe.com
             </li>
@@ -70,7 +70,7 @@ const Footer = () => {
         {/* Newsletter */}
         <div>
           <h3 className="text-lg font-semibold mb-3">Subscribe</h3>
-          <p className="text-sm text-gray-600 mb-3">
+          <p className="text-sm mb-3">
             Get the best recipes every week!
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
@@ -85,7 +85,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom line */}
-      <div className="mt-8 border-t border-orange-200 pt-6 text-center text-sm text-gray-600">
+      <div className="mt-8 border-t border-base-300 pt-6 text-center text-sm">
         <p>
           &copy; {new Date().getFullYear()} Traditional Recipe All rights
           reserved.

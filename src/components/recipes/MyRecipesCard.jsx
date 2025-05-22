@@ -91,7 +91,7 @@ const MyRecipesCard = ({
   }, [recipe._id]);
 
   return (
-    <div className="flex flex-col md:flex-row bg-white shadow-md rounded-2xl overflow-hidden border border-orange-100">
+    <div className="flex flex-col md:flex-row bg-base-100 shadow-md rounded-2xl overflow-hidden border border-orange-300 border-dashed">
       <div className="md:w-1/3 h-48 md:h-auto overflow-hidden">
         <img
           src={image}
@@ -102,11 +102,11 @@ const MyRecipesCard = ({
 
       <div className="p-5 flex flex-col justify-between flex-grow">
         <div>
-          <h2 className="text-2xl font-bold text-gray-800 mb-1">{title}</h2>
-          <p className="text-sm text-gray-500 italic mb-3">{cuisine} Cuisine</p>
+          <h2 className="text-2xl font-bold mb-1">{title}</h2>
+          <p className="text-sm italic mb-3">{cuisine} Cuisine</p>
         </div>
 
-        <div className="mb-2 text-gray-700">
+        <div className="mb-2">
           <p>
             <strong>Ingredients:</strong> {ingredients}
           </p>
@@ -122,7 +122,7 @@ const MyRecipesCard = ({
           {categories.map((cat, idx) => (
             <span
               key={idx}
-              className="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full"
+              className="text-xs bg-gray-100 text-orange-600 px-3 py-1 rounded-full"
             >
               {cat}
             </span>
@@ -148,7 +148,7 @@ const MyRecipesCard = ({
             ) : (
               <HiOutlineHandThumbUp className="text-xl" />
             )}
-            <span className="text-gray-800 font-bold">{likes}</span>
+            <span className="text-base-content font-bold">{likes}</span>
           </div>
           <div className="flex gap-2 sm:gap-3 items-center">
             <button

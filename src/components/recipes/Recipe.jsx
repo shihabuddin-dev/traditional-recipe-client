@@ -118,7 +118,7 @@ const Recipe = ({ recipe, handleLikeUpdate, hideWishlistButton }) => {
 
   return (
     <Fade delay={200}>
-      <div className="flex flex-col h-full bg-white rounded-2xl overflow-hidden shadow-lg border border-orange-100 hover:shadow-xl transition-all duration-300 relative">
+      <div className="flex flex-col h-full bg-base-150 rounded-2xl overflow-hidden shadow-lg border border-orange-100 border-dashed hover:shadow-xl transition-all duration-300 relative">
         {/* Image Container */}
         <div className="h-48 md:h-52 lg:h-44 overflow-hidden relative">
           {/* Popular Recipe Badge */}
@@ -158,8 +158,8 @@ const Recipe = ({ recipe, handleLikeUpdate, hideWishlistButton }) => {
         {/* Content */}
         <div className="p-4 md:p-5 flex flex-col flex-grow gap-2">
           {/* Title & Cuisine */}
-          <h3 className="text-xl font-bold text-gray-800">{title}</h3>
-          <p className="text-sm text-gray-500 italic">{cuisine} Cuisine</p>
+          <h3 className="text-xl font-bold">{title}</h3>
+          <p className="text-sm italic">{cuisine} Cuisine</p>
 
           {/* Tags */}
           <div className="flex flex-wrap gap-2 text-xs">
@@ -177,8 +177,8 @@ const Recipe = ({ recipe, handleLikeUpdate, hideWishlistButton }) => {
           </div>
 
           {/* Ingredients */}
-          <p className="text-gray-700 text-sm line-clamp-2">
-            <strong className="text-gray-800">Ingredients:</strong>{" "}
+          <p className="text-sm line-clamp-2">
+            <strong>Ingredients:</strong>{" "}
             {ingredients.length > 50
               ? ingredients.slice(0, 50) + "..."
               : ingredients}
@@ -197,15 +197,12 @@ const Recipe = ({ recipe, handleLikeUpdate, hideWishlistButton }) => {
               ) : (
                 <HiOutlineHandThumbUp className="text-xl cursor-pointer" />
               )}
-              <span className="text-black">{likes}</span>
+              <span className="text-base-content">{likes}</span>
               <span className="text-sm">interested</span>
             </button>
 
             <Link to={`/recipes/${_id}`}>
-              <Button
-                variant="secondary"
-                className="text-xs md:text-sm"
-              >
+              <Button variant="secondary" className="text-xs md:text-sm">
                 View Details
               </Button>
             </Link>
@@ -220,8 +217,8 @@ const Recipe = ({ recipe, handleLikeUpdate, hideWishlistButton }) => {
               className="w-10 h-10 rounded-full border border-orange-200 object-cover"
             />
             <div className="text-sm leading-tight">
-              <p className="font-semibold text-gray-800">By: {userName}</p>
-              <p className="text-gray-500 text-xs">Published: {formattedDate}</p>
+              <p className="font-semibold">By: {userName}</p>
+              <p className="text-xs">Published: {formattedDate}</p>
             </div>
           </div>
         </div>

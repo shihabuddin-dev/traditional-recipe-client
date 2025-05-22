@@ -17,7 +17,7 @@ const cuisineOptions = [
 const categoryOptions = ["Breakfast", "Lunch", "Dinner", "Dessert", "Vegan"];
 
 const inputBase =
- "w-full border-2 border-base-content/20 px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200 bg-base-100 text-base-content";
+  "w-full border-2 border-base-content/20 px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200 bg-base-100 text-base-content";
 
 const AddRecipe = () => {
   const { user } = useContext(FirebaseAuthContext);
@@ -118,11 +118,11 @@ const AddRecipe = () => {
         </Link>
       </div>
 
-      <div className="max-w-5xl mx-auto p-4 sm:p-6 lg:p-10 bg-white shadow-lg rounded-xl mt-8 mb-16 border-2 border-orange-400">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
+      <div className="max-w-5xl mx-auto p-4 sm:p-6 lg:p-10 bg-base-100 shadow-lg rounded-xl mt-8 mb-16 border-2 border-orange-400">
+        <h2 className="text-3xl font-bold text-center mb-6">
           🍽️ Add a New Recipe
         </h2>
-        <p className="text-center text-gray-600 mb-10 max-w-2xl mx-auto">
+        <p className="text-center mb-10 max-w-2xl mx-auto">
           Share your delicious creations with the world! Fill out the form below
           to add a new recipe to our collection.
         </p>
@@ -133,7 +133,7 @@ const AddRecipe = () => {
         >
           {/* Image */}
           <div className="col-span-1 md:col-span-2">
-            <label className="block text-gray-700 font-medium mb-1">
+            <label className="block font-medium mb-1">
               Image URL
             </label>
             <input
@@ -149,7 +149,7 @@ const AddRecipe = () => {
 
           {/* Title */}
           <div>
-            <label className="block text-gray-700 font-medium mb-1">
+            <label className="block font-medium mb-1">
               Title
             </label>
             <input
@@ -165,7 +165,7 @@ const AddRecipe = () => {
 
           {/* Cuisine */}
           <div>
-            <label className="block text-gray-700 font-medium mb-1">
+            <label className="block font-medium mb-1">
               Cuisine Type
             </label>
             <select
@@ -186,7 +186,7 @@ const AddRecipe = () => {
 
           {/* Preparation Time */}
           <div>
-            <label className="block text-gray-700 font-medium mb-1">
+            <label className="block font-medium mb-1">
               Preparation Time (minutes)
             </label>
             <input
@@ -203,7 +203,7 @@ const AddRecipe = () => {
 
           {/* Ingredients */}
           <div className="md:col-span-2">
-            <label className="block text-gray-700 font-medium mb-1">
+            <label className="block font-medium mb-1">
               Ingredients
             </label>
             <textarea
@@ -219,7 +219,7 @@ const AddRecipe = () => {
 
           {/* Instructions */}
           <div className="md:col-span-2">
-            <label className="block text-gray-700 font-medium mb-1">
+            <label className="block font-medium mb-1">
               Instructions
             </label>
             <textarea
@@ -235,7 +235,7 @@ const AddRecipe = () => {
 
           {/* Categories */}
           <div className="md:col-span-2">
-            <label className="block text-gray-700 font-medium mb-2">
+            <label className="block font-medium mb-2">
               Categories
             </label>
             <div className="flex flex-wrap gap-4">
@@ -246,9 +246,9 @@ const AddRecipe = () => {
                     value={cat}
                     checked={formData.categories.includes(cat)}
                     onChange={handleChange}
-                    className="accent-orange-500"
+                    className="checkbox checkbox-xs checkbox-warning"
                   />
-                  <span>{cat}</span>
+                  <span className="text-orange-500">{cat}</span>
                 </label>
               ))}
             </div>
@@ -256,7 +256,7 @@ const AddRecipe = () => {
 
           {/* Likes (hidden, default 0) */}
           <div className="md:col-span-2 hidden">
-            <label className="block text-gray-700 font-medium mb-1">
+            <label className="block font-medium mb-1">
               Like Count (default: 0)
             </label>
             <input
@@ -265,7 +265,7 @@ const AddRecipe = () => {
               value={formData.likes}
               readOnly
               className={
-                inputBase + " bg-gray-100 text-gray-600 cursor-not-allowed"
+                inputBase + " bg-gray-100 cursor-not-allowed"
               }
             />
           </div>
