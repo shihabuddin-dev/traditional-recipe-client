@@ -27,16 +27,32 @@ const Navbar = () => {
   // logout user
   const handleLogOut = () => {
     Swal.fire({
-      icon: "success",
-      title: "Log Out Seccess",
-      showConfirmButton: false,
-      timer: 1500,
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, log out!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logOutUser();
+        Swal.fire({
+          title: "Logged out!",
+          text: "You have been logged out.",
+          icon: "success",
+        })
+          .then(() => {})
+          .catch((error) => {
+            console.log(error);
+            Swal.fire({
+              title: "Error!",
+              text: "Logout failed.",
+              icon: "error",
+            });
+          });
+      }
     });
-    logOutUser()
-      .then(() => {})
-      .then((error) => {
-        console.log(error);
-      });
   };
 
   const linksClass =
@@ -147,7 +163,10 @@ const Navbar = () => {
 
         {/* Mobile menu button */}
         <div className="md:hidden flex items-center gap-2">
-          <button onClick={toggleMenu} aria-label={isOpen ? 'Close menu' : 'Open menu'}>
+          <button
+            onClick={toggleMenu}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+          >
             {isOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
           </button>
           <ThemeToggle />
@@ -158,10 +177,10 @@ const Navbar = () => {
       <div
         className={`md:hidden fixed left-0 right-0 top-[72px] z-40 transition-all duration-300 ${
           isOpen
-            ? 'opacity-100 translate-y-0 pointer-events-auto'
-            : 'opacity-0 -translate-y-8 pointer-events-none'
+            ? "opacity-100 translate-y-0 pointer-events-auto"
+            : "opacity-0 -translate-y-8 pointer-events-none"
         }`}
-        style={{ minHeight: isOpen ? 'calc(100vh - 72px)' : 0 }}
+        style={{ minHeight: isOpen ? "calc(100vh - 72px)" : 0 }}
         aria-hidden={!isOpen}
       >
         <div className="px-4 pb-4 bg-base-100 border-b border-base-300 shadow-lg rounded-b-xl">

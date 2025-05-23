@@ -90,7 +90,7 @@ const RecipeDetails = () => {
     setIsLiking(true);
     try {
       const res = await fetch(
-        `https://traditional-recipe-server.vercel.app/recipes/${recipe._id}/like`,
+        `http://localhost:3000/recipes/${recipe._id}/like`,
         {
           method: "PATCH",
         }
@@ -113,7 +113,6 @@ const RecipeDetails = () => {
 
   return (
     <div className="max-w-5xl mx-auto px-4">
-      <title>Recipe Details || Traditional Recipe</title>
       {/* Top Action Buttons */}
       <div className="max-w-5xl mx-auto px-2 flex justify-between mb-8">
         <Button
@@ -140,10 +139,12 @@ const RecipeDetails = () => {
       </div>
 
       {/* Title & Cuisine + User Info */}
-      <div className="mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div className="mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <h1 className="text-3xl md:text-4xl font-bold mb-2">{title}</h1>
-          <p className="text-lg">{cuisine} Cuisine</p>
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+            {title}
+          </h1>
+          <p className="text-gray-600 text-lg">{cuisine} Cuisine</p>
         </div>
         {/* User Info */}
         {recipe.userName && (
@@ -167,65 +168,71 @@ const RecipeDetails = () => {
         )}
       </div>
 
-      <div className="mb-8 bg-base-100 rounded-xl shadow p-6 border border-orange-400 border-dashed">
-        {/* Metadata: Time, Categories, Likes */}
-        <div className="flex flex-wrap gap-4 mb-4 items-center">
-          <span className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm">
-            ⏱ {preparationTime} min
+      {/* Metadata: Time, Categories, Likes */}
+      <div className="flex flex-wrap gap-4 mb-6 items-center">
+        <span className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm">
+          ⏱ {preparationTime} min
+        </span>
+        {categories.map((cat, idx) => (
+          <span
+            key={idx}
+            className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
+          >
+            {cat}
           </span>
-          {categories.map((cat, idx) => (
-            <span
-              key={idx}
-              className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
-            >
-              {cat}
-            </span>
-          ))}
-          <span className="bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm flex items-center gap-1">
-            <button
-              onClick={handleLike}
-              disabled={isLiking || isOwner}
-              className={`flex items-center gap-1 focus:outline-none transition ${
-                isOwner ? "opacity-50 cursor-not-allowed" : "hover:text-red-700"
-              }`}
-              title={
-                isOwner ? "You can't like your own recipe" : "Like this recipe"
-              }
-              type="button"
-            >
-              {likes > 0 ? (
-                <HiMiniHandThumbUp className="text-lg" />
-              ) : (
-                <HiOutlineHandThumbUp className="text-lg" />
-              )}
-              <span>{likes}</span>
-            </button>
-          </span>
-        </div>
-
-        {/* Ingredients */}
-        <div className="mb-4">
-          <h2 className="text-2xl font-semibold mb-2">Ingredients</h2>
-          <p className="leading-relaxed">{ingredients}</p>
-        </div>
-
-        {/* Instructions */}
-        <div className="mb-4">
-          <h2 className="text-2xl font-semibold mb-2">Instructions</h2>
-          <p className="leading-relaxed">{instructions}</p>
-        </div>
+        ))}
+        <span className="bg-red-100 text-red-600 px-3 py-1 rounded-full text-sm flex items-center md:gap-1">
+          <button
+            onClick={handleLike}
+            disabled={isLiking || isOwner}
+            className={`flex items-center gap-1 focus:outline-none transition ${
+              isOwner ? "opacity-50 cursor-not-allowed" : "hover:text-red-700"
+            }`}
+            title={
+              isOwner ? "You can't like your own recipe" : "Like this recipe"
+            }
+            type="button"
+          >
+            {likes > 0 ? (
+              <HiMiniHandThumbUp className="text-lg" />
+            ) : (
+              <HiOutlineHandThumbUp className="text-lg" />
+            )}
+            <span>{likes}</span>
+            <span>people interested in this recipe</span>
+          </button>
+        </span>
       </div>
 
       {/* Random Recipe Description */}
-      <div className="mb-8 bg-base-100 rounded-xl shadow p-6 border border-orange-400 border-dashed">
-        <h2 className="text-2xl font-bold mb-3">About This Recipe</h2>
-        <p className="mb-4">{description}</p>
-        <ul className="list-disc pl-6 space-y-2">
+      <div className="mb-8 bg-white rounded-xl shadow p-6">
+        <h2 className="text-2xl font-bold text-gray-800 mb-3">
+          About This Recipe
+        </h2>
+        <p className="text-gray-700 mb-4">{description}</p>
+        <ul className="list-disc pl-6 text-gray-700 space-y-2">
           {bullets.map((point, i) => (
             <li key={i}>{point}</li>
           ))}
         </ul>
       </div>
+
+      {/* Ingredients */}
+      <div className="mb-6">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+          Ingredients
+        </h2>
+        <p className="text-gray-700 leading-relaxed">{ingredients}</p>
+      </div>
+
+      {/* Instructions */}
+      <div className="mb-6">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+          Instructions
+        </h2>
+        <p className="text-gray-700 leading-relaxed">{instructions}</p>
+      </div>
+
       {/* Comments Section */}
       <CommentRecipe
         comments={comments}

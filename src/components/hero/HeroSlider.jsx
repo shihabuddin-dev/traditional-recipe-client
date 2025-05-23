@@ -31,7 +31,8 @@ const HeroSlider = () => {
     { src: hero9, title: "Spring Blossoms", subtitle: "New beginnings" },
   ];
 
-  return (    <div className="max-w-7xl mx-auto px-4 bg-base-100">
+  return (
+    <div className="max-w-7xl mx-auto px-4 bg-base-100">
       <Swiper
         modules={[Autoplay, Pagination, Parallax]}
         autoplay={{
@@ -65,7 +66,8 @@ const HeroSlider = () => {
         }}
         className="hero-swiper rounded-2xl shadow-xl"
       >
-        {images.map((image, idx) => (          <SwiperSlide key={idx}>
+        {images.map((image, idx) => (
+          <SwiperSlide key={idx}>
             <div className="group relative rounded-2xl overflow-hidden h-[240px] md:h-[300px] lg:h-[400px] bg-base-200">
               <img
                 src={image.src}

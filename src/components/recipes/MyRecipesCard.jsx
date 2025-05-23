@@ -38,9 +38,12 @@ const MyRecipesCard = ({
 
     setIsLiking(true);
     try {
-      const res = await fetch(`https://traditional-recipe-server.vercel.app/recipes/${_id}/like`, {
-        method: "PATCH",
-      });
+      const res = await fetch(
+        `https://traditional-recipe-server.vercel.app/recipes/${_id}/like`,
+        {
+          method: "PATCH",
+        }
+      );
 
       if (res.ok) {
         setLikes((prev) => prev + 1);
@@ -94,11 +97,12 @@ const MyRecipesCard = ({
   return (
     <Fade>
       <div className="flex flex-col md:flex-row bg-base-100 shadow-md rounded-2xl overflow-hidden border border-orange-300 border-dashed">
-        <div className="md:w-1/3 h-48 md:h-auto overflow-hidden">
+        <div className="md:w-1/3 min-w-[180px] max-w-xs md:max-w-sm flex-shrink-0 flex-grow-0 h-48 md:h-auto overflow-hidden">
           <img
             src={image}
             alt={title}
-            className="w-full h-full object-cover hover:scale-102 transition duration-800"
+            className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500 rounded-l-2xl"
+            style={{ minHeight: "12rem", maxHeight: "24rem" }}
           />
         </div>
 
