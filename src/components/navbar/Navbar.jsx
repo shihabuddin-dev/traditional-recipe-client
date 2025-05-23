@@ -71,7 +71,7 @@ const Navbar = () => {
     };
   }, []);
   return (
-    <nav className="bg-base-200 shadow-sm border-b-1 border-base-300">
+    <nav className="bg-base-200 shadow-sm border-b-1 border-base-300 fixed top-0 left-0 right-0 z-50 w-full">
       <div className="max-w-7xl mx-auto py-2 px-4 md:px-6 lg:px-8 flex justify-between items-center">
         {/* Logo */}
         <Link to="/" className="flex items-center">
@@ -82,7 +82,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Nav */}
-        <ul className="hidden md:flex gap-5 font-semibold text-[#1a1a1a]">
+        <ul className="hidden lg:flex gap-5 font-semibold text-[#1a1a1a]">
           <li>
             <NavLink to="/" className={linksClass}>
               <FaHome />
@@ -118,7 +118,7 @@ const Navbar = () => {
         </ul>
 
         {/* Login / Avatar */}
-        <div className="hidden space-x-2 md:flex items-center">
+        <div className="hidden space-x-2 lg:flex items-center">
           {user ? (
             <div
               className="relative cursor-pointer z-10"
@@ -162,7 +162,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile menu button */}
-        <div className="md:hidden flex items-center gap-2">
+        <div className="lg:hidden flex items-center gap-2">
           <button
             onClick={toggleMenu}
             aria-label={isOpen ? "Close menu" : "Open menu"}
@@ -175,7 +175,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden fixed left-0 right-0 top-[72px] z-40 transition-all duration-300 ${
+        className={`lg:hidden fixed left-0 right-0 top-[64px] z-40 transition-all duration-300 ${
           isOpen
             ? "opacity-100 translate-y-0 pointer-events-auto"
             : "opacity-0 -translate-y-8 pointer-events-none"
@@ -183,7 +183,7 @@ const Navbar = () => {
         style={{ minHeight: isOpen ? "calc(100vh - 72px)" : 0 }}
         aria-hidden={!isOpen}
       >
-        <div className="px-4 pb-4 bg-base-100 border-b border-base-300 shadow-lg rounded-b-xl">
+        <div className="px-4 pt-2 pb-4 bg-base-100 border-b border-base-300 shadow-lg rounded-b-xl">
           <ul className="flex flex-col gap-4 font-semibold text-[#1a1a1a]">
             <li>
               <NavLink to="/" onClick={toggleMenu} className={linksClass}>

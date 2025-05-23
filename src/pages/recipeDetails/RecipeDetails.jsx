@@ -90,7 +90,7 @@ const RecipeDetails = () => {
     setIsLiking(true);
     try {
       const res = await fetch(
-        `http://localhost:3000/recipes/${recipe._id}/like`,
+        `https://traditional-recipe-server.vercel.app/recipes/${recipe._id}/like`,
         {
           method: "PATCH",
         }
@@ -114,16 +114,24 @@ const RecipeDetails = () => {
   return (
     <div className="max-w-5xl mx-auto px-4">
       {/* Top Action Buttons */}
-      <div className="max-w-5xl mx-auto px-2 flex justify-between mb-8">
+      <div className="max-w-5xl mx-auto px-2 flex flex-col sm:flex-row items-center justify-between flex-wrap gap-4 mb-8">
         <Button
           onClick={() => navigate(-1)}
           variant="outline"
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 w-full sm:w-auto"
         >
           <FaArrowLeft /> Back
         </Button>
-        <Link to="/all-recipes">
-          <Button variant="outline" className="flex items-center gap-2">
+
+        <span className="inline-block text-sm md:text-base md:font-semibold text-orange-600 bg-orange-100 md:px-4 py-1 py-1.5 rounded-full shadow-sm w-full sm:w-auto text-center">
+          {likes} people interested in this recipe
+        </span>
+
+        <Link to="/all-recipes" className="w-full sm:w-auto">
+          <Button
+            variant="outline"
+            className="flex items-center gap-2 w-full sm:w-auto"
+          >
             <FaListUl /> All Recipes
           </Button>
         </Link>
@@ -139,27 +147,23 @@ const RecipeDetails = () => {
       </div>
 
       {/* Title & Cuisine + User Info */}
-      <div className="mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div className="mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-            {title}
-          </h1>
-          <p className="text-gray-600 text-lg">{cuisine} Cuisine</p>
+          <h1 className="text-3xl md:text-4xl font-bold mb-2">{title}</h1>
+          <p className="text-lg">{cuisine} Cuisine</p>
         </div>
         {/* User Info */}
         {recipe.userName && (
-          <div className="flex items-center gap-3 bg-gray-50 px-4 py-2 rounded-lg shadow-sm">
+          <div className="flex items-center gap-3 bg-base-100 px-4 py-2 rounded-lg shadow-sm border border-orange-400 border-dashed">
             <img
               src={recipe.userPhoto || "/default-user.png"}
               alt={recipe.userName}
-              className="w-12 h-12 rounded-full object-cover border border-gray-200"
+              className="w-12 h-12 rounded-full object-cover border border-gray-400 p-1"
             />
             <div>
-              <div className="font-semibold text-gray-800">
-                {recipe.userName}
-              </div>
+              <div className="font-semibold">{recipe.userName}</div>
               {recipe.createdAt && (
-                <div className="text-xs text-gray-500">
+                <div className="text-xs">
                   Published: {new Date(recipe.createdAt).toLocaleString()}
                 </div>
               )}
@@ -199,38 +203,32 @@ const RecipeDetails = () => {
               <HiOutlineHandThumbUp className="text-lg" />
             )}
             <span>{likes}</span>
-            <span>people interested in this recipe</span>
           </button>
         </span>
       </div>
 
+      {/* Ingredients and Instructions */}
+      <div className="mb-8 bg-base-100 border border-orange-400 border-dashed rounded-xl space-y-2 shadow p-6">
+        <div>
+          <h2 className="text-xl font-semibold mb-2">Ingredients</h2>
+          <p className="leading-relaxed">{ingredients}</p>
+        </div>
+
+        <div>
+          <h2 className="text-xl font-semibold mb-2">Instructions</h2>
+          <p className="leading-relaxed">{instructions}</p>
+        </div>
+      </div>
+
       {/* Random Recipe Description */}
-      <div className="mb-8 bg-white rounded-xl shadow p-6">
-        <h2 className="text-2xl font-bold text-gray-800 mb-3">
-          About This Recipe
-        </h2>
-        <p className="text-gray-700 mb-4">{description}</p>
-        <ul className="list-disc pl-6 text-gray-700 space-y-2">
+      <div className="mb-8 bg-base-100 border border-orange-400 border-dashed rounded-xl shadow p-6">
+        <h2 className="text-2xl font-bold mb-3">About This Recipe</h2>
+        <p className="mb-4">{description}</p>
+        <ul className="list-disc pl-6 space-y-2">
           {bullets.map((point, i) => (
             <li key={i}>{point}</li>
           ))}
         </ul>
-      </div>
-
-      {/* Ingredients */}
-      <div className="mb-6">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-2">
-          Ingredients
-        </h2>
-        <p className="text-gray-700 leading-relaxed">{ingredients}</p>
-      </div>
-
-      {/* Instructions */}
-      <div className="mb-6">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-2">
-          Instructions
-        </h2>
-        <p className="text-gray-700 leading-relaxed">{instructions}</p>
       </div>
 
       {/* Comments Section */}

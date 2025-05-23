@@ -109,15 +109,15 @@ const MyRecipesCard = ({
         <div className="p-5 flex flex-col justify-between flex-grow">
           <div>
             <h2 className="text-2xl font-bold mb-1">{title}</h2>
-            <p className="text-sm italic mb-3">{cuisine} Cuisine</p>
+            <p className="text-sm italic mb-1">{cuisine} Cuisine</p>
           </div>
 
-          <div className="mb-2">
+          <div className="mb-2 space-y-1">
             <p>
-              <strong>Ingredients:</strong> {ingredients}
+              <strong>Ingredients:</strong> {ingredients.slice(0, 21)}...
             </p>
             <p>
-              <strong>Instructions:</strong> {instructions}
+              <strong>Instructions:</strong> {instructions.slice(0, 50)}...
             </p>
           </div>
 
