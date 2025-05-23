@@ -14,7 +14,12 @@ const ResetPassword = () => {
     const email = e.target.email.value.trim();
 
     if (!email) {
-      //   toast.error("Please enter your email address.");
+      Swal.fire({
+        icon: "error",
+        title: "Please enter your email address.",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       return;
     }
     resetPassword(email)
@@ -56,30 +61,28 @@ const ResetPassword = () => {
 
   return (
     <div className="flex gap-4 flex-col md:flex-row justify-center items-center max-w-5xl">
-      <title>Reset Password || Traditional Recipe</title>
       <div>
         <DotLottieReact
           src="https://lottie.host/51f5308c-206b-417f-881d-aa04e13b5e0f/ed3vyy5La9.lottie"
           loop
           autoplay
         />
-      </div>{" "}
-      <div className="bg-base-100 shadow-2xl rounded-2xl p-6 sm:p-8 md:p-10 w-full max-w-md border-2 border-orange-400">
-        <h2 className="text-2xl md:text-3xl font-semibold mb-6 flex justify-center items-center gap-3 text-base-content">
+      </div>
+      <div className="bg-white shadow-2xl rounded-2xl p-6 sm:p-8 md:p-10 w-full max-w-md border-2 border-orange-400">
+        <h2 className="text-2xl md:text-3xl font-semibold mb-6 flex justify-center items-center gap-3">
           <MdLockReset className="text-orange-600" />
           Reset Password
         </h2>
-        <p className="text-center text-base-content/70 text-sm mb-6">
+        <p className="text-center text-gray-600 text-sm mb-6">
           Enter your email address below and we'll send you a link to reset your
           password.
         </p>
         <form onSubmit={handleResetPassword} className="space-y-4">
           {/* Email */}
           <div>
-            {" "}
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-base-content mb-1"
+              className="block text-sm font-medium text-gray-700 mb-1"
             >
               Email Address
             </label>
@@ -88,16 +91,17 @@ const ResetPassword = () => {
               type="email"
               name="email"
               placeholder="Enter Your Email"
-              required
-              className="w-full border-2 border-base-content/20 px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200 bg-base-100 text-base-content"
+              className="w-full border border-gray-400 px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200"
             />
           </div>
+
           {/* Submit Button */}
           <Button type="submit" className="w-full mt-2 py-2">
             Send Reset Link
           </Button>
-          {/* Redirect to Login */}{" "}
-          <div className="mt-2 text-center text-sm text-base-content">
+
+          {/* Redirect to Login */}
+          <div className="mt-2 text-center text-sm text-gray-600">
             Remember your password?{" "}
             <Link
               to="/signin"

@@ -63,6 +63,43 @@ const SignUp = () => {
       formData.entries()
     );
 
+    if (!name) {
+      Swal.fire({
+        icon: "error",
+        title: "Please enter your name.",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
+    }
+    if (!photo) {
+      Swal.fire({
+        icon: "error",
+        title: "Please enter your photo URL.",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
+    }
+    if (!email) {
+      Swal.fire({
+        icon: "error",
+        title: "Please enter your email address.",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
+    }
+    if (!password) {
+      Swal.fire({
+        icon: "error",
+        title: "Please enter your password.",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
+    }
+
     const allValid = validations.every((rule) => rule.isValid);
     if (!allValid) {
       Swal.fire({
@@ -171,7 +208,7 @@ const SignUp = () => {
           name="name"
           className={inputBase}
           placeholder="Enter your Name"
-          required
+          // required removed to handle validation with SweetAlert
         />
         <label className="block mb-2 text-sm font-medium text-base-content">
           Photo URL
@@ -181,7 +218,7 @@ const SignUp = () => {
           name="photo"
           className={inputBase}
           placeholder="Enter your Photo URL"
-          required
+          // required removed to handle validation with SweetAlert
         />
         <label className="block mb-2 text-sm font-medium text-base-content">
           Email address
@@ -193,7 +230,7 @@ const SignUp = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter your Email"
-          required
+          // required removed to handle validation with SweetAlert
         />
         <label className="block mb-2 text-sm font-medium text-base-content">
           Password
@@ -206,7 +243,7 @@ const SignUp = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter your password"
-            required
+            // required removed to handle validation with SweetAlert
           />
           <span
             className="absolute right-3 top-3 cursor-pointer text-base-content/70"

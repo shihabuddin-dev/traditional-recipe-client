@@ -5,9 +5,9 @@ import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 const NotFound = () => {
   return (
-    <div className="relative flex flex-col items-center justify-center">
+    <div className="min-h-screen w-full flex flex-col items-center justify-center bg-white transition-colors duration-300">
       <title>Not Found || Traditional Recipe</title>
-      <Link to="/" className="mt-4 absolute -bottom-10 md:top-5">
+      <Link to="/" className="mt-4 absolute top-4">
         <Button> Go Back Home</Button>
       </Link>
       <div className="mt-24 flex gap-2 justify-center animate-pulse">

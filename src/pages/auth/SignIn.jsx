@@ -36,6 +36,24 @@ const SignIn = () => {
 
   const handleSignIn = (e) => {
     e.preventDefault();
+    if (!email) {
+      Swal.fire({
+        icon: "error",
+        title: "Please enter your email address.",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
+    }
+    if (!password) {
+      Swal.fire({
+        icon: "error",
+        title: "Please enter your password.",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
+    }
     loginUser(email, password)
       .then((userCredential) => {
         setUser(userCredential.user);
@@ -114,7 +132,7 @@ const SignIn = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="you@example.com"
-            required
+            // required removed to handle validation with SweetAlert
           />{" "}
           <label className="block mb-2 text-sm font-medium text-base-content">
             Password
@@ -127,7 +145,7 @@ const SignIn = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
-              required
+              // required removed to handle validation with SweetAlert
             />
             <Link
               to="/reset-password"
