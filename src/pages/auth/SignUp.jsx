@@ -282,7 +282,7 @@ const SignUp = () => {
           className="w-full mt-3 flex justify-center items-center gap-2"
         >
           <FcGoogle className="text-xl" />
-          Login with Google
+          SignUp with Google
         </Button>{" "}
         <p className="text-sm mt-4 text-base-content">
           Already have an account?{" "}
