@@ -20,15 +20,15 @@ import hero9 from "../../assets/hero/hero-9.jpg";
 
 const HeroSlider = () => {
   const images = [
-    { src: hero1, title: "Beautiful Landscape", subtitle: "Explore nature" },
-    { src: hero2, title: "City Lights", subtitle: "Urban adventures" },
-    { src: hero3, title: "Mountain View", subtitle: "Breathtaking heights" },
+    { src: hero1, title: "Beautiful Pas", subtitle: "Nature Behave" },
+    { src: hero2, title: "More Cream", subtitle: "Delicious Adventures" },
+    { src: hero3, title: "Natures Platter", subtitle: "Natural Organs" },
     { src: hero4, title: "Ocean Breeze", subtitle: "Feel the waves" },
     { src: hero5, title: "Desert Sunset", subtitle: "Golden horizons" },
-    { src: hero6, title: "Forest Trail", subtitle: "Nature's path" },
-    { src: hero7, title: "Winter Wonderland", subtitle: "Frozen beauty" },
-    { src: hero8, title: "Autumn Colors", subtitle: "Seasonal magic" },
-    { src: hero9, title: "Spring Blossoms", subtitle: "New beginnings" },
+    { src: hero6, title: "Tequila Sunrise", subtitle: "Nature's path" },
+    { src: hero7, title: "Mix Salad", subtitle: "Salad Forever" },
+    { src: hero8, title: "Autumn", subtitle: "Seasonal Food" },
+    { src: hero9, title: "Chicken Leg", subtitle: "Spicy and Tasteful" },
   ];
 
   return (
@@ -72,7 +72,7 @@ const HeroSlider = () => {
               <img
                 src={image.src}
                 alt={`Slide ${idx + 1}`}
-                className="w-full h-full object-cover brightness-75 group-hover:brightness-90 transition-all duration-300"
+                className="w-full h-full object-cover brightness-85 group-hover:brightness-100 transition-all duration-300"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">

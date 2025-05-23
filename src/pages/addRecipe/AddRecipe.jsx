@@ -2,7 +2,16 @@ import React, { useContext, useState } from "react";
 import Button from "../../components/ui/Button";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router";
-import { FaArrowLeft, FaListUl } from "react-icons/fa";
+import {
+  FaArrowLeft,
+  FaListUl,
+  FaImage,
+  FaUtensils,
+  FaBookOpen,
+  FaList,
+  FaClock,
+  FaTag,
+} from "react-icons/fa";
 import { FirebaseAuthContext } from "../../provider/FirebaseAuthContext";
 
 const cuisineOptions = [
@@ -144,7 +153,9 @@ const AddRecipe = () => {
         >
           {/* Image */}
           <div className="col-span-1 md:col-span-2">
-            <label className="block font-medium mb-1">Image URL</label>
+            <label className="font-medium mb-1 flex items-center gap-2">
+              <FaImage className="text-orange-400" /> Image URL
+            </label>
             <input
               type="text"
               name="image"
@@ -158,7 +169,9 @@ const AddRecipe = () => {
 
           {/* Title */}
           <div>
-            <label className="block font-medium mb-1">Title</label>
+            <label className="font-medium mb-1 flex items-center gap-2">
+              <FaUtensils className="text-orange-400" /> Title
+            </label>
             <input
               type="text"
               name="title"
@@ -172,7 +185,9 @@ const AddRecipe = () => {
 
           {/* Cuisine */}
           <div>
-            <label className="block font-medium mb-1">Cuisine Type</label>
+            <label className="font-medium mb-1 flex items-center gap-2">
+              <FaTag className="text-orange-400" /> Cuisine Type
+            </label>
             <select
               name="cuisine"
               value={formData.cuisine}
@@ -191,8 +206,8 @@ const AddRecipe = () => {
 
           {/* Preparation Time */}
           <div>
-            <label className="block font-medium mb-1">
-              Preparation Time (minutes)
+            <label className="font-medium mb-1 flex items-center gap-2">
+              <FaClock className="text-orange-400" /> Preparation Time (minutes)
             </label>
             <input
               type="number"
@@ -208,7 +223,9 @@ const AddRecipe = () => {
 
           {/* Ingredients */}
           <div className="md:col-span-2">
-            <label className="block font-medium mb-1">Ingredients</label>
+            <label className="font-medium mb-1 flex items-center gap-2">
+              <FaList className="text-orange-400" /> Ingredients
+            </label>
             <textarea
               name="ingredients"
               rows="3"
@@ -222,7 +239,9 @@ const AddRecipe = () => {
 
           {/* Instructions */}
           <div className="md:col-span-2">
-            <label className="block font-medium mb-1">Instructions</label>
+            <label className="font-medium mb-1 flex items-center gap-2">
+              <FaBookOpen className="text-orange-400" /> Instructions
+            </label>
             <textarea
               name="instructions"
               rows="4"
@@ -236,7 +255,9 @@ const AddRecipe = () => {
 
           {/* Categories */}
           <div className="md:col-span-2">
-            <label className="block font-medium mb-2">Categories</label>
+            <label className="font-medium mb-2 flex items-center gap-2">
+              <FaTag className="text-orange-400" /> Categories
+            </label>
             <div className="flex flex-wrap gap-4">
               {categoryOptions.map((cat) => (
                 <label key={cat} className="flex items-center space-x-2">

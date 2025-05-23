@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Button from "../../components/ui/Button";
 import Swal from "sweetalert2";
+import {
+  FaImage,
+  FaUtensils,
+  FaBookOpen,
+  FaList,
+  FaClock,
+  FaTag,
+  FaThumbsUp,
+} from "react-icons/fa";
 
 const cuisineOptions = [
   "Bangladeshi",
@@ -86,7 +95,9 @@ const EditMyRecipe = ({ recipe, onClose, handleUpdateRecipe }) => {
         className="grid grid-cols-1 md:grid-cols-2 gap-6"
       >
         <div className="md:col-span-2">
-          <label className="block mb-1">Image URL</label>
+          <label className="font-medium mb-1 flex items-center gap-2">
+            <FaImage className="text-orange-400" /> Image URL
+          </label>
           <input
             type="text"
             name="image"
@@ -99,7 +110,9 @@ const EditMyRecipe = ({ recipe, onClose, handleUpdateRecipe }) => {
         </div>
 
         <div>
-          <label className="block mb-1">Title</label>
+          <label className="font-medium mb-1 flex items-center gap-2">
+            <FaUtensils className="text-orange-400" /> Title
+          </label>
           <input
             type="text"
             name="title"
@@ -112,7 +125,9 @@ const EditMyRecipe = ({ recipe, onClose, handleUpdateRecipe }) => {
         </div>
 
         <div>
-          <label className="block mb-1">Cuisine Type</label>
+          <label className="font-medium mb-1 flex items-center gap-2">
+            <FaTag className="text-orange-400" /> Cuisine Type
+          </label>
           <select
             name="cuisine"
             value={formData.cuisine}
@@ -130,7 +145,9 @@ const EditMyRecipe = ({ recipe, onClose, handleUpdateRecipe }) => {
         </div>
 
         <div>
-          <label className="block mb-1">Preparation Time</label>
+          <label className="font-medium mb-1 flex items-center gap-2">
+            <FaClock className="text-orange-400" /> Preparation Time
+          </label>
           <input
             type="number"
             name="preparationTime"
@@ -146,7 +163,9 @@ const EditMyRecipe = ({ recipe, onClose, handleUpdateRecipe }) => {
         </div>
 
         <div className="md:col-span-2">
-          <label className="block mb-1">Ingredients</label>
+          <label className="font-medium mb-1 flex items-center gap-2">
+            <FaList className="text-orange-400" /> Ingredients
+          </label>
           <textarea
             name="ingredients"
             value={formData.ingredients}
@@ -159,7 +178,9 @@ const EditMyRecipe = ({ recipe, onClose, handleUpdateRecipe }) => {
         </div>
 
         <div className="md:col-span-2">
-          <label className="block mb-1">Instructions</label>
+          <label className="font-medium mb-1 flex items-center gap-2">
+            <FaBookOpen className="text-orange-400" /> Instructions
+          </label>
           <textarea
             name="instructions"
             value={formData.instructions}
@@ -172,7 +193,9 @@ const EditMyRecipe = ({ recipe, onClose, handleUpdateRecipe }) => {
         </div>
 
         <div className="md:col-span-2">
-          <label className="block font-medium mb-2">Categories</label>
+          <label className="font-medium mb-2 flex items-center gap-2">
+            <FaTag className="text-orange-400" /> Categories
+          </label>
           <div className="flex flex-wrap gap-4">
             {categoryOptions.map((cat) => (
               <label key={cat} className="flex items-center space-x-2">
@@ -181,7 +204,7 @@ const EditMyRecipe = ({ recipe, onClose, handleUpdateRecipe }) => {
                   value={cat}
                   checked={formData.categories.includes(cat)}
                   onChange={handleChange}
-                  className="accent-orange-500"
+                  className="checkbox checkbox-xs checkbox-warning"
                 />
                 <span>{cat}</span>
               </label>
@@ -191,7 +214,9 @@ const EditMyRecipe = ({ recipe, onClose, handleUpdateRecipe }) => {
 
         {/* Likes (editable) */}
         <div className="md:col-span-2">
-          <label className="block font-medium mb-1">Like Count</label>
+          <label className="font-medium mb-1 flex items-center gap-2">
+            <FaThumbsUp className="text-orange-400" /> Like Count
+          </label>
           <input
             type="number"
             name="likes"
