@@ -20,7 +20,7 @@ const Button = ({
   } else if (variant === "outline") {
     styles += "border border-[#f97316] py-1 text-[#f97316] hover:bg-orange-100";
   } else if (variant === "danger") {
-    styles += "bg-red-600 text-white hover:bg-red-500";
+    styles += "bg-red-500 py-1.5 text-white hover:bg-red-500";
   } else {
     styles +=
       "px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors";

@@ -13,6 +13,7 @@ import MyRecipes from "../pages/myRecipes/MyRecipes";
 import PrivateRoutes from "./PrivateRoutes";
 import EditMyRecipe from "../components/recipes/EditMyRecipe";
 import Wishlist from "../components/recipes/Wishlist";
+import MyProfile from "../pages/myProfile/MyProfile";
 
 const router = createBrowserRouter([
   {
@@ -76,6 +77,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <Wishlist />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/my-profile",
+        element: (
+          <PrivateRoutes>
+            <MyProfile />
           </PrivateRoutes>
         ),
       },

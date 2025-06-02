@@ -5,6 +5,7 @@ import {
   FaClipboardList,
   FaHome,
   FaRegSave,
+  FaRegUserCircle,
   FaSignOutAlt,
   FaTimes,
 } from "react-icons/fa";
@@ -140,6 +141,12 @@ const Navbar = () => {
                   {user?.displayName}
                 </p>
                 <hr className="text-orange-600" />
+                <Link to="/my-profile">
+                  <p className="px-4 text-sm font-medium text-orange-600 py-2">
+                    My Profile
+                  </p>
+                </Link>
+                <hr className="text-orange-600" />
                 <button
                   onClick={handleLogOut}
                   className="flex items-center gap-2 px-4 py-2 text-sm text-orange-600 w-full text-left cursor-pointer"
@@ -229,6 +236,16 @@ const Navbar = () => {
               >
                 <FaRegSave />
                 Wishlist
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/my-profile"
+                onClick={toggleMenu}
+                className={linksClass}
+              >
+                <FaRegUserCircle />
+                My Profile
               </NavLink>
             </li>
             <li className="space-x-2">
