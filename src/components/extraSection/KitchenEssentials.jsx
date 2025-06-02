@@ -15,6 +15,7 @@ const KitchenEssentials = () => {
       category: "Prep Tools",
       description: "Set of 3 stainless steel mixing bowls",
     },
+    
     {
       name: "Non-stick Pan",
       img: pan,
