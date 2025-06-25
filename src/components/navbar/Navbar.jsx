@@ -97,15 +97,15 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/add-recipe" className={linksClass}>
-              <MdLibraryAdd />
-              Add Recipe
+            <NavLink to="/my-recipes" className={linksClass}>
+              <FaClipboardList />
+              My Recipes
             </NavLink>
           </li>
           <li>
             <NavLink to="/my-recipes" className={linksClass}>
-              <FaClipboardList />
-              My Recipes
+              {/* <FaClipboardList /> */}
+              Dashboard
             </NavLink>
           </li>
           {user && (
