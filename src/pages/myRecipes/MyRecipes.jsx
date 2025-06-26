@@ -69,6 +69,7 @@ const MyRecipes = () => {
   if (myRecipes.length === 0) {
     return (
       <div className="flex justify-center items-center flex-col gap-4">
+        <title>My Recipe | Traditional Recipe</title>
         <h2 className="text-2xl font-semibold">You Didn't Add Recipe</h2>
         <Link to="/dashboard/add-recipe">
           <Button variant="outline">Browse Recipes</Button>
