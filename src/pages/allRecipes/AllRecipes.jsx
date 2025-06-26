@@ -11,7 +11,7 @@ const AllRecipes = () => {
   const [sortOrder, setSortOrder] = useState("asc");
 
   useEffect(() => {
-    fetch(`http://localhost:3000/recipes?searchParams=${search}`)
+    fetch(`https://traditional-recipe-server.vercel.app/recipes?searchParams=${search}`)
       .then((res) => res.json())
       .then((data) => setRecipes(data));
   }, [search]);
@@ -70,7 +70,7 @@ const AllRecipes = () => {
           onChange={(e) => setSearch(e.target.value)}
           required
           placeholder="Search by Recipe Name"
-          className="md:w-xs mt-1 border-1 border-gray-300 px-4 py-2 rounded-full focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200 bg-base-100 text-base-content"
+          className="md:w-xs mt-1 border-1 border-gray-300 px-4 py-1.5 rounded-full focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200 bg-base-100 text-base-content"
         />
         <Button>Search</Button>
       </form>

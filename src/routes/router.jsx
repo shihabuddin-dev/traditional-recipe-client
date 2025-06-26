@@ -30,7 +30,7 @@ const router = createBrowserRouter([
         index: true,
         hydrateFallbackElement: <Spinner />,
         loader: () =>
-          fetch("http://localhost:3000/recipes/top"),
+          fetch("https://traditional-recipe-server.vercel.app/recipes/top"),
         Component: Home,
       },
       { path: "about-us", Component: About },
@@ -43,7 +43,7 @@ const router = createBrowserRouter([
         path: "all-recipes",
         hydrateFallbackElement: <Spinner />,
         loader: () =>
-          fetch("http://localhost:3000/recipes"),
+          fetch("https://traditional-recipe-server.vercel.app/recipes"),
         Component: AllRecipes,
       },
 
@@ -67,7 +67,7 @@ const router = createBrowserRouter([
         hydrateFallbackElement: <Spinner />,
         loader: ({ params }) =>
           fetch(
-            `http://localhost:3000/recipes/${params.id}`
+            `https://traditional-recipe-server.vercel.app/recipes/${params.id}`
           ),
         Component: EditMyRecipe,
       },
@@ -75,7 +75,7 @@ const router = createBrowserRouter([
         path: "my-recipes",
         hydrateFallbackElement: <Spinner />,
         loader: () =>
-          fetch("http://localhost:3000/recipes"),
+          fetch("https://traditional-recipe-server.vercel.app/recipes"),
         Component: MyRecipes,
       },
       {
@@ -83,7 +83,7 @@ const router = createBrowserRouter([
         hydrateFallbackElement: <Spinner />,
         loader: ({ params }) =>
           fetch(
-            `http://localhost:3000/recipes/${params.id}`
+            `https://traditional-recipe-server.vercel.app/recipes/${params.id}`
           ),
         Component: RecipeDetails,
       },

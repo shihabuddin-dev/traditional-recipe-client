@@ -55,7 +55,7 @@ const EditMyRecipe = () => {
     }
     try {
       const res = await fetch(
-        `http://localhost:3000/recipes/${formData._id}`,
+        `https://traditional-recipe-server.vercel.app/recipes/${formData._id}`,
         {
           method: "PUT",
           headers: { "content-type": "application/json" },
@@ -78,7 +78,7 @@ const EditMyRecipe = () => {
 
   return (
     <div className="p-2">
-       <title>Edit Recipe || Traditional Recipe</title>
+      <title>Edit Recipe || Traditional Recipe</title>
       <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-center text-orange-600">
         ✏️ Edit Recipe
       </h2>

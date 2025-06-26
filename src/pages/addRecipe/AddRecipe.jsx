@@ -91,7 +91,7 @@ const AddRecipe = () => {
       createdAt: `${dateStr} ${timeStr}`,
     };
 
-    fetch("http://localhost:3000/recipes", {
+    fetch("https://traditional-recipe-server.vercel.app/recipes", {
       method: "POST",
       headers: {
         "content-type": "application/json",

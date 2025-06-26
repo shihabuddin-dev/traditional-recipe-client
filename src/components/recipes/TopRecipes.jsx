@@ -14,7 +14,7 @@ const TopRecipes = () => {
     const fetchTopRecipes = async () => {
       try {
         const res = await fetch(
-          "http://localhost:3000/recipes/top"
+          "https://traditional-recipe-server.vercel.app/recipes/top"
         );
         const data = await res.json();
         // Sort recipes by likes (descending) and keep top 6
