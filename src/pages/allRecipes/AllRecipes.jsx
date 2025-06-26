@@ -40,7 +40,7 @@ const AllRecipes = () => {
 
   const visibleRecipes = showAll
     ? filteredRecipes
-    : filteredRecipes.slice(0, 8);
+    : filteredRecipes.slice(0, 10);
 
   return (
     <div className="max-w-7xl mx-auto px-4">
@@ -83,7 +83,7 @@ const AllRecipes = () => {
       </div>
 
       {/* Recipe Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3">
         {visibleRecipes.map((recipe) => (
           <Recipe
             key={recipe._id}

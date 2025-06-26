@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Button from "../../components/ui/Button";
 import Swal from "sweetalert2";
 import {
@@ -10,6 +10,7 @@ import {
   FaTag,
   FaThumbsUp,
 } from "react-icons/fa";
+import { useLoaderData } from "react-router";
 
 const cuisineOptions = [
   "Bangladeshi",
@@ -24,18 +25,13 @@ const categoryOptions = ["Breakfast", "Lunch", "Dinner", "Dessert", "Vegan"];
 
 const inputBase =
   "w-full border-2 border-base-content/20 px-4 py-2 rounded-4xl focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200 bg-base-100 text-base-content";
-const EditMyRecipe = ({ recipe, onClose, handleUpdateRecipe }) => {
-  const [formData, setFormData] = useState({ ...recipe });
 
-  useEffect(() => {
-    if (recipe) {
-      setFormData(recipe);
-    }
-  }, [recipe]);
+const EditMyRecipe = () => {
+  const recipe = useLoaderData();
+  const [formData, setFormData] = useState({ ...recipe });
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-
     if (type === "checkbox") {
       setFormData((prev) => ({
         ...prev,
@@ -53,12 +49,10 @@ const EditMyRecipe = ({ recipe, onClose, handleUpdateRecipe }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (formData.categories.length === 0) {
       Swal.fire("Error!", "Please select at least one category!", "warning");
       return;
     }
-
     try {
       const res = await fetch(
         `http://localhost:3000/recipes/${formData._id}`,
@@ -68,12 +62,9 @@ const EditMyRecipe = ({ recipe, onClose, handleUpdateRecipe }) => {
           body: JSON.stringify(formData),
         }
       );
-
       if (res.ok) {
-        const updated = await res.json();
+        await res.json();
         Swal.fire("Success!", "Recipe updated successfully!", "success");
-        handleUpdateRecipe(updated); // call parent handler
-        onClose();
       } else {
         throw new Error("Failed to update");
       }

@@ -125,7 +125,7 @@ const Recipe = ({
     <Fade triggerOnce>
       <div className="flex flex-col h-full bg-base-150 rounded-2xl overflow-hidden shadow-lg border border-orange-100   hover:shadow-xl transition-all duration-300 relative">
         {/* Image Container */}
-        <div className="h-40 md:h-52 lg:h-42 overflow-hidden relative">
+        <div className="h-40 sm:h-46 overflow-hidden relative">
           {/* Popular Recipe Badge */}
           {likes > 10 && (
             <div className="absolute top-3 left-3 z-10 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md flex items-center">
@@ -156,15 +156,15 @@ const Recipe = ({
           <img
             src={image}
             alt={title}
-            className="w-full h-40 sm:h-48 md:h-52 lg:h-44 object-cover hover:scale-103 transition-transform duration-400 rounded-t-2xl"
+            className="w-full h-40 sm:h-46 object-cover hover:scale-103 transition-transform duration-400 rounded-t-2xl"
           />
         </div>
 
         {/* Content */}
-        <div className="p-4 md:p-5 flex flex-col flex-grow gap-2">
+        <div className="pt-2 pb-4 px-4 md:px-5 flex flex-col flex-grow gap-1">
           {/* Title & Cuisine */}
-          <h3 className="text-xl font-bold">{title}</h3>
-          <p className="text-sm italic">{cuisine} Cuisine</p>
+          <h3 className="text-lg md:text-xl font-semibold">{title}</h3>
+          <p className="text-sm italic border-t border-b border-gray-300 py-1">{cuisine} Cuisine</p>
 
           {/* Tags */}
           {/* <div className="flex flex-wrap gap-2 text-xs">
@@ -190,7 +190,7 @@ const Recipe = ({
           </p> */}
 
           {/* Footer: Like + View */}
-          <div className="mt-auto flex items-center justify-between py-2 border-t border-gray-300">
+          <div className="mt-auto flex items-center justify-between py-1">
             <button
               onClick={handleLike}
               className={`flex items-center text-orange-500 gap-1 hover:text-orange-600 transition text-sm font-medium ${disableLikeButton
@@ -213,12 +213,13 @@ const Recipe = ({
               <span className="text-sm">interested</span>
             </button>
 
-            <Link to={`/dashboard/recipes/${_id}`}>
-              <Button variant="secondary" className="text-xs md:text-sm">
-                View Details
-              </Button>
-            </Link>
           </div>
+          <Link to={`/dashboard/recipes/${_id}`}>
+            <Button variant="secondary" className="text-xs md:text-sm w-full">
+              View Details
+            </Button>
+          </Link>
+
 
           {/* Author Info */}
           {/* <div className="flex items-center gap-3">

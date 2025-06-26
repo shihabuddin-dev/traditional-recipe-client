@@ -25,7 +25,7 @@ const Navbar = () => {
   const dropdownRef = useRef(null);
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  // logout user
+  // sign out user
   const handleLogOut = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -150,7 +150,7 @@ const Navbar = () => {
                   onClick={handleLogOut}
                   className="flex items-center gap-2 px-4 py-2 text-sm text-orange-600 w-full text-left cursor-pointer"
                 >
-                  <FaSignOutAlt /> Logout
+                  <FaSignOutAlt /> Log Out
                 </button>
               </div>
             </div>
@@ -182,8 +182,8 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <div
         className={`lg:hidden fixed left-0 right-0 top-[64px] z-40 transition-all duration-300 ${isOpen
-            ? "opacity-100 translate-y-0 pointer-events-auto"
-            : "opacity-0 -translate-y-8 pointer-events-none"
+          ? "opacity-100 translate-y-0 pointer-events-auto"
+          : "opacity-0 -translate-y-8 pointer-events-none"
           }`}
         style={{ minHeight: isOpen ? "calc(100vh - 72px)" : 0 }}
         aria-hidden={!isOpen}

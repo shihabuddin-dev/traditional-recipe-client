@@ -18,7 +18,7 @@ const TopRecipes = () => {
         );
         const data = await res.json();
         // Sort recipes by likes (descending) and keep top 6
-        const sorted = [...data].sort((a, b) => b.likes - a.likes).slice(0, 8);
+        const sorted = [...data].sort((a, b) => b.likes - a.likes).slice(0, 10);
         setRecipes(sorted);
       } catch (error) {
         console.error("Error fetching top recipes:", error);
@@ -37,7 +37,7 @@ const TopRecipes = () => {
         r._id === id ? { ...r, likes: r.likes + 1 } : r
       );
       // Re-sort top recipes by likes
-      return [...updated].sort((a, b) => b.likes - a.likes).slice(0, 8);
+      return [...updated].sort((a, b) => b.likes - a.likes).slice(0, 10);
     });
   };
 
@@ -71,7 +71,7 @@ const TopRecipes = () => {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
           {recipes.map((recipe) => (
             <Recipe
               key={recipe._id}

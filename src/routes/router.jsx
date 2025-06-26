@@ -16,6 +16,8 @@ import About from "../pages/about/About";
 import Contact from "../pages/contact/Contact";
 import DashboardLayout from "../layout/DashboardLayout";
 import PrivateRoutes from "./PrivateRoutes";
+import DashboardHome from "../components/dashboardHome/DashboardHome";
+import EditMyRecipe from "../components/recipes/EditMyRecipe";
 
 const router = createBrowserRouter([
   {
@@ -51,8 +53,21 @@ const router = createBrowserRouter([
     element: <PrivateRoutes><DashboardLayout /></PrivateRoutes>,
     children: [
       {
+        index: true,
+        Component: DashboardHome
+      },
+      {
         path: "add-recipe",
         Component: AddRecipe,
+      },
+      {
+        path: "edit/recipes/:id",
+        hydrateFallbackElement: <Spinner />,
+        loader: ({ params }) =>
+          fetch(
+            `http://localhost:3000/recipes/${params.id}`
+          ),
+        Component: EditMyRecipe,
       },
       {
         path: "my-recipes",

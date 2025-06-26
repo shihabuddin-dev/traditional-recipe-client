@@ -1,55 +1,92 @@
 import React, { use } from "react";
 import { Outlet, NavLink, Link } from "react-router";
-import { FaHome, FaClipboardList, FaRegSave, FaUserCircle, FaPlus, FaSignOutAlt } from "react-icons/fa";
+import { FaHome, FaClipboardList, FaRegSave, FaPlus, FaSignOutAlt, FaUserCircle } from "react-icons/fa";
 import logo from "../assets/logo.png";
 import { FirebaseAuthContext } from "../provider/FirebaseAuthContext";
+import Button from "../components/ui/Button";
+import Swal from "sweetalert2";
 
 const DashboardLayout = () => {
-    const { user, logOutUser } = use(FirebaseAuthContext);
+    const { logOutUser } = use(FirebaseAuthContext);
+
+
+    // logout user
+    const handleLogOut = () => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, log out!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                logOutUser();
+                Swal.fire({
+                    title: "Logged out!",
+                    text: "You have been logged out.",
+                    icon: "success",
+                })
+                    .then(() => { })
+                    .catch((error) => {
+                        console.log(error);
+                        Swal.fire({
+                            title: "Error!",
+                            text: "Logout failed.",
+                            icon: "error",
+                        });
+                    });
+            }
+        });
+    };
 
     return (
         <div className="min-h-screen bg-base-100 flex flex-col md:flex-row">
             {/* Sidebar */}
             <aside className="w-full md:w-64 bg-base-200 border-r border-orange-100 flex flex-col items-center py-8 px-4 md:fixed md:h-full z-20">
-                <Link to='/'>  <img src={logo} alt="Logo" className="w-16 h-16 mb-4 rounded-full shadow" /></Link>
+                <Link to='/'>  <img src={logo} alt="Logo" className="w-16 h-16 mb-1 rounded-full shadow" /></Link>
 
                 <h2 className="text-xl font-bold text-orange-600 mb-8">Dashboard</h2>
                 <nav className="flex flex-col gap-3 w-full">
-                    <NavLink to="/" className={({ isActive }) => `flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition ${isActive ? 'bg-orange-100 text-orange-600' : 'hover:bg-orange-50 text-base-content'}`}>
+
+                    <NavLink to="/dashboard" className={({ isActive }) => `flex items-center gap-2 px-4 py-2 rounded-full font-medium transition ${isActive ? 'bg-orange-100 text-orange-600' : 'hover:bg-orange-50 text-base-content '}`}>
                         <FaHome /> Home
                     </NavLink>
-                    <NavLink to="/dashboard/add-recipe" className={({ isActive }) => `flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition ${isActive ? 'bg-orange-100 text-orange-600' : 'hover:bg-orange-50 text-base-content'}`}>
+                    <NavLink to="/dashboard/add-recipe" className={({ isActive }) => `flex items-center gap-2 px-4 py-2 rounded-full font-medium transition ${isActive ? 'bg-orange-100 text-orange-600' : 'hover:text-black hover:bg-orange-50 text-base-content'}`}>
                         <FaPlus /> Add Recipe
                     </NavLink>
-                    <NavLink to="/dashboard/my-recipes" className={({ isActive }) => `flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition ${isActive ? 'bg-orange-100 text-orange-600' : 'hover:bg-orange-50 text-base-content'}`}>
+                    <NavLink to="/dashboard/my-recipes" className={({ isActive }) => `flex items-center gap-2 px-4 py-2 rounded-full font-medium transition ${isActive ? 'bg-orange-100 text-orange-600' : 'hover:text-black hover:bg-orange-50 text-base-content'}`}>
                         <FaClipboardList /> My Recipes
                     </NavLink>
-                    <NavLink to="/dashboard/wishlist" className={({ isActive }) => `flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition ${isActive ? 'bg-orange-100 text-orange-600' : 'hover:bg-orange-50 text-base-content'}`}>
+                    <NavLink to="/dashboard/wishlist" className={({ isActive }) => `flex items-center gap-2 px-4 py-2 rounded-full font-medium transition ${isActive ? 'bg-orange-100 text-orange-600' : 'hover:text-black hover:bg-orange-50 text-base-content'}`}>
                         <FaRegSave /> Wishlist
                     </NavLink>
-                    <NavLink to="/dashboard/my-profile" className={({ isActive }) => `flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition ${isActive ? 'bg-orange-100 text-orange-600' : 'hover:bg-orange-50 text-base-content'}`}>
+                    <NavLink to="/dashboard/my-profile" className={({ isActive }) => `flex items-center gap-2 px-4 py-2 rounded-full font-medium transition ${isActive ? 'bg-orange-100 text-orange-600' : 'hover:bg-orange-50 text-base-content'}`}>
                         <FaUserCircle /> My Profile
                     </NavLink>
+                    <Button onClick={handleLogOut} variant="danger" className="flex items-center gap-1">
+                        <FaSignOutAlt /> Sign Out
+                    </Button>
                 </nav>
-                <div className="mt-auto w-full flex flex-col items-center gap-2 pt-8">
+                {/* <div className="mt-auto w-full flex flex-col items-center 
+                gap-2 pt-8"
+                    onClick={() => navigate("/dashboard/my-profile")}
+                >
                     {user && (
                         <>
                             <img src={user.photoURL || "/src/assets/user-logo.png"} alt="User" className="w-12 h-12 rounded-full border border-orange-400 mb-2" />
                             <span className="font-semibold text-orange-600 text-sm mb-2">{user.displayName || "User"}</span>
-                            <button onClick={logOutUser} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-orange-500 hover:bg-orange-600 text-white font-semibold transition">
-                                <FaSignOutAlt /> Logout
-                            </button>
+                            <Button onClick={handleLogOut} variant="danger" className="flex items-center gap-1">
+                                <FaSignOutAlt /> Log Out
+                            </Button>
                         </>
                     )}
-                </div>
+                </div> */}
             </aside>
             {/* Main Content */}
             <main className="flex-1 md:ml-64 p-4 md:p-8 bg-base-100 min-h-screen">
-                <div className="mb-6">
-                    <h1 className="text-2xl md:text-3xl font-bold text-orange-600">Welcome to your Dashboard</h1>
-                    <p className="text-base-content/70 mt-1">Manage your recipes, wishlist, and profile all in one place.</p>
-                </div>
-                <div className="bg-base-200 rounded-xl shadow p-4 md:p-8 min-h-[60vh]">
+                <div className="bg-base-200 rounded-xl shadow p-4 md:p-8 min-h-screen">
                     <Outlet />
                 </div>
             </main>

@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router";
 import Button from "../../components/ui/Button";
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import Lottie from "lottie-react";
+import notFound from '../../assets/notFount.json'
 
 const NotFound = () => {
   return (
@@ -17,11 +18,10 @@ const NotFound = () => {
         <span className="inline-block text-2xl md:text-4xl">🍩</span>
         <span className="inline-block text-2xl md:text-4xl">🍰</span>
       </div>
-      <DotLottieReact
-        src="https://lottie.host/2af52792-efb1-4da5-b6e7-c382a06e29ec/JclbtQHOhB.lottie"
-        loop
-        autoplay
-      />
+      <Lottie
+        animationData={notFound}
+        className="w-full h-[200px] md:h-[300px] rounded-2xl"
+      ></Lottie>
     </div>
   );
 };

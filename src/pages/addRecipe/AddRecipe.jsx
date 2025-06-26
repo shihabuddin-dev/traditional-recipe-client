@@ -108,7 +108,7 @@ const AddRecipe = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/my-recipes");
+        navigate("/dashboard/my-recipes");
       })
       .catch((err) => {
         console.error("Error saving recipe:", err);
