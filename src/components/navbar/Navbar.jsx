@@ -247,6 +247,20 @@ const Navbar = () => {
                 </NavLink>
               </li>
             )}
+            <li>{
+              user ?
+                <Button
+                  variant="danger"
+                  onClick={handleLogOut}
+
+                >
+                  Sign Out
+                </Button>
+                : <Link to="/signin" onClick={toggleMenu}>
+                  <Button>Sign In</Button>
+                </Link>
+            }</li>
+
           </ul>
         </div>
       </div>

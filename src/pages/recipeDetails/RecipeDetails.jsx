@@ -113,6 +113,7 @@ const RecipeDetails = () => {
 
   return (
     <div className="max-w-5xl mx-auto px-4">
+      <title>Details Recipe| Traditional Recipe</title>
       {/* Top Action Buttons */}
       <div className="max-w-5xl mx-auto px-2 flex flex-col sm:flex-row items-center justify-between flex-wrap gap-4 mb-8">
         <Button
@@ -189,9 +190,8 @@ const RecipeDetails = () => {
           <button
             onClick={handleLike}
             disabled={isLiking || isOwner}
-            className={`flex items-center gap-1 focus:outline-none transition ${
-              isOwner ? "opacity-50 cursor-not-allowed" : "hover:text-red-700"
-            }`}
+            className={`flex items-center gap-1 focus:outline-none transition ${isOwner ? "opacity-50 cursor-not-allowed" : "hover:text-red-700"
+              }`}
             title={
               isOwner ? "You can't like your own recipe" : "Like this recipe"
             }

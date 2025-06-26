@@ -108,7 +108,7 @@ const SignIn = () => {
 
   return (
     <div className="flex gap-4 flex-col md:flex-row justify-center items-center max-w-5xl">
-      <title>Sign In || Traditional Recipe</title>
+      <title>Sign In | Traditional Recipe</title>
       <div className="flex-1">
         <DotLottieReact
           src="https://lottie.host/33baafdb-458c-4bde-ac78-8f6fc29efe18/wc1rzpJe2S.lottie"

@@ -51,7 +51,7 @@ const AllRecipes = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4">
-      <title>All Recipes || Traditional Recipe</title>
+      <title>All Recipes | Traditional Recipe</title>
       {/* Header */}
       <div className="text-center mb-4">
         <h2 className="text-3xl md:text-4xl font-semibold mb-2">

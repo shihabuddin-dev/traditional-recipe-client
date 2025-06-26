@@ -19,6 +19,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import DashboardHome from "../components/dashboardHome/DashboardHome";
 import EditMyRecipe from "../components/recipes/EditMyRecipe";
 import Gallery from "../pages/gallery/Gallery";
+import Statistic from "../pages/statistic/Statistic";
 
 const router = createBrowserRouter([
   {
@@ -90,6 +91,15 @@ const router = createBrowserRouter([
       {
         path: "wishlist",
         Component: Wishlist,
+      },
+      {
+        path: "statistic",
+        hydrateFallbackElement: <Spinner />,
+        loader: () =>
+          fetch(
+            'https://traditional-recipe-server.vercel.app/recipes'
+          ),
+        Component: Statistic,
       },
       {
         path: "my-profile",

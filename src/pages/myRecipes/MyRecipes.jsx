@@ -81,7 +81,7 @@ const MyRecipes = () => {
 
   return (
     <div className="max-w-5xl mx-auto">
-      <title>My Recipes || Traditional Recipe</title>
+      <title>My Recipes | Traditional Recipe</title>
       <h2 className="text-3xl font-bold text-center mb-2">My Recipes</h2>
       <div className="w-20 h-1 bg-orange-500 mx-auto mb-8"></div>
       <div className="grid sm:grid-cols-2 gap-5">

@@ -61,6 +61,7 @@ const ResetPassword = () => {
 
   return (
     <div className="flex gap-4 flex-col md:flex-row justify-center items-center max-w-5xl">
+      <title>Reset Password | Traditional Recipe</title>
       <div>
         <DotLottieReact
           src="https://lottie.host/51f5308c-206b-417f-881d-aa04e13b5e0f/ed3vyy5La9.lottie"

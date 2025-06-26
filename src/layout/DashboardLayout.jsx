@@ -5,6 +5,7 @@ import logo from "../assets/logo.png";
 import { FirebaseAuthContext } from "../provider/FirebaseAuthContext";
 import Button from "../components/ui/Button";
 import Swal from "sweetalert2";
+import { MdBarChart } from "react-icons/md";
 
 const DashboardLayout = () => {
     const { logOutUser } = use(FirebaseAuthContext);
@@ -67,6 +68,7 @@ const DashboardLayout = () => {
                     <NavLink to="/dashboard/add-recipe" onClick={closeSidebarOnMobile} className={({ isActive }) => `flex items-center gap-2 px-4 py-2 rounded-full font-medium transition ${isActive ? 'bg-orange-100 text-orange-600' : 'hover:text-black hover:bg-orange-50 text-base-content'}`}> <FaPlus /> Add Recipe </NavLink>
                     <NavLink to="/dashboard/my-recipes" onClick={closeSidebarOnMobile} className={({ isActive }) => `flex items-center gap-2 px-4 py-2 rounded-full font-medium transition ${isActive ? 'bg-orange-100 text-orange-600' : 'hover:text-black hover:bg-orange-50 text-base-content'}`}> <FaClipboardList /> My Recipes </NavLink>
                     <NavLink to="/dashboard/wishlist" onClick={closeSidebarOnMobile} className={({ isActive }) => `flex items-center gap-2 px-4 py-2 rounded-full font-medium transition ${isActive ? 'bg-orange-100 text-orange-600' : 'hover:text-black hover:bg-orange-50 text-base-content'}`}> <FaRegSave /> Wishlist </NavLink>
+                    <NavLink to="/dashboard/statistic" onClick={closeSidebarOnMobile} className={({ isActive }) => `flex items-center gap-2 px-4 py-2 rounded-full font-medium transition ${isActive ? 'bg-orange-100 text-orange-600' : 'hover:text-black hover:bg-orange-50 text-base-content'}`}> <MdBarChart /> Statistic </NavLink>
                     <NavLink to="/dashboard/my-profile" onClick={closeSidebarOnMobile} className={({ isActive }) => `flex items-center gap-2 px-4 py-2 rounded-full font-medium transition ${isActive ? 'bg-orange-100 text-orange-600' : 'hover:bg-orange-50 text-base-content'}`}> <FaUserCircle /> My Profile </NavLink>
                     <Button onClick={() => { handleLogOut(); closeSidebarOnMobile(); }} variant="danger" className="flex items-center gap-1"> <FaSignOutAlt /> Sign Out </Button>
                 </nav>

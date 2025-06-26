@@ -29,6 +29,7 @@ const Wishlist = () => {
   if (wishlist.length === 0) {
     return (
       <div className="flex justify-center items-center flex-col gap-4">
+        <title>Wishlist | Traditional Recipe</title>
         <h2 className="text-2xl font-semibold">Your Wishlist is empty</h2>
         <Link to="/all-recipes">
           <Button variant="outline">Browse Recipes</Button>

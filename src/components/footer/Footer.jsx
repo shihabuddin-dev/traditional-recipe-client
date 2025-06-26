@@ -6,6 +6,7 @@ import {
   FaEnvelope,
   FaPhoneAlt,
   FaMapMarkerAlt,
+  FaLinkedin,
 } from "react-icons/fa";
 import Button from "../ui/Button";
 import { Link } from "react-router";
@@ -40,13 +41,13 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link to="/add-recipe" className="hover:text-orange-500">
-                Add Recipe
+              <Link to="/about-us" className="hover:text-orange-500">
+                About Us
               </Link>
             </li>
             <li>
-              <Link to="/my-recipes" className="hover:text-orange-500">
-                My Recipes
+              <Link to="/gallery" className="hover:text-orange-500">
+                Gallery
               </Link>
             </li>
           </ul>
@@ -109,6 +110,13 @@ const Footer = () => {
             rel="noopener noreferrer"
           >
             <FaInstagram size={18} />
+          </a>
+          <a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaLinkedin size={18} />
           </a>
         </div>
       </div>

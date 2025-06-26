@@ -94,6 +94,7 @@ const Gallery = () => {
 
     return (
         <div>
+            <title>Gallery | Traditional Recipe</title>
             <h2 className="text-3xl md:text-4xl font-semibold mb-2 text-center">
                 Recipes Gallery
             </h2>

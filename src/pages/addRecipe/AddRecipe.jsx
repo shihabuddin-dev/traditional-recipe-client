@@ -123,7 +123,7 @@ const AddRecipe = () => {
   return (
     <div>
       <div className="max-w-5xl mx-auto px-2 flex justify-between">
-        <title>Add Recipe || Traditional Recipe</title>
+        <title>Add Recipe | Traditional Recipe</title>
         <Button
           onClick={() => navigate(-1)}
           variant="outline"

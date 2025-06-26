@@ -5,6 +5,7 @@ import logo from '../../assets/logo.png'
 const About = () => {
     return (
         <section className="max-w-5xl mx-auto px-4 text-base-content">
+            <title>About Us | Traditional Recipe</title>
             <h2 className="text-3xl md:text-4xl font-semibold mb-2 text-center">
                 About Traditional Recipe
             </h2>
@@ -24,7 +25,7 @@ const About = () => {
                     <img
                         src={logo}
                         alt="Traditional Recipe Logo"
-                        className="w-28 h-28 md:w-40 md:h-40 object-contain rounded-full shadow-sm border-4 border-orange-200 bg-white hover:scale-105 transition-transform duration-300"
+                        className="w-32 h-32 md:w-40 md:h-40 object-contain rounded-full shadow-sm border-4 border-orange-200 bg-white hover:scale-105 transition-transform duration-300"
                     />
                 </div>
             </div>

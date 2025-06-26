@@ -7,7 +7,7 @@ import notFound from '../../assets/notFount.json'
 const NotFound = () => {
   return (
     <div className=" w-full flex flex-col items-center justify-center bg-white px-4 py-8 transition-colors duration-300">
-      <title>Not Found || Traditional Recipe</title>
+      <title>Not Found | Traditional Recipe</title>
       <div className="w-full max-w-md flex flex-col items-center gap-4 relative">
         <Lottie
           animationData={notFound}
