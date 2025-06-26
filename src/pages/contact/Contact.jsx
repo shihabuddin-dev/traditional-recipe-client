@@ -27,7 +27,7 @@ const Contact = () => {
     return (
         <section className="max-w-4xl mx-auto px-2 sm:px-4 text-base-content">
             <h2 className="text-3xl md:text-4xl font-semibold mb-2 flex justify-center items-center text-cente gap-2">
-                <FaEnvelope className="text-xl sm:text-2xl md:text-3xl text-orange-600" /> Contact Us
+                Contact Us
             </h2>
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-10 mb-8 md:mb-12">
                 <div className="flex-1 flex justify-center mb-4 md:mb-0">

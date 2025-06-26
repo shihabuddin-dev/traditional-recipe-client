@@ -10,11 +10,12 @@ import AllRecipes from "../pages/allRecipes/AllRecipes";
 import RecipeDetails from "../pages/recipeDetails/RecipeDetails";
 import ResetPassword from "../pages/auth/ResetPassword";
 import MyRecipes from "../pages/myRecipes/MyRecipes";
-import PrivateRoutes from "./PrivateRoutes";
 import Wishlist from "../components/recipes/Wishlist";
 import MyProfile from "../pages/myProfile/MyProfile";
 import About from "../pages/about/About";
 import Contact from "../pages/contact/Contact";
+import DashboardLayout from "../layout/DashboardLayout";
+import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
   {
@@ -29,75 +30,54 @@ const router = createBrowserRouter([
           fetch("http://localhost:3000/recipes/top"),
         Component: Home,
       },
-      { path: "/about-us", Component: About },
-      { path: "/contact-us", Component: Contact },
-      { path: "/signin", Component: SignIn },
-      { path: "/signup", Component: SignUp },
-      { path: "/reset-password", Component: ResetPassword },
+      { path: "about-us", Component: About },
+      { path: "contact-us", Component: Contact },
+      { path: "signin", Component: SignIn },
+      { path: "signup", Component: SignUp },
+      { path: "reset-password", Component: ResetPassword },
       {
-        path: "/all-recipes",
+        path: "all-recipes",
         hydrateFallbackElement: <Spinner />,
         loader: () =>
           fetch("http://localhost:3000/recipes"),
         Component: AllRecipes,
       },
 
-      // private routes
+    ],
+  },
+  // Dashboard private routes
+  {
+    path: "/dashboard",
+    element: <PrivateRoutes><DashboardLayout /></PrivateRoutes>,
+    children: [
       {
-        path: "/add-recipe",
-        element: (
-          <PrivateRoutes>
-            <AddRecipe />
-          </PrivateRoutes>
-        ),
+        path: "add-recipe",
+        Component: AddRecipe,
       },
       {
-        path: "/my-recipes",
+        path: "my-recipes",
         hydrateFallbackElement: <Spinner />,
         loader: () =>
           fetch("http://localhost:3000/recipes"),
-        element: (
-          <PrivateRoutes>
-            <MyRecipes />
-          </PrivateRoutes>
-        ),
+        Component: MyRecipes,
       },
       {
-        path: "/recipes/:id",
+        path: "recipes/:id",
         hydrateFallbackElement: <Spinner />,
         loader: ({ params }) =>
           fetch(
             `http://localhost:3000/recipes/${params.id}`
           ),
-        element: (
-          <PrivateRoutes>
-            <RecipeDetails />
-          </PrivateRoutes>
-        ),
+        Component: RecipeDetails,
       },
       {
-        path: "/wishlist",
-        element: (
-          <PrivateRoutes>
-            <Wishlist />
-          </PrivateRoutes>
-        ),
+        path: "wishlist",
+        Component: Wishlist,
       },
       {
-        path: "/my-profile",
-        element: (
-          <PrivateRoutes>
-            <MyProfile />
-          </PrivateRoutes>
-        ),
+        path: "my-profile",
+        Component: MyProfile,
       },
-      // {
-      //     path: '/profile',
-      //     element:
-      //         <PrivateRoutes>
-      //             <Profile />
-      //         </PrivateRoutes>
-      // },
     ],
   },
 ]);

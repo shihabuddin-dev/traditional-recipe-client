@@ -61,7 +61,7 @@ const WhyChooseUs = () => (
           <Fade key={i} direction={i % 2 === 0 ? "down" : "right"} triggerOnce>
             <div
               key={i}
-              className="bg-base-100 border   border-orange-200 rounded-2xl shadow-md p-8 flex flex-col items-center hover:shadow-xl transition-shadow-xs duration-800"
+              className="bg-base-100 border border-orange-200 rounded-2xl shadow-md p-8 flex flex-col items-center hover:shadow-xl transition-shadow-xs duration-800"
             >
               {f.icon}
               <h3 className="text-xl font-semibold mb-2">{f.title}</h3>

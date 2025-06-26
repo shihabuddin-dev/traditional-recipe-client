@@ -17,6 +17,8 @@ import hero6 from "../../assets/hero/hero-6.webp";
 import hero7 from "../../assets/hero/hero-7.jpg";
 import hero8 from "../../assets/hero/hero-8.jpg";
 import hero9 from "../../assets/hero/hero-9.jpg";
+import Button from "../ui/Button";
+import { Link } from "react-router";
 
 const HeroSlider = () => {
   const images = [
@@ -68,7 +70,7 @@ const HeroSlider = () => {
       >
         {images.map((image, idx) => (
           <SwiperSlide key={idx}>
-            <div className="group relative rounded-2xl overflow-hidden h-[240px] md:h-[300px] lg:h-[400px] bg-base-200">
+            <div className="group relative rounded-2xl overflow-hidden h-[220px] md:h-[300px] lg:h-[350px] bg-base-200">
               <img
                 src={image.src}
                 alt={`Slide ${idx + 1}`}
@@ -79,9 +81,10 @@ const HeroSlider = () => {
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 drop-shadow-lg">
                   {image.title}
                 </h2>
-                <p className="text-lg md:text-xl text-white/90 drop-shadow-lg">
+                <p className="mb-2 text-lg md:text-xl text-white/90 drop-shadow-lg">
                   {image.subtitle}
                 </p>
+                <Link to='/all-recipes'>  <Button variant="outline" className="border-white text-white hover:text-black">Explore</Button></Link>
               </div>
             </div>
           </SwiperSlide>

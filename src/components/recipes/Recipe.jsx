@@ -125,7 +125,7 @@ const Recipe = ({
     <Fade triggerOnce>
       <div className="flex flex-col h-full bg-base-150 rounded-2xl overflow-hidden shadow-lg border border-orange-100   hover:shadow-xl transition-all duration-300 relative">
         {/* Image Container */}
-        <div className="h-48 md:h-52 lg:h-44 overflow-hidden relative">
+        <div className="h-40 md:h-52 lg:h-42 overflow-hidden relative">
           {/* Popular Recipe Badge */}
           {likes > 10 && (
             <div className="absolute top-3 left-3 z-10 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md flex items-center">
@@ -156,7 +156,7 @@ const Recipe = ({
           <img
             src={image}
             alt={title}
-            className="w-full h-full object-cover hover:scale-102 transition-transform duration-800"
+            className="w-full h-40 sm:h-48 md:h-52 lg:h-44 object-cover hover:scale-103 transition-transform duration-400 rounded-t-2xl"
           />
         </div>
 
@@ -190,14 +190,13 @@ const Recipe = ({
           </p> */}
 
           {/* Footer: Like + View */}
-          <div className="mt-auto flex items-center justify-between py-2 border-t   border-orange-200">
+          <div className="mt-auto flex items-center justify-between py-2 border-t border-gray-300">
             <button
               onClick={handleLike}
-              className={`flex items-center text-orange-500 gap-1 hover:text-orange-600 transition text-sm font-medium ${
-                disableLikeButton
-                  ? "cursor-not-allowed pointer-events-none opacity-60"
-                  : ""
-              }`}
+              className={`flex items-center text-orange-500 gap-1 hover:text-orange-600 transition text-sm font-medium ${disableLikeButton
+                ? "cursor-not-allowed pointer-events-none opacity-60"
+                : ""
+                }`}
               disabled={isLiking || disableLikeButton}
               title={
                 disableLikeButton
@@ -214,7 +213,7 @@ const Recipe = ({
               <span className="text-sm">interested</span>
             </button>
 
-            <Link to={`/recipes/${_id}`}>
+            <Link to={`/dashboard/recipes/${_id}`}>
               <Button variant="secondary" className="text-xs md:text-sm">
                 View Details
               </Button>

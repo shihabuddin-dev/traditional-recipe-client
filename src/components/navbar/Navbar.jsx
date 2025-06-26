@@ -90,23 +90,10 @@ const Navbar = () => {
               Home
             </NavLink>
           </li>
-
-          <li>
-            <NavLink to="/add-recipe" className={linksClass}>
-              <MdLibraryAdd />
-              Add Recipes
-            </NavLink>
-          </li>
           <li>
             <NavLink to="/all-recipes" className={linksClass}>
               <SiIfood />
               All Recipes
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/my-recipes" className={linksClass}>
-              <FaClipboardList />
-              My Recipes
             </NavLink>
           </li>
           <li>
@@ -121,12 +108,11 @@ const Navbar = () => {
               Contact Us
             </NavLink>
           </li>
-
           {user && (
             <li>
-              <NavLink to="/wishlist" className={linksClass}>
-                <FaRegSave />
-                Wishlist
+              <NavLink to="/dashboard" className={linksClass}>
+                <FaRegUserCircle />
+                Dashboard
               </NavLink>
             </li>
           )}
@@ -222,75 +208,36 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink
-                to="/add-recipe"
-                onClick={toggleMenu}
-                className={linksClass}
-              >
-                <MdLibraryAdd />
-                Add Recipe
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="/my-recipes"
+                to="/about-us"
                 onClick={toggleMenu}
                 className={linksClass}
               >
                 <FaClipboardList />
-                My Recipes
+                About Us
               </NavLink>
             </li>
             <li>
               <NavLink
-                to="/wishlist"
+                to="/contact-us"
                 onClick={toggleMenu}
                 className={linksClass}
               >
-                <FaRegSave />
-                Wishlist
+                <FaClipboardList />
+                Contact Us
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                to="/my-profile"
-                onClick={toggleMenu}
-                className={linksClass}
-              >
-                <FaRegUserCircle />
-                My Profile
-              </NavLink>
-            </li>
-            <li className="space-x-2">
-              {user ? (
-                <div className="flex gap-4 items-center">
-                  <img
-                    src={user?.photoURL ? user?.photoURL : ""}
-                    alt="profile"
-                    className="w-9 h-9 rounded-full border border-orange-400"
-                  />
-                  <div>
-                    <p className="text-sm text-orange-600 font-medium">
-                      {user?.displayName}
-                    </p>
-                    <button
-                      onClick={handleLogOut}
-                      className="flex items-center gap-2 text-sm text-orange-600 w-full"
-                    >
-                      <FaSignOutAlt /> Logout
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <>
-                  <Link to="/signin" onClick={toggleMenu}>
-                    <Button variant="outline">Sign In</Button>
-                  </Link>
-                  <Link to="/signup" onClick={toggleMenu}>
-                    <Button>Sign Up</Button>
-                  </Link>
-                </>
-              )}
-            </li>
+            {user && (
+              <li>
+                <NavLink
+                  to="/dashboard"
+                  onClick={toggleMenu}
+                  className={linksClass}
+                >
+                  <FaRegUserCircle />
+                  Dashboard
+                </NavLink>
+              </li>
+            )}
           </ul>
         </div>
       </div>
