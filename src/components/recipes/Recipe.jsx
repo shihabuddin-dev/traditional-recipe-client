@@ -21,14 +21,14 @@ const Recipe = ({
     _id,
     image,
     title,
-    ingredients,
+    // ingredients,
     cuisine,
-    preparationTime,
-    categories,
+    // preparationTime,
+    // categories,
     likes: initialLikes,
-    userName,
-    userPhoto,
-    createdAt,
+    // userName,
+    // userPhoto,
+    // createdAt,
     userEmail,
   } = recipe;
 
@@ -53,7 +53,7 @@ const Recipe = ({
 
     setIsLiking(true);
     try {
-      const res = await fetch(`https://traditional-recipe-server.vercel.app/recipes/${_id}/like`, {
+      const res = await fetch(`http://localhost:3000/recipes/${_id}/like`, {
         method: "PATCH",
       });
 
@@ -115,11 +115,11 @@ const Recipe = ({
     }
   }, [user, recipe._id]);
 
-  const formattedDate = new Date(createdAt).toLocaleDateString("en-GB", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-  });
+  // const formattedDate = new Date(createdAt).toLocaleDateString("en-GB", {
+  //   day: "2-digit",
+  //   month: "short",
+  //   year: "numeric",
+  // });
 
   return (
     <Fade delay={200}>
@@ -167,7 +167,7 @@ const Recipe = ({
           <p className="text-sm italic">{cuisine} Cuisine</p>
 
           {/* Tags */}
-          <div className="flex flex-wrap gap-2 text-xs">
+          {/* <div className="flex flex-wrap gap-2 text-xs">
             <span className="bg-orange-100 text-orange-600 px-3 py-1 rounded-full">
               ⏱ {preparationTime} min
             </span>
@@ -179,18 +179,18 @@ const Recipe = ({
                 {cat}
               </span>
             ))}
-          </div>
+          </div> */}
 
           {/* Ingredients */}
-          <p className="text-sm line-clamp-2">
+          {/* <p className="text-sm line-clamp-2">
             <strong>Ingredients:</strong>{" "}
             {ingredients.length > 50
               ? ingredients.slice(0, 50) + "..."
               : ingredients}
-          </p>
+          </p> */}
 
           {/* Footer: Like + View */}
-          <div className="mt-auto flex items-center justify-between py-2 border-t border-b border-dashed border-orange-200">
+          <div className="mt-auto flex items-center justify-between py-2 border-t border-dashed border-orange-200">
             <button
               onClick={handleLike}
               className={`flex items-center text-orange-500 gap-1 hover:text-orange-600 transition text-sm font-medium ${
@@ -222,7 +222,7 @@ const Recipe = ({
           </div>
 
           {/* Author Info */}
-          <div className="flex items-center gap-3">
+          {/* <div className="flex items-center gap-3">
             <img
               src={userPhoto}
               alt={userName}
@@ -233,7 +233,7 @@ const Recipe = ({
               <p className="font-semibold">By: {userName}</p>
               <p className="text-xs">Published: {formattedDate}</p>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </Fade>

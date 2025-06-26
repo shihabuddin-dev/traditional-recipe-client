@@ -48,7 +48,7 @@ const MyRecipes = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://traditional-recipe-server.vercel.app/recipes/${id}`, {
+        fetch(`http://localhost:3000/recipes/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

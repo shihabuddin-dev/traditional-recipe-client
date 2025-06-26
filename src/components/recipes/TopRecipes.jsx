@@ -14,11 +14,11 @@ const TopRecipes = () => {
     const fetchTopRecipes = async () => {
       try {
         const res = await fetch(
-          "https://traditional-recipe-server.vercel.app/recipes/top"
+          "http://localhost:3000/recipes/top"
         );
         const data = await res.json();
         // Sort recipes by likes (descending) and keep top 6
-        const sorted = [...data].sort((a, b) => b.likes - a.likes).slice(0, 6);
+        const sorted = [...data].sort((a, b) => b.likes - a.likes).slice(0, 8);
         setRecipes(sorted);
       } catch (error) {
         console.error("Error fetching top recipes:", error);
@@ -37,7 +37,7 @@ const TopRecipes = () => {
         r._id === id ? { ...r, likes: r.likes + 1 } : r
       );
       // Re-sort top recipes by likes
-      return [...updated].sort((a, b) => b.likes - a.likes).slice(0, 6);
+      return [...updated].sort((a, b) => b.likes - a.likes).slice(0, 8);
     });
   };
 
@@ -71,7 +71,7 @@ const TopRecipes = () => {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {recipes.map((recipe) => (
             <Recipe
               key={recipe._id}

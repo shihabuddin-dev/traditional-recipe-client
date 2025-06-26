@@ -39,7 +39,7 @@ const MyRecipesCard = ({
     setIsLiking(true);
     try {
       const res = await fetch(
-        `https://traditional-recipe-server.vercel.app/recipes/${_id}/like`,
+        `http://localhost:3000/recipes/${_id}/like`,
         {
           method: "PATCH",
         }

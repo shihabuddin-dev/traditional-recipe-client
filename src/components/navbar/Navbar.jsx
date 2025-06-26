@@ -43,7 +43,7 @@ const Navbar = () => {
           text: "You have been logged out.",
           icon: "success",
         })
-          .then(() => {})
+          .then(() => { })
           .catch((error) => {
             console.log(error);
             Swal.fire({
@@ -90,6 +90,15 @@ const Navbar = () => {
               Home
             </NavLink>
           </li>
+
+
+
+          <li>
+            <NavLink to="/add-recipe" className={linksClass}>
+              <MdLibraryAdd />
+              Add Recipes
+            </NavLink>
+          </li>
           <li>
             <NavLink to="/all-recipes" className={linksClass}>
               <SiIfood />
@@ -102,12 +111,7 @@ const Navbar = () => {
               My Recipes
             </NavLink>
           </li>
-          <li>
-            <NavLink to="/my-recipes" className={linksClass}>
-              {/* <FaClipboardList /> */}
-              Dashboard
-            </NavLink>
-          </li>
+
           {user && (
             <li>
               <NavLink to="/wishlist" className={linksClass}>
@@ -133,9 +137,8 @@ const Navbar = () => {
                 className="w-9 h-9 rounded-full border border-orange-400"
               />
               <div
-                className={`absolute right-0 mt-2 w-40 bg-base-100 border border-orange-600 rounded-md shadow-lg transition-opacity duration-200 ${
-                  showDropdown ? "opacity-100" : "opacity-0 pointer-events-none"
-                }`}
+                className={`absolute right-0 mt-2 w-40 bg-base-100 border border-orange-600 rounded-md shadow-lg transition-opacity duration-200 ${showDropdown ? "opacity-100" : "opacity-0 pointer-events-none"
+                  }`}
               >
                 <p className="px-4 py-2 text-sm font-medium text-orange-600">
                   {user?.displayName}
@@ -182,11 +185,10 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden fixed left-0 right-0 top-[64px] z-40 transition-all duration-300 ${
-          isOpen
+        className={`lg:hidden fixed left-0 right-0 top-[64px] z-40 transition-all duration-300 ${isOpen
             ? "opacity-100 translate-y-0 pointer-events-auto"
             : "opacity-0 -translate-y-8 pointer-events-none"
-        }`}
+          }`}
         style={{ minHeight: isOpen ? "calc(100vh - 72px)" : 0 }}
         aria-hidden={!isOpen}
       >

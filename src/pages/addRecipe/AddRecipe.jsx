@@ -26,7 +26,7 @@ const cuisineOptions = [
 const categoryOptions = ["Breakfast", "Lunch", "Dinner", "Dessert", "Vegan"];
 
 const inputBase =
-  "w-full border-2 border-base-content/20 px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200 bg-base-100 text-base-content";
+  "w-full border-2 border-base-content/20 px-4 py-2 rounded-4xl focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200 bg-base-100 text-base-content";
 
 const AddRecipe = () => {
   const { user } = useContext(FirebaseAuthContext);
@@ -91,7 +91,7 @@ const AddRecipe = () => {
       createdAt: `${dateStr} ${timeStr}`,
     };
 
-    fetch("https://traditional-recipe-server.vercel.app/recipes", {
+    fetch("http://localhost:3000/recipes", {
       method: "POST",
       headers: {
         "content-type": "application/json",

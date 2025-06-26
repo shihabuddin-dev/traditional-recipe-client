@@ -10,7 +10,7 @@ import { GiArchiveRegister } from "react-icons/gi";
 import Spinner from "../../components/ui/Spinner";
 
 const inputBase =
-  "w-full border-2 border-base-content/20 px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200 bg-base-100 text-base-content";
+  "w-full border-2 border-base-content/20 px-4 py-2 rounded-full focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200 bg-base-100 text-base-content";
 
 const SignUp = () => {
   const { createUser, setUser, createUserWithGoogle, updateUser, user } =
@@ -195,7 +195,7 @@ const SignUp = () => {
       </div>{" "}
       <form
         onSubmit={handleSignUp}
-        className="flex-1 max-w-md p-6 bg-base-100 rounded shadow space-y-2 border-2 border-orange-400"
+        className="flex-1 max-w-md p-6 bg-base-100 rounded-2xl shadow space-y-2 border-2 border-orange-400"
       >
         <h2 className="text-2xl md:text-3xl font-semibold mb-4 flex justify-center items-center gap-3 text-base-content">
           <GiArchiveRegister className="text-orange-600" /> Sign Up
@@ -208,7 +208,7 @@ const SignUp = () => {
           name="name"
           className={inputBase}
           placeholder="Enter your Name"
-          // required removed to handle validation with SweetAlert
+        // required removed to handle validation with SweetAlert
         />
         <label className="block mb-2 text-sm font-medium text-base-content">
           Photo URL
@@ -218,7 +218,7 @@ const SignUp = () => {
           name="photo"
           className={inputBase}
           placeholder="Enter your Photo URL"
-          // required removed to handle validation with SweetAlert
+        // required removed to handle validation with SweetAlert
         />
         <label className="block mb-2 text-sm font-medium text-base-content">
           Email address
@@ -230,7 +230,7 @@ const SignUp = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter your Email"
-          // required removed to handle validation with SweetAlert
+        // required removed to handle validation with SweetAlert
         />
         <label className="block mb-2 text-sm font-medium text-base-content">
           Password
@@ -243,7 +243,7 @@ const SignUp = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter your password"
-            // required removed to handle validation with SweetAlert
+          // required removed to handle validation with SweetAlert
           />
           <span
             className="absolute right-3 top-3 cursor-pointer text-base-content/70"
@@ -259,11 +259,10 @@ const SignUp = () => {
             {validations.map((rule, idx) => (
               <li key={idx} className="flex items-start gap-2">
                 <span
-                  className={`w-4 h-4 flex items-center justify-center border rounded-sm ${
-                    rule.isValid
+                  className={`w-4 h-4 flex items-center justify-center border rounded-sm ${rule.isValid
                       ? "bg-green-500 text-white"
                       : "border-base-300 text-red-500"
-                  }`}
+                    }`}
                 >
                   {rule.isValid ? "✓" : "X"}
                 </span>

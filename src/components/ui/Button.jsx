@@ -3,17 +3,17 @@ import React from "react";
 const Button = ({
   children,
   type = "button",
-  onClick = () => {},
+  onClick = () => { },
   variant = "primary",
   className = "",
   ...props
 }) => {
   let styles =
-    "px-3 rounded font-medium transition duration-200 focus:outline-none cursor-pointer ";
+    "px-3 rounded-full font-medium transition duration-200 focus:outline-none cursor-pointer ";
 
   if (variant === "primary") {
     styles +=
-      "bg-[#f97316] text-white px-4 py-2 rounded-md text-sm hover:bg-[#ea580c]";
+      "bg-[#f97316] text-white px-4 py-2 text-sm hover:bg-[#ea580c]";
   } else if (variant === "secondary") {
     styles +=
       "px-3 py-1.5 bg-orange-100 rounded-full text-sm font-medium hover:bg-orange-200 transition-colors text-orange-600";

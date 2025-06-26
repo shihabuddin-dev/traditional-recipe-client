@@ -10,7 +10,7 @@ import { MdLogin } from "react-icons/md";
 import Spinner from "../../components/ui/Spinner";
 
 const inputBase =
-  "w-full border-2 border-base-content/20 px-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200 bg-base-100 text-base-content";
+  "w-full border-2 border-base-content/20 px-4 py-2 rounded-full focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200 bg-base-100 text-base-content";
 
 const SignIn = () => {
   const { loginUser, createUserWithGoogle, setUser, user } =
@@ -116,7 +116,7 @@ const SignIn = () => {
           autoplay
         />
       </div>{" "}
-      <div className="flex-1 max-w-md p-6 bg-base-100 rounded shadow border-2 border-orange-400">
+      <div className="flex-1 max-w-md p-6 bg-base-100 rounded-2xl shadow border-2 border-orange-400">
         <h2 className="text-2xl md:text-3xl font-semibold mb-4 flex justify-center items-center gap-3 text-base-content">
           <MdLogin className="text-orange-600" />
           Sign in

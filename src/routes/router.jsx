@@ -11,7 +11,6 @@ import RecipeDetails from "../pages/recipeDetails/RecipeDetails";
 import ResetPassword from "../pages/auth/ResetPassword";
 import MyRecipes from "../pages/myRecipes/MyRecipes";
 import PrivateRoutes from "./PrivateRoutes";
-import EditMyRecipe from "../components/recipes/EditMyRecipe";
 import Wishlist from "../components/recipes/Wishlist";
 import MyProfile from "../pages/myProfile/MyProfile";
 
@@ -25,7 +24,7 @@ const router = createBrowserRouter([
         index: true,
         hydrateFallbackElement: <Spinner />,
         loader: () =>
-          fetch("https://traditional-recipe-server.vercel.app/recipes/top"),
+          fetch("http://localhost:3000/recipes/top"),
         Component: Home,
       },
       { path: "/signin", Component: SignIn },
@@ -35,7 +34,7 @@ const router = createBrowserRouter([
         path: "/all-recipes",
         hydrateFallbackElement: <Spinner />,
         loader: () =>
-          fetch("https://traditional-recipe-server.vercel.app/recipes"),
+          fetch("http://localhost:3000/recipes"),
         Component: AllRecipes,
       },
 
@@ -52,7 +51,7 @@ const router = createBrowserRouter([
         path: "/my-recipes",
         hydrateFallbackElement: <Spinner />,
         loader: () =>
-          fetch("https://traditional-recipe-server.vercel.app/recipes"),
+          fetch("http://localhost:3000/recipes"),
         element: (
           <PrivateRoutes>
             <MyRecipes />
@@ -64,7 +63,7 @@ const router = createBrowserRouter([
         hydrateFallbackElement: <Spinner />,
         loader: ({ params }) =>
           fetch(
-            `https://traditional-recipe-server.vercel.app/recipes/${params.id}`
+            `http://localhost:3000/recipes/${params.id}`
           ),
         element: (
           <PrivateRoutes>
