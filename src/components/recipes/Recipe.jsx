@@ -122,8 +122,8 @@ const Recipe = ({
   // });
 
   return (
-    <Fade delay={200}>
-      <div className="flex flex-col h-full bg-base-150 rounded-2xl overflow-hidden shadow-lg border border-orange-100 border-dashed hover:shadow-xl transition-all duration-300 relative">
+    <Fade triggerOnce>
+      <div className="flex flex-col h-full bg-base-150 rounded-2xl overflow-hidden shadow-lg border border-orange-100   hover:shadow-xl transition-all duration-300 relative">
         {/* Image Container */}
         <div className="h-48 md:h-52 lg:h-44 overflow-hidden relative">
           {/* Popular Recipe Badge */}
@@ -190,7 +190,7 @@ const Recipe = ({
           </p> */}
 
           {/* Footer: Like + View */}
-          <div className="mt-auto flex items-center justify-between py-2 border-t border-dashed border-orange-200">
+          <div className="mt-auto flex items-center justify-between py-2 border-t   border-orange-200">
             <button
               onClick={handleLike}
               className={`flex items-center text-orange-500 gap-1 hover:text-orange-600 transition text-sm font-medium ${

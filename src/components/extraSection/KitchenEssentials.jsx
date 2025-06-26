@@ -43,7 +43,7 @@ const KitchenEssentials = () => {
           <FaUtensils className="text-orange-500 text-3xl" />
         </div>
         <div className="text-center mb-10">
-          <Fade direction="left">
+          <Fade direction="left" triggerOnce>
             <h2 className="text-3xl md:text-4xl font-semibold mb-2">
               <Typewriter
                 words={["Kitchen Essentials", "Kitchen Need"]}
@@ -56,7 +56,7 @@ const KitchenEssentials = () => {
               />
             </h2>
           </Fade>
-          <Fade direction="right">
+          <Fade direction="right" triggerOnce>
             <p className="mt-3 max-w-2xl mx-auto">
               These are the essential tools every chef relies on to create
               perfect dishes.
@@ -66,8 +66,8 @@ const KitchenEssentials = () => {
 
         <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 text-center">
           {tools.map((tool, index) => (
-            <Fade key={index} direction={index % 2 === 0 ? "left" : "up"}>
-              <div className="relative bg-base-100 p-7 rounded-3xl shadow-xl border border-orange-200 border-dashed hover:shadow-xs transition group h-full flex flex-col items-center overflow-hidden">
+            <Fade key={index} direction={index % 2 === 0 ? "left" : "up"} triggerOnce>
+              <div className="relative bg-base-100 p-7 rounded-3xl shadow-xl border border-orange-200   hover:shadow-xs transition group h-full flex flex-col items-center overflow-hidden">
                 {/* Watermark Icon */}
                 <FaUtensils className="absolute opacity-10 text-orange-300 text-[7rem] -right-4 -bottom-4 pointer-events-none select-none z-0" />
                 <div className="w-28 h-28 mb-4 overflow-hidden rounded-full border-4 border-orange-400 shadow group-hover:scale-103 transition z-10 bg-white">

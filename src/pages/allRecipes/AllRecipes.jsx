@@ -1,19 +1,26 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import Recipe from "../../components/recipes/Recipe";
 import Button from "../../components/ui/Button";
-import { useLoaderData } from "react-router";
 
 const AllRecipes = () => {
-  const initialRecipes = useLoaderData();
-  const [recipes, setRecipes] = useState(initialRecipes);
+  // const recipes = useLoaderData();
+  const [recipes, setRecipes] = useState([]);
+  const [search, setSearch] = useState("");
   const [showAll, setShowAll] = useState(false);
   const [selectedCuisine, setSelectedCuisine] = useState("All");
 
+  useEffect(() => {
+    fetch(`http://localhost:3000/recipes?searchParams=${search}`)
+      .then((res) => res.json())
+      .then((data) => setRecipes(data));
+  }, [search]);
+
+
   // Extract unique cuisine types
   const cuisineTypes = useMemo(() => {
-    const types = initialRecipes.map((r) => r.cuisine);
+    const types = recipes.map((r) => r.cuisine);
     return ["All", ...Array.from(new Set(types))];
-  }, [initialRecipes]);
+  }, [recipes]);
 
   // Handle like update
   const handleLikeUpdate = (id) => {
@@ -49,6 +56,16 @@ const AllRecipes = () => {
           likes.
         </p>
       </div>
+      <form className="pb-8 flex flex-col md:flex-row justify-center items-center gap-2">
+        <input
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          required
+          placeholder="Search by Recipe Name"
+          className="w-xs  mt-1 border-1 border-base-content/20 px-4 py-2 rounded-full focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200 bg-base-100 text-base-content"
+        />
+      </form>
 
       {/* Dropdown Filter */}
       <div className="flex justify-center mb-10">

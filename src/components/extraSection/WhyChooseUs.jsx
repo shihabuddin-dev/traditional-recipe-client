@@ -29,7 +29,7 @@ const features = [
 const WhyChooseUs = () => (
   <section className="py-16 bg-base-200 rounded-2xl">
     <div className="max-w-6xl mx-auto px-4 text-center">
-      <Fade direction="left">
+      <Fade direction="left" triggerOnce>
         <h2 className="text-3xl md:text-4xl font-semibold mb-2">
           <Typewriter
             words={[
@@ -48,7 +48,7 @@ const WhyChooseUs = () => (
           />
         </h2>
       </Fade>
-      <Fade direction="right">
+      <Fade direction="right" triggerOnce>
         <p className="mt-3 max-w-2xl mx-auto mb-10">
           Discover what makes our platform the best place for food lovers and
           home cooks. Enjoy a seamless experience, healthy recipes, and a
@@ -58,10 +58,10 @@ const WhyChooseUs = () => (
 
       <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
         {features.map((f, i) => (
-          <Fade key={i} direction={i % 2 === 0 ? "down" : "right"}>
+          <Fade key={i} direction={i % 2 === 0 ? "down" : "right"} triggerOnce>
             <div
               key={i}
-              className="bg-base-100 border border-dashed border-amber-400 rounded-2xl shadow-md p-8 flex flex-col items-center hover:shadow-xl transition-shadow-xs duration-800"
+              className="bg-base-100 border   border-orange-200 rounded-2xl shadow-md p-8 flex flex-col items-center hover:shadow-xl transition-shadow-xs duration-800"
             >
               {f.icon}
               <h3 className="text-xl font-semibold mb-2">{f.title}</h3>

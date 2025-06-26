@@ -80,7 +80,7 @@ const Steps = () => {
 
   return (
     <div className="container mx-auto px-4">
-      <Fade direction={"up"}>
+      <Fade direction={"up"} triggerOnce>
         <div className="text-center mb-10">
           <h2 className="text-3xl md:text-4xl font-semibold mb-2">
             <Typewriter
@@ -106,15 +106,15 @@ const Steps = () => {
         </div>
       </Fade>
       {/* Image Grid */}
-      <Fade>
+      <Fade triggerOnce>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-4">
           {steps.map((step, i) => {
             const directions = ["up", "down", "left", "right"];
             const dir = directions[i % directions.length];
             return (
-              <Fade key={i} direction={dir}>
+              <Fade key={i} direction={dir} triggerOnce>
                 <div
-                  className="relative group cursor-pointer transition-all duration-300 hover:scale-105 bg-base-500 rounded-xl shadow-lg border border-orange-400 border-dashed overflow-hidden"
+                  className="relative group cursor-pointer transition-all duration-300 hover:scale-105 bg-base-500 rounded-xl shadow-lg overflow-hidden"
                   onClick={() => setSelectedIndex(i)}
                   tabIndex={0}
                   aria-label={`View ${step.title}`}
@@ -125,7 +125,7 @@ const Steps = () => {
                   <img
                     src={step.img}
                     alt={step.title}
-                    className="w-full h-32 object-cover rounded-t-xl border-b-1 border-orange-600 border-dashed"
+                    className="w-full h-32 object-fit rounded-t-xl"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 group-hover:bg-black group-hover:bg-opacity-20 rounded-xl transition-all duration-300 flex items-center justify-center">

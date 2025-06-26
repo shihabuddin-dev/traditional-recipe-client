@@ -170,7 +170,7 @@ const EditMyRecipe = ({ recipe, onClose, handleUpdateRecipe }) => {
             name="ingredients"
             value={formData.ingredients}
             onChange={handleChange}
-            className={inputBase}
+            className='w-full border-2 border-base-content/20 px-4 py-2 rounded-2xl focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200 bg-base-100 text-base-content'
             rows="3"
             required
             placeholder="List ingredients, separated by commas"
@@ -185,7 +185,7 @@ const EditMyRecipe = ({ recipe, onClose, handleUpdateRecipe }) => {
             name="instructions"
             value={formData.instructions}
             onChange={handleChange}
-            className={inputBase}
+            className='w-full border-2 border-base-content/20 px-4 py-2 rounded-2xl focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200 bg-base-100 text-base-content'
             rows="4"
             required
             placeholder="Step-by-step instructions for the recipe"

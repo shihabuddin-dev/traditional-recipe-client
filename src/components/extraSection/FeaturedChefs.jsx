@@ -38,7 +38,7 @@ const FeaturedChefs = () => {
     <section className="pt-16 pb-2 bg-base-100 rounded-2xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10">
-          <Fade direction="left">
+          <Fade direction="left" triggerOnce>
             <h2 className="text-3xl md:text-4xl font-semibold mb-2">
               Meet Our:{" "}
               <span>
@@ -54,7 +54,7 @@ const FeaturedChefs = () => {
               </span>
             </h2>
           </Fade>
-          <Fade direction="right">
+          <Fade direction="right" triggerOnce>
             <div className="w-20 h-1 bg-orange-500 mx-auto"></div>
             <p className="mt-4 max-w-2xl mx-auto">
               Our award-winning culinary team brings world-class expertise to
@@ -67,7 +67,7 @@ const FeaturedChefs = () => {
           {chefs.map((chef, idx) => (
             <div
               key={idx}
-              className="group border border-orange-200 border-dashed bg-base-500 rounded-xl shadow-lg overflow-hidden transition-transform duration-500 hover:shadow-xl hover:-translate-y-1"
+              className="group border border-orange-200 bg-base-500 rounded-xl shadow-lg overflow-hidden transition-transform duration-500 hover:shadow-xl hover:-translate-y-1"
             >
               <div className="relative">
                 <img

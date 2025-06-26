@@ -95,8 +95,8 @@ const MyRecipesCard = ({
   }, [recipe._id]);
 
   return (
-    <Fade>
-      <div className="flex flex-col md:flex-row bg-base-100 shadow-md rounded-2xl overflow-hidden border border-orange-300 border-dashed">
+    <Fade triggerOnce>
+      <div className="flex flex-col md:flex-row bg-base-100 shadow-md rounded-2xl overflow-hidden border border-orange-300  ">
         <div className="md:w-1/3 min-w-[180px] max-w-xs md:max-w-sm flex-shrink-0 flex-grow-0 h-48 md:h-auto overflow-hidden">
           <img
             src={image}
@@ -135,7 +135,7 @@ const MyRecipesCard = ({
             ))}
           </div>
 
-          <div className="flex items-center justify-between pt-3 border-t border-dashed border-orange-200">
+          <div className="flex items-center justify-between pt-3 border-t   border-orange-200">
             <div
               onClick={() => {
                 if (!isOwner) handleLike();
@@ -176,7 +176,7 @@ const MyRecipesCard = ({
               </button>
               <Link
                 to={`/recipes/${_id}`}
-                className="flex items-center justify-center w-7 h-5 sm:w-8 sm:h-6 bg-amber-100 text-amber-700 hover:bg-amber-200 rounded-md text-lg font-medium transition shadow-sm"
+                className="flex items-center justify-center w-7 h-5 sm:w-8 sm:h-6 bg-amber-100 text-amber-700 hover:bg-amber-200 rounded-full text-lg font-medium transition shadow-sm"
                 title="View Details"
               >
                 <FaRegEye />

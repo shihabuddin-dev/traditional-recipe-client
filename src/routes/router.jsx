@@ -13,6 +13,8 @@ import MyRecipes from "../pages/myRecipes/MyRecipes";
 import PrivateRoutes from "./PrivateRoutes";
 import Wishlist from "../components/recipes/Wishlist";
 import MyProfile from "../pages/myProfile/MyProfile";
+import About from "../pages/about/About";
+import Contact from "../pages/contact/Contact";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +29,8 @@ const router = createBrowserRouter([
           fetch("http://localhost:3000/recipes/top"),
         Component: Home,
       },
+      { path: "/about-us", Component: About },
+      { path: "/contact-us", Component: Contact },
       { path: "/signin", Component: SignIn },
       { path: "/signup", Component: SignUp },
       { path: "/reset-password", Component: ResetPassword },

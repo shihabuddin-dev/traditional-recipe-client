@@ -154,7 +154,7 @@ const RecipeDetails = () => {
         </div>
         {/* User Info */}
         {recipe.userName && (
-          <div className="flex items-center gap-3 bg-base-100 px-4 py-2 rounded-lg shadow-sm border border-orange-400 border-dashed">
+          <div className="flex items-center gap-3 bg-base-100 px-4 py-2 rounded-lg shadow-sm border border-orange-400  ">
             <img
               src={recipe.userPhoto || "/default-user.png"}
               alt={recipe.userName}
@@ -208,7 +208,7 @@ const RecipeDetails = () => {
       </div>
 
       {/* Ingredients and Instructions */}
-      <div className="mb-8 bg-base-100 border border-orange-400 border-dashed rounded-xl space-y-2 shadow p-6">
+      <div className="mb-8 bg-base-100 border border-orange-400   rounded-xl space-y-2 shadow p-6">
         <div>
           <h2 className="text-xl font-semibold mb-2">Ingredients</h2>
           <p className="leading-relaxed">{ingredients}</p>
@@ -221,7 +221,7 @@ const RecipeDetails = () => {
       </div>
 
       {/* Random Recipe Description */}
-      <div className="mb-8 bg-base-100 border border-orange-400 border-dashed rounded-xl shadow p-6">
+      <div className="mb-8 bg-base-100 border border-orange-400   rounded-xl shadow p-6">
         <h2 className="text-2xl font-bold mb-3">About This Recipe</h2>
         <p className="mb-4">{description}</p>
         <ul className="list-disc pl-6 space-y-2">

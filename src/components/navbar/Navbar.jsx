@@ -91,8 +91,6 @@ const Navbar = () => {
             </NavLink>
           </li>
 
-
-
           <li>
             <NavLink to="/add-recipe" className={linksClass}>
               <MdLibraryAdd />
@@ -109,6 +107,18 @@ const Navbar = () => {
             <NavLink to="/my-recipes" className={linksClass}>
               <FaClipboardList />
               My Recipes
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/about-us" className={linksClass}>
+              <FaClipboardList />
+              About Us
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/contact-us" className={linksClass}>
+              <FaClipboardList />
+              Contact Us
             </NavLink>
           </li>
 
