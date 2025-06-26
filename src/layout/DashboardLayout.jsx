@@ -44,7 +44,7 @@ const DashboardLayout = () => {
     return (
         <div className="min-h-screen bg-base-100 flex flex-col md:flex-row">
             {/* Sidebar */}
-            <aside className="w-full md:w-64 bg-base-200 border-r border-orange-100 flex flex-col items-center py-8 px-4 md:fixed md:h-full z-20">
+            <aside className="hidden w-full md:w-64 bg-base-200 border-r border-orange-100 md:flex flex-col items-center py-8 px-4 md:fixed md:h-full z-20">
                 <Link to='/'>  <img src={logo} alt="Logo" className="w-16 h-16 mb-1 rounded-full shadow" /></Link>
 
                 <h2 className="text-xl font-bold text-orange-600 mb-8">Dashboard</h2>

@@ -8,13 +8,13 @@ const AllRecipes = () => {
   const [search, setSearch] = useState("");
   const [showAll, setShowAll] = useState(false);
   const [selectedCuisine, setSelectedCuisine] = useState("All");
+  const [sortOrder, setSortOrder] = useState("asc");
 
   useEffect(() => {
     fetch(`http://localhost:3000/recipes?searchParams=${search}`)
       .then((res) => res.json())
       .then((data) => setRecipes(data));
   }, [search]);
-
 
   // Extract unique cuisine types
   const cuisineTypes = useMemo(() => {
@@ -38,9 +38,16 @@ const AllRecipes = () => {
       ? recipes
       : recipes.filter((r) => r.cuisine === selectedCuisine);
 
+  // Sort by preparationTime
+  const sortedRecipes = [...filteredRecipes].sort((a, b) => {
+    const aTime = Number(a.preparationTime) || 0;
+    const bTime = Number(b.preparationTime) || 0;
+    return sortOrder === "asc" ? aTime - bTime : bTime - aTime;
+  });
+
   const visibleRecipes = showAll
-    ? filteredRecipes
-    : filteredRecipes.slice(0, 10);
+    ? sortedRecipes
+    : sortedRecipes.slice(0, 10);
 
   return (
     <div className="max-w-7xl mx-auto px-4">
@@ -56,19 +63,21 @@ const AllRecipes = () => {
           likes.
         </p>
       </div>
-      <form className="pb-8 flex flex-col md:flex-row justify-center items-center gap-2">
+      <form className="pb-4 flex flex-col md:flex-row justify-center items-center gap-2">
         <input
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           required
           placeholder="Search by Recipe Name"
-          className="w-xs  mt-1 border-1 border-base-content/20 px-4 py-2 rounded-full focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200 bg-base-100 text-base-content"
+          className="md:w-xs mt-1 border-1 border-gray-300 px-4 py-2 rounded-full focus:outline-none focus:ring-1 focus:ring-orange-400 focus:border-orange-400 transition duration-200 bg-base-100 text-base-content"
         />
+        <Button>Search</Button>
       </form>
-
+      <p className="text-center mb-2">Sort All Recipe By: 👇🏻</p>
       {/* Dropdown Filter */}
-      <div className="flex justify-center mb-10">
+      <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-10">
+
         <select
           value={selectedCuisine}
           onChange={(e) => setSelectedCuisine(e.target.value)}
@@ -79,6 +88,14 @@ const AllRecipes = () => {
               {type}
             </option>
           ))}
+        </select>
+        <select
+          value={sortOrder}
+          onChange={(e) => setSortOrder(e.target.value)}
+          className="border border-gray-300 rounded-md px-4 py-2 text-orange-600 focus:outline-none focus:ring-2 focus:ring-amber-500"
+        >
+          <option value="asc">Preparation Time: Low to High</option>
+          <option value="desc">Preparation Time: High to Low</option>
         </select>
       </div>
 

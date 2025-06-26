@@ -114,7 +114,7 @@ const Steps = () => {
             return (
               <Fade key={i} direction={dir} triggerOnce>
                 <div
-                  className="relative group cursor-pointer transition-all duration-300 hover:scale-105 bg-base-500 rounded-xl shadow-lg overflow-hidden"
+                  className="relative group cursor-pointer transition-all duration-300 hover:scale-105 bg-base-500 rounded-xl shadow-sm overflow-hidden"
                   onClick={() => setSelectedIndex(i)}
                   tabIndex={0}
                   aria-label={`View ${step.title}`}
@@ -150,7 +150,7 @@ const Steps = () => {
           className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4"
           onClick={() => setSelectedIndex(null)}
         >
-          <div className="relative max-w-4xl w-full bg-white dark:bg-gray-900 rounded-xl shadow-lg p-4">
+          <div className="relative max-w-4xl w-full bg-white dark:bg-gray-900 rounded-xl shadow-sm p-4">
             <button
               className="absolute top-2 right-2 text-red-600 text-4xl font-semibold z-10"
               onClick={(e) => {

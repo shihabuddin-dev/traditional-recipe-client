@@ -67,7 +67,7 @@ const FeaturedChefs = () => {
           {chefs.map((chef, idx) => (
             <div
               key={idx}
-              className="group border border-orange-200 bg-base-500 rounded-xl shadow-lg overflow-hidden transition-transform duration-500 hover:shadow-xl hover:-translate-y-1"
+              className="group border border-orange-200 bg-base-500 rounded-2xl shadow-lg overflow-hidden transition-transform duration-500 hover:shadow-xl hover:-translate-y-1"
             >
               <div className="relative">
                 <img
