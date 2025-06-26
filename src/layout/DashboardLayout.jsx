@@ -52,7 +52,7 @@ const DashboardLayout = () => {
         <div className="min-h-screen bg-base-100 flex flex-col md:flex-row">
             {/* Hamburger for mobile */}
             <button
-                className="sm:hidden fixed top-4 left-4 z-30 bg-orange-500 text-white p-2 rounded-full shadow-lg focus:outline-none"
+                className="md:hidden fixed top-4 left-4 z-30 bg-orange-500 text-white p-2 rounded-full shadow-lg focus:outline-none"
                 onClick={() => document.getElementById('dashboard-sidebar').classList.toggle('hidden')}
                 aria-label="Open sidebar"
             >
@@ -63,7 +63,7 @@ const DashboardLayout = () => {
                 <Link to='/' onClick={closeSidebarOnMobile}>  <img src={logo} alt="Logo" className="w-16 h-16 mx-auto mb-1 rounded-full shadow" /></Link>
                 <h2 className="text-xl font-bold text-orange-600 mb-8">Dashboard</h2>
                 <nav className="flex flex-col gap-3 w-full">
-                    <NavLink to="/dashboard" onClick={closeSidebarOnMobile} className={({ isActive }) => `flex items-center gap-2 px-4 py-2 rounded-full font-medium transition ${isActive ? 'bg-orange-100 text-orange-600' : 'hover:bg-orange-50 text-base-content '}`}> <FaHome /> Home </NavLink>
+                    <NavLink to="/dashboard" end onClick={closeSidebarOnMobile} className={({ isActive }) => `flex items-center gap-2 px-4 py-2 rounded-full font-medium transition ${isActive ? 'bg-orange-100 text-orange-600' : 'hover:bg-orange-50 text-base-content '}`}> <FaHome /> Home </NavLink>
                     <NavLink to="/dashboard/add-recipe" onClick={closeSidebarOnMobile} className={({ isActive }) => `flex items-center gap-2 px-4 py-2 rounded-full font-medium transition ${isActive ? 'bg-orange-100 text-orange-600' : 'hover:text-black hover:bg-orange-50 text-base-content'}`}> <FaPlus /> Add Recipe </NavLink>
                     <NavLink to="/dashboard/my-recipes" onClick={closeSidebarOnMobile} className={({ isActive }) => `flex items-center gap-2 px-4 py-2 rounded-full font-medium transition ${isActive ? 'bg-orange-100 text-orange-600' : 'hover:text-black hover:bg-orange-50 text-base-content'}`}> <FaClipboardList /> My Recipes </NavLink>
                     <NavLink to="/dashboard/wishlist" onClick={closeSidebarOnMobile} className={({ isActive }) => `flex items-center gap-2 px-4 py-2 rounded-full font-medium transition ${isActive ? 'bg-orange-100 text-orange-600' : 'hover:text-black hover:bg-orange-50 text-base-content'}`}> <FaRegSave /> Wishlist </NavLink>

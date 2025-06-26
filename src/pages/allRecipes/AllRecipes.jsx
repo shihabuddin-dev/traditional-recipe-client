@@ -74,7 +74,7 @@ const AllRecipes = () => {
         />
         <Button>Search</Button>
       </form>
-      <p className="text-center mb-2">Sort All Recipe By: 👇🏻</p>
+      {/* <p className="text-center mb-2">Sort All Recipe By: 👇🏻</p> */}
       {/* Dropdown Filter */}
       <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-10">
 

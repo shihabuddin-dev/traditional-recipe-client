@@ -125,7 +125,7 @@ const Recipe = ({
     <Fade triggerOnce>
       <div className="flex flex-col h-full bg-base-150 rounded-2xl overflow-hidden shadow-lg border border-orange-100   hover:shadow-xl transition-all duration-300 relative">
         {/* Image Container */}
-        <div className="h-40 sm:h-46 overflow-hidden relative">
+        <div className="h-40 sm:h-44 overflow-hidden relative">
           {/* Popular Recipe Badge */}
           {likes > 10 && (
             <div className="absolute top-3 left-3 z-10 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md flex items-center">
@@ -156,7 +156,7 @@ const Recipe = ({
           <img
             src={image}
             alt={title}
-            className="w-full h-40 sm:h-46 object-cover hover:scale-103 transition-transform duration-400 rounded-t-2xl"
+            className="w-full h-40 sm:h-44 object-cover hover:scale-103 transition-transform duration-400 rounded-t-2xl"
           />
         </div>
 

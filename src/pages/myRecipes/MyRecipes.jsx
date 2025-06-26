@@ -69,12 +69,12 @@ const MyRecipes = () => {
   if (myRecipes.length === 0) {
     return (
       <div className="flex justify-center items-center flex-col gap-4">
-        <h2 className="text-3xl font-bold text-center">You Didn't Add Recipe</h2>
-        <div className="w-20 h-1 bg-orange-500 mx-auto mb-8"></div>
+        <h2 className="text-2xl font-semibold">You Didn't Add Recipe</h2>
         <Link to="/dashboard/add-recipe">
           <Button variant="outline">Browse Recipes</Button>
         </Link>
-        <iframe className="h-56" src="https://lottie.host/embed/3ab83073-20e0-49a2-a5f2-bb2eaebe4ffb/wqhfyqiu3R.lottie"></iframe>
+        <iframe className="h-78" src="https://lottie.host/embed/f2221793-d449-4921-9930-c9b305cd418e/VRj2wMN4VP.lottie"></iframe>
+       
       </div>
     );
   }
