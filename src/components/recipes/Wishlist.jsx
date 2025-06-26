@@ -33,7 +33,7 @@ const Wishlist = () => {
         <Link to="/all-recipes">
           <Button variant="outline">Browse Recipes</Button>
         </Link>
-        <iframe src="https://lottie.host/embed/3ab83073-20e0-49a2-a5f2-bb2eaebe4ffb/wqhfyqiu3R.lottie"></iframe>
+        <iframe className="h-56 mt-4" src="https://lottie.host/embed/3ab83073-20e0-49a2-a5f2-bb2eaebe4ffb/wqhfyqiu3R.lottie"></iframe>
       </div>
     );
   }

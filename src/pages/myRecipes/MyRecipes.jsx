@@ -70,7 +70,7 @@ const MyRecipes = () => {
     return (
       <div className="flex justify-center items-center flex-col gap-4">
         <h2 className="text-3xl font-bold text-center">You Didn't Add Recipe</h2>
-      <div className="w-20 h-1 bg-orange-500 mx-auto mb-8"></div>
+        <div className="w-20 h-1 bg-orange-500 mx-auto mb-8"></div>
         <Link to="/dashboard/add-recipe">
           <Button variant="outline">Browse Recipes</Button>
         </Link>
@@ -84,7 +84,7 @@ const MyRecipes = () => {
       <title>My Recipes || Traditional Recipe</title>
       <h2 className="text-3xl font-bold text-center mb-2">My Recipes</h2>
       <div className="w-20 h-1 bg-orange-500 mx-auto mb-8"></div>
-      <div className="grid md:grid-cols-2 gap-5">
+      <div className="grid sm:grid-cols-2 gap-5">
         {myRecipes.map((recipe) => (
           <MyRecipesCard
             key={recipe._id}

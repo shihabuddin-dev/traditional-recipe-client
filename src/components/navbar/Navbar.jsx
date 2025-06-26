@@ -33,13 +33,13 @@ const Navbar = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, log out!",
+      confirmButtonText: "Yes, Sign out!",
     }).then((result) => {
       if (result.isConfirmed) {
         logOutUser();
         Swal.fire({
           title: "Logged out!",
-          text: "You have been logged out.",
+          text: "You have been Sign out.",
           icon: "success",
         })
           .then(() => { })
@@ -47,7 +47,7 @@ const Navbar = () => {
             console.log(error);
             Swal.fire({
               title: "Error!",
-              text: "Logout failed.",
+              text: "Sign failed.",
               icon: "error",
             });
           });
@@ -151,7 +151,7 @@ const Navbar = () => {
                   onClick={handleLogOut}
                   className="flex items-center gap-2 px-4 py-2 text-sm text-orange-600 w-full text-left cursor-pointer"
                 >
-                  <FaSignOutAlt /> Log Out
+                  <FaSignOutAlt /> Sign Out
                 </button>
               </div>
             </div>
