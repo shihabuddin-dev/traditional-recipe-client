@@ -128,8 +128,8 @@ const Steps = () => {
                     className="w-full h-32 object-fit rounded-t-xl"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 group-hover:bg-black group-hover:bg-opacity-20 rounded-xl transition-all duration-300 flex items-center justify-center">
-                    <FiZoomIn className="text-white opacity-0 group-hover:opacity-100 text-2xl transition-all duration-300" />
+                  <div className="absolute inset-0  group-hover:opacity-100 rounded-xl transition-all duration-300 flex items-center justify-center">
+                    <FiZoomIn className="text-orange-600 opacity-0 group-hover:opacity-100 text-2xl transition-all duration-300" />
                   </div>
                   <div className="p-3">
                     <div className="font-semibold text-orange-600 text-sm mb-1">

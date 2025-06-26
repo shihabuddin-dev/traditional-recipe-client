@@ -78,6 +78,7 @@ const EditMyRecipe = () => {
 
   return (
     <div className="p-2">
+       <title>Edit Recipe || Traditional Recipe</title>
       <h2 className="text-2xl md:text-3xl font-semibold mb-4 text-center text-orange-600">
         ✏️ Edit Recipe
       </h2>

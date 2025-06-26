@@ -18,6 +18,7 @@ import DashboardLayout from "../layout/DashboardLayout";
 import PrivateRoutes from "./PrivateRoutes";
 import DashboardHome from "../components/dashboardHome/DashboardHome";
 import EditMyRecipe from "../components/recipes/EditMyRecipe";
+import Gallery from "../pages/gallery/Gallery";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
       },
       { path: "about-us", Component: About },
       { path: "contact-us", Component: Contact },
+      { path: "gallery", Component: Gallery },
       { path: "signin", Component: SignIn },
       { path: "signup", Component: SignUp },
       { path: "reset-password", Component: ResetPassword },

@@ -2,19 +2,18 @@ import { NavLink, Link } from "react-router";
 import { use, useEffect, useRef, useState } from "react";
 import {
   FaBars,
-  FaClipboardList,
   FaHome,
-  FaRegSave,
   FaRegUserCircle,
   FaSignOutAlt,
   FaTimes,
+  FaAddressBook,
+  FaImages,
 } from "react-icons/fa";
+import { SiIfood } from "react-icons/si";
 import Button from "../ui/Button";
 import logo from "../../assets/logo.png";
 import { FirebaseAuthContext } from "../../provider/FirebaseAuthContext";
 import Swal from "sweetalert2";
-import { SiIfood } from "react-icons/si";
-import { MdLibraryAdd } from "react-icons/md";
 import userLogo from "../../assets/user-logo.png";
 import ThemeToggle from "../ui/ThemeToggle";
 
@@ -98,20 +97,26 @@ const Navbar = () => {
           </li>
           <li>
             <NavLink to="/about-us" className={linksClass}>
-              <FaClipboardList />
+              <FaAddressBook />
               About Us
             </NavLink>
           </li>
           <li>
             <NavLink to="/contact-us" className={linksClass}>
-              <FaClipboardList />
+              <FaRegUserCircle />
               Contact Us
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/gallery" className={linksClass}>
+              <FaImages />
+              Gallery
             </NavLink>
           </li>
           {user && (
             <li>
               <NavLink to="/dashboard" className={linksClass}>
-                <FaRegUserCircle />
+                <FaSignOutAlt />
                 Dashboard
               </NavLink>
             </li>
@@ -130,22 +135,18 @@ const Navbar = () => {
                 src={user?.photoURL ? user?.photoURL : userLogo}
                 alt="profile"
                 title={user?.displayName}
-                className="w-9 h-9 rounded-full border border-orange-400"
+                className="w-9 h-9 rounded-full"
               />
               <div
-                className={`absolute right-0 mt-2 w-40 bg-base-100 border border-orange-600 rounded-md shadow-lg transition-opacity duration-200 ${showDropdown ? "opacity-100" : "opacity-0 pointer-events-none"
+                className={`absolute right-0 mt-2 w-40 bg-base-300 rounded-2xl shadow-lg transition-opacity duration-200 ${showDropdown ? "opacity-100" : "opacity-0 pointer-events-none"
                   }`}
               >
-                <p className="px-4 py-2 text-sm font-medium text-orange-600">
-                  {user?.displayName}
-                </p>
-                <hr className="text-orange-600" />
-                <Link to="/my-profile">
-                  <p className="px-4 text-sm font-medium text-orange-600 py-2">
+
+                <Link to="/dashboard/my-profile">
+                  <p className="hover:underline px-4 text-sm font-medium text-orange-600 py-2">
                     My Profile
                   </p>
                 </Link>
-                <hr className="text-orange-600" />
                 <button
                   onClick={handleLogOut}
                   className="flex items-center gap-2 px-4 py-2 text-sm text-orange-600 w-full text-left cursor-pointer"
@@ -157,11 +158,9 @@ const Navbar = () => {
           ) : (
             <>
               <Link to="/signin">
-                <Button variant="outline">Sign In</Button>
+                <Button>Sign In</Button>
               </Link>
-              <Link to="/signup">
-                <Button>Sign Up</Button>
-              </Link>
+
             </>
           )}
           <ThemeToggle />
@@ -212,7 +211,7 @@ const Navbar = () => {
                 onClick={toggleMenu}
                 className={linksClass}
               >
-                <FaClipboardList />
+                <FaAddressBook />
                 About Us
               </NavLink>
             </li>
@@ -222,8 +221,18 @@ const Navbar = () => {
                 onClick={toggleMenu}
                 className={linksClass}
               >
-                <FaClipboardList />
+                <FaRegUserCircle />
                 Contact Us
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/gallery"
+                onClick={toggleMenu}
+                className={linksClass}
+              >
+                <FaImages />
+                Gallery
               </NavLink>
             </li>
             {user && (
@@ -233,7 +242,7 @@ const Navbar = () => {
                   onClick={toggleMenu}
                   className={linksClass}
                 >
-                  <FaRegUserCircle />
+                  <FaSignOutAlt />
                   Dashboard
                 </NavLink>
               </li>

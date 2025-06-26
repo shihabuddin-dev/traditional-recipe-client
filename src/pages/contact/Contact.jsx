@@ -26,9 +26,11 @@ const Contact = () => {
 
     return (
         <section className="max-w-4xl mx-auto px-2 sm:px-4 text-base-content">
-            <h2 className="text-3xl md:text-4xl font-semibold mb-2 flex justify-center items-center text-cente gap-2">
-                Contact Us
+            
+                  <h2 className="text-3xl md:text-4xl font-semibold mb-2 text-center">
+                 Contact Us
             </h2>
+            <div className="w-20 h-1 bg-orange-500 mx-auto"></div>
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-10 mb-8 md:mb-12">
                 <div className="flex-1 flex justify-center mb-4 md:mb-0">
                     <img src={contact} alt="Contact Illustration" className="w-full max-w-[220px] sm:max-w-xs md:max-w-md h-[140px] sm:h-[200px] md:h-[320px] object-contain" />

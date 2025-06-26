@@ -19,11 +19,13 @@
     "react-awesome-reveal": "^4.3.1",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
+    "react-infinite-scroll-component": "^6.1.0",
     "react-router": "^7.6.0",
     "react-simple-typewriter": "^5.0.1",
     "sweetalert2": "^11.21.2",
     "swiper": "^11.2.6",
-    "tailwindcss": "^4.1.7"
+    "tailwindcss": "^4.1.7",
+    "yet-another-react-lightbox": "^3.23.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",

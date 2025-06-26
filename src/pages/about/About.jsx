@@ -5,9 +5,11 @@ import logo from '../../assets/logo.png'
 const About = () => {
     return (
         <section className="max-w-5xl mx-auto px-4 text-base-content">
-            <h2 className="text-2xl md:text-3xl font-semibold mb-2 flex justify-center items-center text-center">
+            <h2 className="text-3xl md:text-4xl font-semibold mb-2 text-center">
                 About Traditional Recipe
             </h2>
+            <div className="w-20 h-1 bg-orange-500 mx-auto"></div>
+
             {/* Header Section */}
             <div className="mt-10 flex flex-col md:flex-row items-center gap-10 mb-12">
                 <div className="flex-1 text-center md:text-center">
