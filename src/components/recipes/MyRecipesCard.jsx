@@ -108,7 +108,7 @@ const MyRecipesCard = ({
             <div className="flex flex-wrap gap-2 xs:gap-3 items-center ">
               <button
                 onClick={toggleWishlist}
-                className={`flex items-center justify-center w-4 h-4 xs:w-6 xs:h-6 rounded text-lg font-medium transition shadow-sm ${isWishListed
+                className={`flex items-center justify-center w-6 h-6 xs:w-8 xs:h-8 rounded text-lg font-medium transition shadow-sm ${isWishListed
                   ? "bg-yellow-100 text-yellow-700 shadow"
                   : "bg-white text-yellow-500 hover:bg-yellow-50"
                   } duration-200`}
@@ -124,21 +124,21 @@ const MyRecipesCard = ({
               </button>
               <Link
                 to={`/dashboard/recipes/${_id}`}
-                className="flex items-center justify-center w-4 h-4 xs:w-6 xs:h-6 bg-amber-100 text-amber-700 hover:bg-amber-200 rounded-full text-lg font-medium transition shadow-sm"
+                className="flex items-center justify-center w-6 h-6 xs:w-8 xs:h-8 bg-amber-100 text-amber-700 hover:bg-amber-200 rounded-full text-lg font-medium transition shadow-sm"
                 title="View Details"
               >
                 <FaRegEye />
               </Link>
               <Link
                 to={`/dashboard/edit/recipes/${_id}`}
-                className="flex items-center justify-center w-4 h-4 xs:w-6 xs:h-6 bg-blue-100 text-blue-600 hover:bg-blue-200 rounded-md text-lg font-medium transition shadow-sm"
+                className="flex items-center justify-center w-6 h-6 xs:w-8 xs:h-8 bg-blue-100 text-blue-600 hover:bg-blue-200 rounded-md text-lg font-medium transition shadow-sm"
                 title="Update Recipe"
               >
                 <FaEdit />
               </Link>
               <button
                 onClick={() => handleDeleteRecipe(_id)}
-                className="flex items-center justify-center w-4 h-4 xs:w-6 xs:h-6 bg-red-100 text-red-600 hover:bg-red-200 rounded-md text-lg font-medium transition shadow-sm"
+                className="flex items-center justify-center w-6 h-6 xs:w-8 xs:h-8 bg-red-100 text-red-600 hover:bg-red-200 rounded-md text-lg font-medium transition shadow-sm"
                 title="Delete Recipe"
               >
                 <FaTrash className="text-sm" />

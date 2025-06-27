@@ -57,6 +57,9 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        hydrateFallbackElement: <Spinner />,
+        loader: () =>
+          fetch("https://traditional-recipe-server.vercel.app/recipes"),
         Component: DashboardHome
       },
       {

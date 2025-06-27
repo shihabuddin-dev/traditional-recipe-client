@@ -29,7 +29,8 @@ const Statistic = () => {
     return (
         <section className="max-w-5xl mx-auto px-2 sm:px-4 py-8">
             <title>Statistics | Traditional Recipe</title>
-            <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-orange-600">Site Statistics</h2>
+            <h2 className="text-3xl font-bold text-center pb-2">Site Statistics</h2>
+            <div className="w-20 h-1 bg-orange-500 mx-auto mb-8"></div>
             <div className="grid gap-5 lg:grid-cols-2">
                 {/* Pie Chart */}
                 <div className="bg-base-100 rounded-xl shadow p-4 flex flex-col items-center w-full">
